@@ -41,6 +41,24 @@ html,body,.sitebar,.showroom,.intro,.section,.section.rules,.drawer,.drawerbody,
 .footer-brand img{width:74px;height:45px;object-fit:contain}
 .showroom .wardrobe-hint,.showroom .stage-controls{display:none!important}
 @media(max-width:750px){.header-logo{width:58px;height:32px}.footer-brand img{width:60px}}
+/* Botões EVY: verdes, arredondados, sem contorno; rosa ao ativar */
+.card button,.drawerbody button.primary,.iconbtn,.drawerhead button,.bagline button{
+  background:var(--green)!important;
+  color:var(--black)!important;
+  border:0!important;
+  border-radius:999px!important;
+  box-shadow:none!important;
+  transition:background-color .18s ease,transform .18s ease;
+}
+.card button,.drawerbody button.primary{min-height:44px;padding:12px 18px}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;min-width:43px;min-height:43px}
+.card button:active,.card button:focus,.drawerbody button.primary:active,.drawerbody button.primary:focus,
+.iconbtn:active,.iconbtn:focus,.iconbtn[aria-expanded="true"],
+.drawerhead button:active,.drawerhead button:focus,.bagline button:active,.bagline button:focus{
+  background:var(--pink)!important;color:var(--black)!important;
+}
+.drawerbody button.primary:disabled{background:#bacba0!important;cursor:not-allowed}
+button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
