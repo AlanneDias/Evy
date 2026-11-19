@@ -14,6 +14,12 @@
 .bagcount{background:var(--pink);color:var(--black)}
 /* EVY typography: exclusively Montserrat, including controls and headings */
 html,body,button,input,select,textarea,h1,h2,h3,h4,h5,h6{font-family:"Montserrat",Arial,sans-serif!important}
+/* EVY: superfícies sem contornos — botões, contêineres e campos */
+button,input,select,textarea,.card,.cardart,.sitebar,.drawerhead,.drawerbody,.sidemenu,.shade,.ottoman,.rackbar,.rackleg,.bag-body,.bag-flap,.bag-drop,.label,.toast,.rules article,.rules-grid article,.bagline{border:none!important;outline:none;}
+input,select,textarea{border:0!important;box-shadow:none!important;border-radius:0!important;}
+button,.card,.drawer,.drawerhead,.drawerbody,.bag-drop,.sidemenu{box-shadow:none!important;}
+/* Apenas o foco via teclado, sem contorno permanente */
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:2px solid #000!important;outline-offset:3px;}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="searchBtn" aria-label="Ir ao acervo"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg></button><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
