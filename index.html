@@ -671,6 +671,17 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(max-width:600px){
  #sideMenu.sidemenu{right:0!important;width:min(320px,100vw)!important;padding:18px 22px!important}
 }
+
+/* As peças animadas usam PNG com transparência: sem placa verde atrás. */
+#vitrine .evy-hotspot .evy-hotspot-focus,
+#vitrine .evy-scene-preview,
+.evy-scene-preview,.evy-flying-piece{
+ background:transparent!important;background-color:transparent!important;
+ border:none!important;box-shadow:none!important;object-fit:contain!important;
+}
+#catalog .evy-product-photo.is-contain,#catalog .evy-product-photo.is-cover{
+ object-fit:contain!important;background:transparent!important;
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -1093,6 +1104,16 @@ const P=[
 {"id":"zap-057","name":"Conjunto Seraphine · Okey","kind":"Conjuntos","size":["38"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"}
 ];
 
+/* PNGs com recorte transparente gerados a partir das fotos originais. */
+const cutoutSrc=src=>src&&src.startsWith('assets/')&&src.endsWith('.webp')?
+ 'assets/cutouts/'+src.slice(7,-5)+'.png':src;
+document.addEventListener('error',event=>{
+ const img=event.target;
+ if(img?.tagName==='IMG'&&img.dataset?.originalPhoto&&!img.dataset.cutoutFallback){
+  img.dataset.cutoutFallback='1';
+  img.src=img.dataset.originalPhoto;
+ }
+},true);
 const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null;
 let favorites=new Set();
 try{const saved=JSON.parse(localStorage.getItem('evy-favorites')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(id=>P.some(p=>p.id===id)))}catch(e){}
@@ -1131,7 +1152,7 @@ function render(){
  const i=P.findIndex(x=>x.id===p.id);
  return '<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'">'+
  '<div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+
- (p.image?'<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+p.image+'" alt="'+p.name+'" loading="lazy">':'<div class="evy-photo-pending" role="img" aria-label="Foto original pendente de '+p.name+'"><span>EVY</span><small>FOTOGRAFIA EM ATUALIZAÇÃO</small></div>')+'</div>'+
+ (p.image?'<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+cutoutSrc(p.image)+'" data-original-photo="'+p.image+'" alt="'+p.name+'" loading="lazy">':'<div class="evy-photo-pending" role="img" aria-label="Foto original pendente de '+p.name+'"><span>EVY</span><small>FOTOGRAFIA EM ATUALIZAÇÃO</small></div>')+'</div>'+
  '<button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button>'+
  '<h3>'+p.name+'</h3><p>'+p.color+' · '+p.size.join(' / ')+(p.price!==null?' · R$ '+p.price+',00':' · consulte valor')+'</p>'+
  '<button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>'
@@ -1155,7 +1176,7 @@ function detail(p,fromScene=false){
  '<label>PERÍODO DA PROVA<select id="tryOnPeriod"><option value="">Selecione</option><option value="manhã">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite (consultar disponibilidade)</option></select></label></div>':'';
  el('drawer').classList.toggle('evy-scene-detail',fromScene);
  openDrawer('SOLICITAR LOCAÇÃO',
- (p.image?'<div class="evy-selected-photo"><img src="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>':'<div class="evy-selected-photo evy-selected-photo-pending"><strong>EVY</strong><span>Fotografia original em atualização</span></div>')+
+ (p.image?'<div class="evy-selected-photo"><img src="'+cutoutSrc(p.image)+'" data-original-photo="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>':'<div class="evy-selected-photo evy-selected-photo-pending"><strong>EVY</strong><span>Fotografia original em atualização</span></div>')+
  '<h2>'+p.name+'</h2><p class="note">Código '+code+' · '+p.kind+(p.price!==null?' · R$ '+p.price+',00':' · valor sob consulta')+'</p>'+
  '<label>TAMANHO<select id="rSize">'+p.size.map(sz=>'<option>'+sz+'</option>').join('')+'</select></label>'+
  proofFields+
@@ -1186,7 +1207,7 @@ function animatePieceToBag(p){
  const targetRect=target.getBoundingClientRect();
  const startRect=source?.getBoundingClientRect();
  const pic=document.createElement('img');
- pic.src=p.image;
+ pic.src=cutoutSrc(p.image);pic.dataset.originalPhoto=p.image;
  pic.alt='';
  pic.setAttribute('aria-hidden','true');
  pic.className='evy-flying-piece';
@@ -1216,7 +1237,7 @@ function animateBag(){
 }
 function bagDrawer(){
  const body=bag.length?
- bag.map((x,i)=>'<div class="bagline evy-bagline-photo">'+(x.image?'<img src="'+x.image+'" alt="'+x.name+'">':'<div class="evy-bag-photo-pending" aria-label="Foto pendente">EVY</div>')+
+ bag.map((x,i)=>'<div class="bagline evy-bagline-photo">'+(x.image?'<img src="'+cutoutSrc(x.image)+'" data-original-photo="'+x.image+'" alt="'+x.name+'">':'<div class="evy-bag-photo-pending" aria-label="Foto pendente">EVY</div>')+
  '<div><strong>'+x.name+'</strong><p>Tamanho: '+x.size+'</p><p>Locação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p>'+
  (x.tryOnDate?'<p>Prova: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+'</p>':'')+
  '<p>'+x.method+'</p><button data-remove="'+i+'">REMOVER</button></div></div>').join('')+
@@ -1273,7 +1294,7 @@ $$('[data-scene]').forEach(button=>{
  if(!product)return;
  if(product.image){
   const photo=document.createElement('img');
-  photo.className='evy-hotspot-focus';photo.src=product.image;photo.alt='';
+  photo.className='evy-hotspot-focus';photo.src=cutoutSrc(product.image);photo.dataset.originalPhoto=product.image;photo.alt='';
   photo.setAttribute('aria-hidden','true');button.append(photo);
  }
  let g=null,ignoreClick=false;
@@ -1334,7 +1355,7 @@ $$('[data-scene]').forEach(button=>{
    ignoreClick=true;
    const img=document.createElement('img');
    img.className='evy-scene-preview';img.alt='';img.setAttribute('aria-hidden','true');
-   img.src=product.image||'';
+   img.src=product.image?cutoutSrc(product.image):'';if(product.image)img.dataset.originalPhoto=product.image;
    q.ghost=img;
    if(!product.image){
     img.style.display='none'; /* Produto sem foto: não inventar uma. */
