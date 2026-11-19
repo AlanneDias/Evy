@@ -444,6 +444,12 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  border:0!important;
  box-shadow:none!important;
 }
+
+/* Animação de inclusão de peça — inspiração no destaque da sacola Bibilica */
+#headerBag{transform-origin:center center}
+#headerBag.evy-bag-pulse{animation:evyBagPulse .65s cubic-bezier(.2,.8,.2,1)!important}
+@keyframes evyBagPulse{0%,100%{transform:scale(1)}28%{transform:scale(1.23)}55%{transform:scale(.94)}80%{transform:scale(1.08)}}
+@media(prefers-reduced-motion:reduce){#headerBag.evy-bag-pulse{animation:none!important}}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -881,10 +887,45 @@ function detail(p){
   if(isClothing&&(!proofDate||!proofPeriod)){toast('Informe a data e o período da prova');return}
   if(isClothing&&proofDate>=date){toast('A prova deve acontecer antes da locação');return}
   bag.push({id:p.id,name:p.name,image:p.image,size:el('rSize').value,date,returnDate:el('returnDate').value,method:el('method').value,tryOnDate:proofDate,tryOnPeriod:proofPeriod});
-  el('bagCount').textContent=bag.length;closeDrawer();toast('Peça adicionada à sacola')
+  el('bagCount').textContent=bag.length;animatePieceToBag(p);closeDrawer();toast('Peça adicionada à sacola')
  })
 }
-function animateBag(){const b=el('dropBag');b.classList.remove('accept');b.classList.add('open');void b.offsetWidth;b.classList.add('accept');setTimeout(()=>b.classList.remove('accept','open','ready'),950)}
+/* Miniatura da peça viaja para a sacola como confirmação visual da escolha. */
+function animatePieceToBag(p){
+ const target=el('headerBag');
+ const source=el('drawerBody')?.querySelector('.evy-selected-photo img');
+ if(!target)return;
+ const targetRect=target.getBoundingClientRect();
+ const startRect=source?.getBoundingClientRect();
+ const pic=document.createElement('img');
+ pic.src=p.image;
+ pic.alt='';
+ pic.setAttribute('aria-hidden','true');
+ pic.className='evy-flying-piece';
+ const top=startRect&&startRect.width>20?Math.max(0,startRect.top+startRect.height*.18):window.innerHeight*.5;
+ const left=startRect&&startRect.width>20?startRect.left+startRect.width*.23:window.innerWidth*.5-50;
+ const width=startRect&&startRect.width>20?Math.min(130,startRect.width*.54):100;
+ const height=startRect&&startRect.height>20?Math.min(155,startRect.height*.64):120;
+ pic.style.cssText='position:fixed;left:'+left+'px;top:'+top+'px;width:'+width+'px;height:'+height+'px;object-fit:contain;object-position:center;pointer-events:none;z-index:9999;transform-origin:center center;border:0;box-shadow:none;border-radius:12px;background:transparent;';
+ document.body.appendChild(pic);
+ const dx=targetRect.left+targetRect.width*.5-(left+width*.5);
+ const dy=targetRect.top+targetRect.height*.5-(top+height*.5);
+ const frames=[
+  {transform:'translate(0px,0px) scale(1) rotate(0deg)',opacity:1,offset:0},
+  {transform:'translate('+(dx*.38)+'px,'+(dy*.32-26)+'px) scale(.82) rotate(-5deg)',opacity:1,offset:.4},
+  {transform:'translate('+dx+'px,'+dy+'px) scale(.1) rotate(5deg)',opacity:.15,offset:1}
+ ];
+ const finish=()=>{pic.remove();target.classList.remove('evy-bag-pulse');void target.offsetWidth;target.classList.add('evy-bag-pulse');setTimeout(()=>target.classList.remove('evy-bag-pulse'),700)};
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){finish();return}
+ if(pic.animate){const anim=pic.animate(frames,{duration:780,easing:'cubic-bezier(.25,.75,.25,1)',fill:'forwards'});anim.onfinish=finish;anim.oncancel=()=>pic.remove()}
+ else{pic.style.transform='translate('+dx+'px,'+dy+'px) scale(.1)';pic.style.opacity='0';setTimeout(finish,450)}
+}
+function animateBag(){
+ const b=el('dropBag');
+ if(!b||b.hidden)return;
+ b.classList.remove('accept');b.classList.add('open');void b.offsetWidth;b.classList.add('accept');
+ setTimeout(()=>b.classList.remove('accept','open','ready'),950)
+}
 function bagDrawer(){
  const body=bag.length?
  bag.map((x,i)=>'<div class="bagline evy-bagline-photo"><img src="'+x.image+'" alt="'+x.name+'">'+
