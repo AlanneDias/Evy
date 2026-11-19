@@ -682,33 +682,68 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #catalog .evy-product-photo.is-contain,#catalog .evy-product-photo.is-cover{
  object-fit:contain!important;background:transparent!important;
 }
+
+/* EVY — cabideiro recuado, peças isoladas em PNG e espaço livre no primeiro plano. */
+#vitrine.showroom{height:auto!important;min-height:0!important;background:var(--green)!important;overflow:hidden}
+#vitrine.showroom::before{display:none!important}
+#vitrine .evy-rack-stage{position:relative!important;aspect-ratio:1000/520!important;background:var(--green)!important;overflow:hidden}
+#vitrine .evy-rack-display{
+ position:absolute;left:18%;top:14%;width:77%;height:76%;
+ transform:translateZ(0);z-index:1;
+}
+#vitrine .evy-rack-display .evy-scene-hotspots{position:absolute!important;inset:0!important;height:100%!important;z-index:3}
+#vitrine .evy-rack-rail{position:absolute;left:2%;right:2%;top:11%;height:2.5%;border-radius:999px;background:linear-gradient(#393939,#101010 50%,#303030);box-shadow:0 3px 5px #0002}
+#vitrine .evy-rack-left,#vitrine .evy-rack-right{position:absolute;top:12%;bottom:7%;width:1.3%;border-radius:99px;background:linear-gradient(90deg,#090909,#3b3b3b,#0e0e0e)}
+#vitrine .evy-rack-left{left:2.1%}#vitrine .evy-rack-right{right:2.1%}
+#vitrine .evy-rack-shelf{position:absolute;left:0;right:0;bottom:2%;height:10%;border-radius:50% / 26%;background:linear-gradient(180deg,#e4f3bd 0%,#c1d598 70%,#a6c27e 100%);box-shadow:0 8px 14px #0002}
+#vitrine .evy-rack-piece{border-radius:0!important}
+#vitrine .evy-rack-piece .evy-hanger{position:absolute;left:8%;top:0;width:84%;height:14%;z-index:2;overflow:visible}
+#vitrine .evy-rack-piece .evy-rack-garment{position:absolute;inset:9% 0 0;width:100%;height:91%;object-fit:contain;object-position:center top;pointer-events:none;filter:drop-shadow(0 5px 4px #0002)}
+#vitrine .evy-rack-accessory img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;filter:drop-shadow(0 3px 3px #0002)}
+#vitrine .evy-rack-piece .evy-hotspot-focus,#vitrine .evy-rack-accessory .evy-hotspot-focus{display:none!important}
+#vitrine .evy-rack-piece.evy-is-dragging>.evy-rack-garment,#vitrine .evy-rack-accessory.evy-is-dragging>img{opacity:.35}
+#vitrine #sceneBag.evy-luxe-bag{left:2.8%!important;right:auto!important;bottom:11%!important;width:clamp(85px,12vw,158px)!important;height:clamp(87px,12.5vw,158px)!important;z-index:12!important}
+@media(max-width:650px){
+ #vitrine .evy-rack-stage{aspect-ratio:1000/670!important}
+ #vitrine .evy-rack-display{left:15%;width:83%;top:19%;height:65%}
+ #vitrine #sceneBag.evy-luxe-bag{left:1%!important;right:auto!important;bottom:5%!important;width:72px!important;height:75px!important}
+ #vitrine .evy-rack-piece .evy-hanger{height:17%}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
-<main><section id="vitrine" class="showroom" aria-label="Vitrine fotográfica interativa da EVY">
-<div class="evy-scene-stage">
-<img class="evy-showroom-photo" src="assets/evy-vitrine-realista.webp" alt="Vitrine realista da EVY, com vestidos pendurados em arara preta e bolsas sobre uma base verde" fetchpriority="high">
-<div class="evy-scene-hotspots" aria-label="Selecionar peças diretamente na vitrine">
-<button class="evy-hotspot" style="--x:20%;--y:18%;--w:14%;--h:54%" data-scene="corset" aria-label="Ver vestido corset vinho"></button>
-<button class="evy-hotspot" style="--x:35%;--y:18%;--w:15%;--h:54%" data-scene="assimetrico" aria-label="Ver vestido preto assimétrico"></button>
-<button class="evy-hotspot" style="--x:51%;--y:18%;--w:15%;--h:54%" data-scene="marrom" aria-label="Ver vestido marrom"></button>
-<button class="evy-hotspot" style="--x:67%;--y:18%;--w:16%;--h:54%" data-scene="balone" aria-label="Ver vestido preto com saia balonê"></button>
-<button class="evy-hotspot" style="--x:7%;--y:72%;--w:12%;--h:22%" data-scene="lorena" aria-label="Ver bolsa Lorena"></button>
-<button class="evy-hotspot" style="--x:19%;--y:73%;--w:10%;--h:20%" data-scene="wallet-preta" aria-label="Ver carteira preta"></button>
-<button class="evy-hotspot" style="--x:30%;--y:73%;--w:11%;--h:20%" data-scene="mini-944" aria-label="Ver bolsa marrom"></button>
-<button class="evy-hotspot" style="--x:42%;--y:71%;--w:9%;--h:22%" data-scene="mini-malu" aria-label="Ver bolsa off-white"></button>
-<button class="evy-hotspot" style="--x:53%;--y:74%;--w:10%;--h:19%" data-scene="emmy" aria-label="Ver bolsa preta"></button>
-<button class="evy-hotspot" style="--x:64%;--y:73%;--w:10%;--h:20%" data-scene="wallet-verde" aria-label="Ver mini wallet verde"></button>
-<button class="evy-hotspot" style="--x:74%;--y:73%;--w:10%;--h:20%" data-scene="anna" aria-label="Ver bolsa vermelha"></button>
-<button class="evy-hotspot" style="--x:85%;--y:72%;--w:10%;--h:21%" data-scene="tabby12" aria-label="Ver bolsa preta Coach"></button>
+<main><section id="vitrine" class="showroom" aria-label="Vitrine interativa EVY com roupas no cabideiro e sacola">
+<div class="evy-scene-stage evy-rack-stage">
+<div class="evy-rack-display">
+ <div class="evy-rack-rail" aria-hidden="true"></div>
+ <div class="evy-rack-left" aria-hidden="true"></div>
+ <div class="evy-rack-right" aria-hidden="true"></div>
+ <div class="evy-rack-shelf" aria-hidden="true"></div>
+ <div class="evy-scene-hotspots" aria-label="Arraste uma peça ou toque para selecionar">
+ <button class="evy-hotspot evy-rack-piece" data-scene="borgonha" style="--x:2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco vinho com cinto: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/casaco-borgonha-cinto.png" data-original-photo="assets/casaco-borgonha-cinto.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="biker" style="--x:18.1%;--y:15%;--w:16%;--h:58%" aria-label="Jaqueta biker preta: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/jaqueta-biker-preta.png" data-original-photo="assets/jaqueta-biker-preta.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="fur" style="--x:34.2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco preto de pelos: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/casaco-pelo-preto.png" data-original-photo="assets/casaco-pelo-preto.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="marrom" style="--x:50.300000000000004%;--y:15%;--w:16%;--h:58%" aria-label="Vestido marrom balonê: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-marrom-balone.png" data-original-photo="assets/vestido-marrom-balone.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="assimetrico" style="--x:66.4%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto assimétrico: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-preto-assimetrico.png" data-original-photo="assets/vestido-preto-assimetrico.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="balone" style="--x:82.5%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto balonê: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-veludo-balone.png" data-original-photo="assets/vestido-veludo-balone.webp" alt="" draggable="false"></button>
+ <button class="evy-hotspot evy-rack-accessory" data-scene="lorena" style="--x:3%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver lorena"><img src="assets/cutouts/bolsa-lorena-soft-offwhite.png" data-original-photo="assets/bolsa-lorena-soft-offwhite.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="wallet-preta" style="--x:15%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver wallet-preta"><img src="assets/cutouts/mini-wallet-preta-coach.png" data-original-photo="assets/mini-wallet-preta-coach.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="mini-944" style="--x:27%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver mini-944"><img src="assets/cutouts/mini-944-marrom-schutz.png" data-original-photo="assets/mini-944-marrom-schutz.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="mini-malu" style="--x:39%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver mini-malu"><img src="assets/cutouts/mini-malu-offwhite-schutz.png" data-original-photo="assets/mini-malu-offwhite-schutz.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="emmy" style="--x:51%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver emmy"><img src="assets/cutouts/bag-emmy-snake-preta.png" data-original-photo="assets/bag-emmy-snake-preta.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="suri" style="--x:63%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver suri"><img src="assets/cutouts/bag-suri-triangle-preta.png" data-original-photo="assets/bag-suri-triangle-preta.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="wallet-verde" style="--x:75%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver wallet-verde"><img src="assets/cutouts/mini-wallet-verde-coach.png" data-original-photo="assets/mini-wallet-verde-coach.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-accessory" data-scene="anna" style="--x:87%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver anna"><img src="assets/cutouts/anna-foldover-vermelha.png" data-original-photo="assets/anna-foldover-vermelha.webp" alt="" draggable="false"></button>
+ </div>
 </div>
-<button id="sceneBag" class="evy-wicker-basket evy-luxe-bag" type="button" aria-label="Sacola preta EVY: arraste uma peça para cá ou abra sua sacola">
+<button id="sceneBag" class="evy-wicker-basket evy-luxe-bag" type="button" aria-label="Sacola EVY: solte sua peça aqui ou abra a sacola">
  <span class="evy-bag-handles" aria-hidden="true"></span>
  <span class="evy-bag-mouth" aria-hidden="true"></span>
  <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
-</button></div>
-<div class="evy-scene-tools"><span>Arraste uma peça até a cesta ou toque para conferir os detalhes.</span></div>
+</button>
+</div>
+<div class="evy-scene-tools"><span>Arraste uma peça até a sacola ou toque para conferir os detalhes.</span></div>
 <div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
 </section>
 <section class="intro"><div class="intro-logo"><img src="assets/evy-logo.svg" alt="EVY"></div><p></p></section>
