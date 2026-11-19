@@ -95,6 +95,88 @@ button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 .evy-footer-bottom a{color:#000!important;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:990px){.evy-timeline{grid-template-columns:1fr;max-width:620px;gap:0;margin-top:28px}.evy-timeline:before{width:2px;height:auto;left:23px;right:auto;top:20px;bottom:38px}.evy-timeline li{display:grid;grid-template-columns:50px 1fr;gap:20px;padding:0 0 28px}.timeline-copy{padding-top:4px}.timeline-copy h3{margin-bottom:8px}.timeline-copy p{font-size:13px}.evy-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}}
 @media(max-width:600px){.evy-footer-grid{grid-template-columns:1fr 1fr;gap:30px 18px;padding:42px 20px 24px}.evy-footer-brand{grid-column:1/-1}.evy-footer-grid>div:nth-child(4){grid-column:1/-1}.evy-accordion summary{padding:16px 18px;min-height:59px;font-size:12px;border-radius:20px}.accordion-content{padding:6px 18px 18px}.evy-footer-bottom{padding:16px 20px 20px}.evy-timeline li{gap:15px}}
+/* EVY - linha do tempo com cards horizontais (desktop e mobile) */
+.evy-timeline{
+  display:grid!important;
+  grid-auto-flow:column!important;
+  grid-auto-columns:minmax(220px,1fr)!important;
+  grid-template-columns:none!important;
+  gap:16px!important;
+  max-width:none!important;
+  width:100%;
+  margin:35px 0 0!important;
+  padding:4px 4px 17px!important;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+  scrollbar-color:var(--pink) transparent;
+}
+.evy-timeline:before{content:none!important;display:none!important}
+.evy-timeline li{
+  position:relative!important;
+  display:flex!important;
+  flex-direction:column!important;
+  min-width:0!important;
+  min-height:265px;
+  padding:24px 21px 25px!important;
+  background:var(--black)!important;
+  color:var(--green)!important;
+  border:none!important;
+  border-radius:22px!important;
+  box-shadow:none!important;
+  scroll-snap-align:start;
+}
+.evy-timeline li:not(:last-child):after{
+  content:'›';
+  position:absolute;
+  right:-15px;
+  top:43%;
+  z-index:3;
+  width:24px;
+  height:24px;
+  display:grid;
+  place-items:center;
+  color:var(--pink);
+  font-size:31px;
+  font-weight:600;
+  line-height:1;
+  pointer-events:none;
+}
+.evy-timeline .timeline-number{
+  display:grid!important;
+  flex:none;
+  place-items:center;
+  height:45px;
+  width:45px;
+  background:var(--pink)!important;
+  color:#000!important;
+  border:0!important;
+  border-radius:50%!important;
+  font-size:13px;
+}
+.evy-timeline .timeline-copy{padding:22px 0 0!important}
+.evy-timeline .timeline-copy h3{
+  color:var(--green)!important;
+  font-size:15px!important;
+  font-weight:700;
+  margin:0 0 11px!important;
+  line-height:1.35;
+}
+.evy-timeline .timeline-copy p{
+  color:var(--green)!important;
+  font-size:12px!important;
+  line-height:1.75;
+}
+@media(min-width:1350px){.evy-timeline{grid-auto-columns:minmax(0,1fr)!important;overflow-x:visible}}
+@media(max-width:990px){
+  .evy-timeline{grid-auto-columns:clamp(225px,62vw,285px)!important;max-width:none!important;gap:14px!important;margin-top:27px!important}
+  .evy-timeline:before{content:none!important;display:none!important}
+  .evy-timeline li{display:flex!important;min-height:268px;padding:24px 20px!important}
+  .evy-timeline .timeline-copy{padding:20px 0 0!important}
+  .evy-timeline .timeline-copy p{font-size:12px!important}
+}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
