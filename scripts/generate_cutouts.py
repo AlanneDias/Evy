@@ -34,6 +34,7 @@ def cutout(src):
     mask.putdata([0 if p == marker else 255 for p in pixels])
     mask = mask.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(.65))
     image.putalpha(mask)
+    print("ALPHA_STATS", src.name, "corner", rgb.getpixel((0, 0)), "transparent_fraction", round(sum(v < 64 for v in mask.getdata()) / (w*h), 3))
     dst = OUT / (src.stem + ".png")
     image.save(dst, optimize=True, compress_level=9)
     return dst
