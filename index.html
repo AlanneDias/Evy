@@ -782,7 +782,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-rack-piece .evy-rack-garment{
  position:absolute!important;left:var(--garment-left,0%)!important;top:var(--garment-top,0%)!important;
  width:var(--garment-width,100%)!important;height:var(--garment-height,100%)!important;
- object-fit:fill!important;object-position:center top;display:block!important;pointer-events:none!important;
+ object-fit:contain!important;object-position:center top;display:block!important;pointer-events:none!important;
  filter:drop-shadow(3px 5px 4px rgba(36,39,28,.19));
 }
 #vitrine .evy-rack-piece.evy-is-dragging>.evy-rack-garment,
@@ -797,12 +797,12 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-rack-rail,#vitrine .evy-rack-left,#vitrine .evy-rack-right,#vitrine .evy-rack-shelf{display:none!important}
 #vitrine .evy-rack-piece>.evy-hanger,#vitrine .evy-rack-accessory{display:none!important}
 #vitrine .evy-rack-piece{z-index:5!important}
-#vitrine .evy-rack-piece[data-scene="borgonha"]{left:2.59%!important;top:18.18%!important;width:25%!important;height:42.62%!important;z-index:4!important;--garment-left:-7.69%;--garment-top:-1.57%;--garment-width:115.38%;--garment-height:102.94%}
-#vitrine .evy-rack-piece[data-scene="biker"]{left:21.95%!important;top:18.85%!important;width:21.95%!important;height:34.11%!important;z-index:10!important;--garment-left:-.97%;--garment-top:-2.79%;--garment-width:102.19%;--garment-height:104.79%}
-#vitrine .evy-rack-piece[data-scene="fur"]{left:39.99%!important;top:18.93%!important;width:20.58%!important;height:38.95%!important;z-index:6!important;--garment-left:-2.51%;--garment-top:-5.65%;--garment-width:105.26%;--garment-height:109.83%}
-#vitrine .evy-rack-piece[data-scene="marrom"]{left:49.01%!important;top:19.93%!important;width:22.41%!important;height:40.87%!important;z-index:5!important;--garment-left:-16.83%;--garment-top:-6.38%;--garment-width:133.33%;--garment-height:111.70%}
-#vitrine .evy-rack-piece[data-scene="assimetrico"]{left:65.17%!important;top:20.77%!important;width:15.78%!important;height:57.96%!important;z-index:11!important;--garment-left:-66.11%;--garment-top:-.97%;--garment-width:233.33%;--garment-height:102.14%}
-#vitrine .evy-rack-piece[data-scene="balone"]{left:81.55%!important;top:19.52%!important;width:15.55%!important;height:40.95%!important;z-index:7!important;--garment-left:-16.46%;--garment-top:-4.29%;--garment-width:132.91%;--garment-height:107.36%}
+#vitrine .evy-rack-piece[data-scene="borgonha"]{left:1.23%!important;top:18.18%!important;width:27.71%!important;height:42.62%!important;z-index:4!important;--garment-left:-8.33%;--garment-top:-1.98%;--garment-width:116.67%;--garment-height:103.75%}
+#vitrine .evy-rack-piece[data-scene="biker"]{left:20.16%!important;top:18.85%!important;width:25.53%!important;height:34.11%!important;z-index:10!important;--garment-left:-1.47%;--garment-top:-3.22%;--garment-width:103.19%;--garment-height:105.63%}
+#vitrine .evy-rack-piece[data-scene="fur"]{left:35.45%!important;top:18.93%!important;width:29.66%!important;height:38.95%!important;z-index:6!important;--garment-left:-3.04%;--garment-top:-6.12%;--garment-width:106.33%;--garment-height:110.76%}
+#vitrine .evy-rack-piece[data-scene="marrom"]{left:47.75%!important;top:19.93%!important;width:24.93%!important;height:40.87%!important;z-index:5!important;--garment-left:-17.68%;--garment-top:-6.87%;--garment-width:135.05%;--garment-height:112.66%}
+#vitrine .evy-rack-piece[data-scene="assimetrico"]{left:63.92%!important;top:20.77%!important;width:18.28%!important;height:57.96%!important;z-index:11!important;--garment-left:-68.75%;--garment-top:-1.37%;--garment-width:238.64%;--garment-height:102.94%}
+#vitrine .evy-rack-piece[data-scene="balone"]{left:77.29%!important;top:19.52%!important;width:24.07%!important;height:40.95%!important;z-index:7!important;--garment-left:-17.31%;--garment-top:-4.74%;--garment-width:134.62%;--garment-height:108.25%}
 #vitrine .evy-rack-piece .evy-hotspot-focus{display:none!important}
 #vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{outline:none!important;outline-offset:0!important;border-radius:0!important;backdrop-filter:none;-webkit-backdrop-filter:none}
 @media(hover:hover) and (pointer:fine){#vitrine .evy-rack-piece:hover{cursor:grab}}
@@ -1474,7 +1474,7 @@ $$('[data-scene]').forEach(button=>{
   img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
   if(product.image){img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image}
   const carriedHeight=Math.min(innerHeight*.48,Math.max(190,button.clientHeight*1.18))*1.56;
-  img.style.width=carriedHeight*.85+'px';img.style.height=carriedHeight+'px';
+  img.style.width=carriedHeight*.8+'px';img.style.height=carriedHeight+'px';
   if(!product.image)img.style.display='none';
   return img;
  };
