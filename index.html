@@ -378,7 +378,7 @@ let favorites=new Set();
 try{const saved=JSON.parse(localStorage.getItem('evy-favorites')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(id=>P.some(p=>p.id===id)))}catch(e){}
 const favoriteHeart='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
 function syncFavorites(){
- $('[data-favorite]').forEach(b=>{const active=favorites.has(b.dataset.favorite),p=P.find(x=>x.id===b.dataset.favorite);b.classList.toggle('favorited',active);b.setAttribute('aria-pressed',String(active));b.setAttribute('aria-label',(active?'Remover dos favoritos: ':'Adicionar aos favoritos: ')+(p?.name||'peça'))});
+ $$('[data-favorite]').forEach(b=>{const active=favorites.has(b.dataset.favorite),p=P.find(x=>x.id===b.dataset.favorite);b.classList.toggle('favorited',active);b.setAttribute('aria-pressed',String(active));b.setAttribute('aria-label',(active?'Remover dos favoritos: ':'Adicionar aos favoritos: ')+(p?.name||'peça'))});
  el('favBtn').classList.toggle('has-favorites',favorites.size>0);
  el('favBtn').setAttribute('aria-label','Ver favoritos: '+favorites.size+' peças');
 }
