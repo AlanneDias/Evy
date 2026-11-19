@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alannedias.github.io/Evy/sitemap.xml
