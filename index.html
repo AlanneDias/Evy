@@ -288,6 +288,15 @@ button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 #catalog .card{scroll-margin-top:100px}
 #catalog .card.linked-item{outline:0!important}
 #catalog .card.linked-item .cardart{box-shadow:inset 0 0 0 2px var(--pink)!important}
+/* EVY: sacola e fechar sem fundo circular; X apenas rosa */
+#headerBag,#headerBag:hover,#headerBag:active,#headerBag:focus,
+#closeDrawer,#closeDrawer:hover,#closeDrawer:active,#closeDrawer:focus{
+ background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+#headerBag{padding:5px!important}
+#headerBag svg{stroke:#000!important;fill:none!important}
+#headerBag .bagcount{background:transparent!important;box-shadow:none!important;border:0!important;border-radius:0!important}
+#closeDrawer{color:var(--pink)!important;font-size:31px!important;font-weight:400!important;line-height:1!important;padding:4px 8px!important}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
@@ -376,9 +385,32 @@ function toast(msg){const t=el('toast');t.textContent=msg;t.classList.add('show'
 function render(){el('rack').innerHTML=P.slice(0,4).map((p,i)=>'<button class="piece '+(selected===i?'selected':'')+'" style="--tilt:'+(i%2?3:-3)+'deg" type="button" data-piece="'+i+'" aria-label="Ver '+p.name+'">'+hanger+'<span class="cloth">'+pieceSVG(p)+'</span></button>').join('');el('catalog').innerHTML=P.map((p,i)=>'<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'"><div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+pieceSVG(p)+'</div><button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button><h3>'+p.name+'</h3><p>'+p.size.join(' / ')+(p.price?' · R$ '+p.price+',00':' · consulte valor')+'</p><button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>').join('');bindDrag();syncFavorites()}
 function openDrawer(title,body){el('drawerTitle').textContent=title;el('drawerBody').innerHTML=body;el('shade').hidden=false;el('drawer').classList.add('visible');el('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';el('closeDrawer').focus()}
 function closeDrawer(){el('drawer').classList.remove('visible');el('drawer').setAttribute('aria-hidden','true');el('shade').hidden=true;document.body.style.overflow=''}
-function detail(p){current=p;openDrawer('SOLICITAR LOCAÇÃO','<span class="label">ITEM DEMONSTRATIVO</span><h2>'+p.name+'</h2><p class="note">Esta vitrine usa ilustrações e valores de teste até receber o acervo e a tabela oficial da EVY.</p><label>TAMANHO<select id="rSize">'+p.size.map(s=>'<option>'+s+'</option>').join('')+'</select></label><label>DATA DE RETIRADA<input id="rDate" type="date" min="'+today()+'"></label><label>DATA DE DEVOLUÇÃO<input id="returnDate" type="date" readonly placeholder="Dia seguinte"></label><label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label><p class="note">Duração padrão: 24 horas, com devolução no dia seguinte. Sujeito à disponibilidade. Reserva confirmada somente após pagamento.</p><button type="button" class="primary" id="confirmRental">ADICIONAR À BOLSA</button>');el('rDate').addEventListener('change',e=>el('returnDate').value=nextDay(e.target.value));el('confirmRental').addEventListener('click',()=>{if(!el('rDate').value){toast('Informe a data de retirada');return}bag.push({id:p.id,name:p.name,size:el('rSize').value,date:el('rDate').value,returnDate:el('returnDate').value,method:el('method').value});el('bagCount').textContent=bag.length;closeDrawer();animateBag();toast('Look adicionado à bolsa!')})}
+function detail(p){
+ current=p;
+ openDrawer('SOLICITAR LOCAÇÃO',
+ '<h2>'+p.name+'</h2>'+
+ '<label>TAMANHO<select id="rSize">'+p.size.map(s=>'<option>'+s+'</option>').join('')+'</select></label>'+
+ '<label>LOCAÇÃO — DATA INICIAL<input id="rDate" type="date" min="'+today()+'"></label>'+
+ '<label>LOCAÇÃO — DATA FINAL<input id="returnDate" type="date" readonly></label>'+
+ '<label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label>'+
+ '<label>DESEJA AGENDAR UMA PROVA?<select id="requestTryOn"><option value="nao">Não, apenas consultar locação</option><option value="sim">Sim, quero solicitar uma prova</option></select></label>'+
+ '<div id="tryOnFields" hidden><label>DIA DESEJADO PARA A PROVA<input id="tryOnDate" type="date" min="'+today()+'"></label>'+
+ '<label>PERÍODO DA PROVA<select id="tryOnPeriod"><option value="">Selecione</option><option value="manhã">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option></select></label>'+
+ '<p class="note">Prova presencial sujeita à confirmação da EVY e à disponibilidade de horários.</p></div>'+
+ '<p class="note">Locação padrão de 24 horas, com devolução no dia seguinte. Reserva confirmada somente após pagamento.</p>'+
+ '<button type="button" class="primary" id="confirmRental">ADICIONAR À BOLSA</button>');
+ el('rDate').addEventListener('change',e=>el('returnDate').value=nextDay(e.target.value));
+ el('requestTryOn').addEventListener('change',e=>{el('tryOnFields').hidden=e.target.value!=='sim'});
+ el('confirmRental').addEventListener('click',()=>{
+  if(!el('rDate').value){toast('Informe a data de retirada');return}
+  const wantsTryOn=el('requestTryOn').value==='sim';
+  if(wantsTryOn&&(!el('tryOnDate').value||!el('tryOnPeriod').value)){toast('Informe o dia e o período da prova');return}
+  bag.push({id:p.id,name:p.name,size:el('rSize').value,date:el('rDate').value,returnDate:el('returnDate').value,method:el('method').value,tryOnDate:wantsTryOn?el('tryOnDate').value:null,tryOnPeriod:wantsTryOn?el('tryOnPeriod').value:null});
+  el('bagCount').textContent=bag.length;closeDrawer();animateBag();toast('Look adicionado à bolsa!')
+ })
+}
 function animateBag(){const b=el('dropBag');b.classList.remove('accept');b.classList.add('open');void b.offsetWidth;b.classList.add('accept');setTimeout(()=>b.classList.remove('accept','open','ready'),950)}
-function bagDrawer(){openDrawer('BOLSA DE LOCAÇÃO',bag.length?bag.map((x,i)=>'<div class="bagline"><strong>'+x.name+'</strong><p>Tamanho '+x.size+' · '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p><p>'+x.method+'</p><button data-remove="'+i+'">REMOVER</button></div>').join('')+'<p class="note">Pedido sujeito à confirmação da EVY. A reserva só é efetivada após o pagamento.</p><button class="primary" id="sendRequest">CONSULTAR PELO WHATSAPP</button>':'<p class="note">A bolsa está vazia. Arraste uma peça da arara até ela ou selecione um look para informar a data de locação.</p>');const send=el('sendRequest');if(send)send.onclick=sendBag;$$('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(Number(b.dataset.remove),1);el('bagCount').textContent=bag.length;bagDrawer()})}
+function bagDrawer(){openDrawer('BOLSA DE LOCAÇÃO',bag.length?bag.map((x,i)=>'<div class="bagline"><strong>'+x.name+'</strong><p>Tamanho '+x.size+' · '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p><p>'+x.method+'</p>'+(x.tryOnDate?'<p>Prova solicitada: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+'</p>':'')+'<button data-remove="'+i+'">REMOVER</button></div>').join('')+'<p class="note">Pedido sujeito à confirmação da EVY. A reserva só é efetivada após o pagamento.</p><button class="primary" id="sendRequest">CONSULTAR PELO WHATSAPP</button>':'<p class="note">A bolsa está vazia. Arraste uma peça da arara até ela ou selecione um look para informar a data de locação.</p>');const send=el('sendRequest');if(send)send.onclick=sendBag;$$('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(Number(b.dataset.remove),1);el('bagCount').textContent=bag.length;bagDrawer()})}
 function sendBag(){
  const samePeriod=bag.every(x=>x.date===bag[0].date&&x.returnDate===bag[0].returnDate);
  const opening=bag.length===1?'Oi, EVY! Essa peça está disponível':'Oi, EVY! Essas peças estão disponíveis';
@@ -387,7 +419,7 @@ function sendBag(){
  const itemIndex=P.findIndex(p=>p.id===x.id);
  const code='EVY-'+String(itemIndex+1).padStart(3,'0');
  const link='https://alannedias.github.io/Evy/#peca-'+encodeURIComponent(x.id);
- return (i+1)+'. '+x.name+'\n'+'Código: '+code+'\n'+'Tamanho: '+x.size+'\n'+'Período: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'\n'+'Modalidade: '+x.method+'\n'+'Ver peça: '+link;
+ return (i+1)+'. '+x.name+'\n'+'Código: '+code+'\n'+'Tamanho: '+x.size+'\n'+'Período: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'\n'+'Modalidade: '+x.method+'\n'+'Locação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'\n'+(x.tryOnDate?'Agendamento da prova: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+' (sujeito à confirmação)\n':'')+'Ver peça: '+link;
 });
  const m=[question,'',...details].join('\n');
  if(WHATSAPP){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(m),'_blank','noopener')}
