@@ -3,6 +3,7 @@
 Não redesenha nem substitui os itens; remove apenas o fundo conectado às bordas.
 """
 from pathlib import Path
+import json
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -34,13 +35,17 @@ def cutout(src):
     mask.putdata([0 if p == marker else 255 for p in pixels])
     mask = mask.filter(ImageFilter.MinFilter(3)).filter(ImageFilter.GaussianBlur(.65))
     image.putalpha(mask)
-    print("ALPHA_STATS", src.name, "corner", rgb.getpixel((0, 0)), "transparent_fraction", round(sum(v < 64 for v in mask.getdata()) / (w*h), 3))
+    stats[src.stem] = {"corner_rgb": list(rgb.getpixel((0, 0))), "transparent_fraction": round(sum(v < 64 for v in mask.getdata()) / (w*h), 3)}
+    print("ALPHA_STATS", src.name, stats[src.stem])
     dst = OUT / (src.stem + ".png")
     image.save(dst, optimize=True, compress_level=9)
     return dst
 
+stats = {}
 for src in sorted(ASSETS.glob("*.webp")):
     if src.stem == "evy-vitrine-realista":
         continue  # A parede e a ambientação devem permanecer verdes.
     dst = cutout(src)
     print(src.name, "->", dst.relative_to(ROOT))
+
+(OUT / "transparency-report.json").write_text(json.dumps(stats, indent=2), encoding="utf-8")
