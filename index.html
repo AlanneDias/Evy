@@ -1105,7 +1105,8 @@ const P=[
 ];
 
 /* PNGs com recorte transparente gerados a partir das fotos originais. */
-const cutoutSrc=src=>src&&src.startsWith('assets/')&&src.endsWith('.webp')?
+const photoNeedsOriginal=new Set(['vestido-suzanna-branco','vestido-amarelo-buganvilia']);
+const cutoutSrc=src=>src&&src.startsWith('assets/')&&src.endsWith('.webp')&&!photoNeedsOriginal.has(src.slice(7,-5))?
  'assets/cutouts/'+src.slice(7,-5)+'.png':src;
 document.addEventListener('error',event=>{
  const img=event.target;
