@@ -59,14 +59,83 @@ html,body,.sitebar,.showroom,.intro,.section,.section.rules,.drawer,.drawerbody,
 }
 .drawerbody button.primary:disabled{background:#bacba0!important;cursor:not-allowed}
 button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
+
+/* EVY | Linha do tempo, orientações em acordeão e rodapé informativo */
+.eyebrow{font-size:10px!important;font-weight:700;letter-spacing:.2em;margin:0 0 14px!important;color:#000!important}
+.timeline-lead,.guidelines-intro{max-width:610px;margin:0 0 32px!important;font-size:14px;line-height:1.8;color:#000!important}
+.evy-timeline{list-style:none;margin:38px 0 0;padding:0;max-width:900px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;position:relative}
+.evy-timeline:before{content:'';height:2px;position:absolute;left:24px;right:24px;top:24px;background:#000;opacity:.7}
+.evy-timeline li{position:relative;min-width:0;padding:0 16px 10px 0}
+.timeline-number{position:relative;display:grid;place-items:center;width:49px;height:49px;border-radius:50%;background:#000;color:var(--green);font-weight:700;font-size:12px;z-index:1}
+.timeline-copy{padding-top:22px}
+.timeline-copy h3{font-weight:700;font-size:13px;margin:0 0 12px;line-height:1.45}
+.timeline-copy p{font-size:12px;line-height:1.75;margin:0;color:#171717}
+.timeline-footnote{margin:30px 0 0!important;font-size:12px!important;color:#000!important;font-weight:600}
+.evy-guidelines{background:var(--green)!important}
+.evy-accordion{display:grid;gap:10px;max-width:920px}
+.evy-accordion details{background:transparent;border:0;box-shadow:none}
+.evy-accordion summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:66px;padding:16px 24px;cursor:pointer;list-style:none;border:0;border-radius:22px;background:var(--green);color:#000;font-size:13px;font-weight:700;transition:background-color .2s}
+.evy-accordion summary::-webkit-details-marker{display:none}
+.evy-accordion details[open] summary,.evy-accordion summary:active{background:var(--pink)}
+.evy-accordion summary:focus-visible{outline:2px solid #000;outline-offset:3px}
+.accordion-symbol{position:relative;flex:0 0 22px;height:22px;border-radius:50%;background:#000}
+.accordion-symbol:before,.accordion-symbol:after{content:'';position:absolute;background:var(--green);left:6px;right:6px;top:10px;height:2px}
+.accordion-symbol:after{transform:rotate(90deg)}
+.evy-accordion details[open] .accordion-symbol:after{transform:rotate(0)}
+.accordion-content{padding:8px 24px 22px;line-height:1.8;font-size:13px;max-width:800px}
+.accordion-content p{margin:10px 0}
+.footer{display:block!important;padding:0!important;background:var(--pink)!important;color:#000!important;font-size:12px}
+.evy-footer-grid{display:grid;grid-template-columns:1.2fr .65fr 1fr 1fr;gap:34px;padding:56px clamp(20px,6vw,90px) 40px}
+.evy-footer-grid h3{font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin:0 0 19px}
+.evy-footer-grid p{font-size:12px;line-height:1.8;margin:0 0 12px}
+.evy-footer-grid a{display:block;width:fit-content;margin:0 0 14px;color:#000;text-decoration:none;font-size:12px}
+.evy-footer-grid a:hover{text-decoration:underline;text-underline-offset:4px}
+.evy-footer-brand img{display:block;width:105px;height:auto;max-height:70px;object-fit:contain;object-position:left center;margin-bottom:14px}
+.evy-footer-bottom{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:19px clamp(20px,6vw,90px) 23px;background:var(--pink);border-top:1px solid #0002}
+.evy-footer-bottom a{color:#000!important;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:990px){.evy-timeline{grid-template-columns:1fr;max-width:620px;gap:0;margin-top:28px}.evy-timeline:before{width:2px;height:auto;left:23px;right:auto;top:20px;bottom:38px}.evy-timeline li{display:grid;grid-template-columns:50px 1fr;gap:20px;padding:0 0 28px}.timeline-copy{padding-top:4px}.timeline-copy h3{margin-bottom:8px}.timeline-copy p{font-size:13px}.evy-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px}}
+@media(max-width:600px){.evy-footer-grid{grid-template-columns:1fr 1fr;gap:30px 18px;padding:42px 20px 24px}.evy-footer-brand{grid-column:1/-1}.evy-footer-grid>div:nth-child(4){grid-column:1/-1}.evy-accordion summary{padding:16px 18px;min-height:59px;font-size:12px;border-radius:20px}.accordion-content{padding:6px 18px 18px}.evy-footer-bottom{padding:16px 20px 20px}.evy-timeline li{gap:15px}}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
 <main><section id="vitrine" class="showroom" aria-label="Vitrine interativa de aluguel"><div class="rackbar"></div><div class="rackleg left"></div><div class="rackleg right"></div><div class="rack" id="rack"></div><div class="ottoman"></div><div class="bag-drop" id="dropBag" role="button" tabindex="0" aria-label="Abrir bolsa e consultar sacola"><span class="bag-tooltip" id="bagHint">ARRASTE SEU LOOK</span><div class="bag-wrap"><div class="bag-handle"></div><div class="bag-body"></div><div class="bag-flap"></div></div></div></section>
 <section class="intro"><div class="intro-logo"><img src="assets/evy-logo.svg" alt="EVY"></div><p>Uma vitrine de entrada com poucos looks marcantes. O acervo completo será dividido por temporadas, para você explorar, escolher e consultar a disponibilidade para locação.</p></section>
 <section class="section" id="acervo"><span class="label">ACERVO DEMONSTRATIVO</span><h2>O closet.</h2><p>As peças desta versão são demonstrativas. Os looks reais serão organizados por temporada assim que o acervo da EVY for enviado.</p><div id="catalog" class="cards"></div></section>
-<section class="section rules" id="como-alugar"><h2>Como funciona.</h2><div class="rules-grid"><article><h3>01 · Escolha seu look</h3><p>Explore as peças da EVY, selecione o tamanho e a data de retirada. O aluguel padrão tem duração de 24 horas, com devolução no dia seguinte.</p></article><article><h3>02 · Solicite sua reserva</h3><p>Envie seu pedido pelo WhatsApp ou Direct. A EVY verifica a disponibilidade. A reserva só é confirmada após o pagamento.</p></article><article><h3>03 · Retirada ou entrega</h3><p>Escolha retirar a peça ou consultar a possibilidade de entrega. As provas são presenciais, mediante agendamento prévio e disponibilidade de horário.</p></article><article><h3>04 · Use e devolva</h3><p>Devolva no dia seguinte, no prazo combinado. Não é necessário lavar: a lavagem e higienização ficam por conta da EVY.</p></article></div></section>
-<section class="section" id="cuidados"><h2>Cuidados e reservas.</h2><div class="rules-grid"><article><h3>Provas</h3><p>Somente no espaço da EVY, com horário agendado. Não são enviadas peças para prova, nem reservadas peças apenas para provar. Reservas pagas têm prioridade.</p></article><article><h3>Confirmação</h3><p>As peças não são enviadas sem pagamento prévio. A escolha no site não garante disponibilidade nem confirma a reserva.</p></article><article><h3>Devoluções e atrasos</h3><p>Atrasos na devolução estão sujeitos à cobrança equivalente a um novo aluguel. Se precisar de mais tempo, consulte a disponibilidade e os valores de diária adicional.</p></article><article><h3>Conservação</h3><p>Danos, rasgos, manchas permanentes, perda de aviamentos e desgaste além do uso normal serão avaliados, com cobrança proporcional de reparo ou reposição.</p></article><article><h3>Atendimento</h3><p>Segunda a quinta, 9h às 18h. Sexta, 8h às 12h. Atendimento presencial com horário agendado.</p></article></div></section></main><footer class="footer"><span class="footer-brand"><img src="assets/evy-logo.svg" alt="EVY"> <span>ACERVO DE ALUGUEL</span></span><span>Design & Web · <a href="https://alannedias.com" target="_blank" rel="noopener">Alanne Dias</a></span></footer>
+<section class="section rules" id="como-alugar" aria-labelledby="como-heading">
+  <p class="eyebrow">SIMPLES, DO SEU JEITO</p>
+  <h2 id="como-heading">Como funciona</h2>
+  <p class="timeline-lead">Escolha o look, consulte a data e aproveite. A locação padrão é de <strong>24 horas</strong>, com devolução no dia seguinte.</p>
+  <ol class="evy-timeline" aria-label="Passo a passo da locação">
+    <li><span class="timeline-number" aria-hidden="true">01</span><div class="timeline-copy"><h3>Escolha o look</h3><p>Explore o acervo, selecione as peças e confira os tamanhos disponíveis.</p></div></li>
+    <li><span class="timeline-number" aria-hidden="true">02</span><div class="timeline-copy"><h3>Consulte o período</h3><p>Informe a data desejada e envie a consulta pelo WhatsApp ou Direct. Nossa equipe verifica a disponibilidade.</p></div></li>
+    <li><span class="timeline-number" aria-hidden="true">03</span><div class="timeline-copy"><h3>Confirme a reserva</h3><p>Após a confirmação da disponibilidade, efetue o pagamento para garantir a peça. Sem pagamento, a reserva não está confirmada.</p></div></li>
+    <li><span class="timeline-number" aria-hidden="true">04</span><div class="timeline-copy"><h3>Retire ou receba</h3><p>Combine a retirada ou consulte a possibilidade de entrega para a data agendada.</p></div></li>
+    <li><span class="timeline-number" aria-hidden="true">05</span><div class="timeline-copy"><h3>Use e devolva</h3><p>Aproveite seu look e devolva no dia seguinte, dentro do prazo combinado. A higienização fica por conta da EVY.</p></div></li>
+  </ol>
+  <p class="timeline-footnote">Precisa de mais tempo? Consulte antes a disponibilidade e o valor da diária adicional.</p>
+</section>
+<section class="section evy-guidelines" id="cuidados" aria-labelledby="guidelines-heading">
+  <p class="eyebrow">ANTES DE ALUGAR</p>
+  <h2 id="guidelines-heading">Orientações importantes</h2>
+  <p class="guidelines-intro">Toque em cada assunto para consultar as condições do acervo.</p>
+  <div class="evy-accordion">
+    <details><summary><span>Reservas e pagamento</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>A reserva da peça é confirmada somente após o pagamento. Não enviamos peças sem pagamento prévio. A seleção no site é uma consulta e não garante disponibilidade.</p></div></details>
+    <details><summary><span>Provas com agendamento</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>As provas são realizadas exclusivamente no espaço da EVY, com agendamento prévio e conforme os horários disponíveis.</p><p>Não enviamos peças para prova, nem reservamos peças apenas para provar. As reservas confirmadas têm prioridade sobre os agendamentos de prova.</p></div></details>
+    <details><summary><span>Prazo e devolução</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>O período padrão é de 24 horas: retirada ou entrega na data agendada e devolução no dia seguinte. Respeite o prazo informado no momento da locação, especialmente em períodos de alta procura.</p><p>Em caso de atraso na devolução, será cobrado o valor correspondente a um novo aluguel.</p></div></details>
+    <details><summary><span>Diária adicional</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>Se precisar ficar mais tempo com a peça, consulte previamente a disponibilidade e os valores para a diária adicional.</p></div></details>
+    <details><summary><span>Cuidados com as peças</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>O acervo é cuidadosamente selecionado. Pedimos que cada peça seja devolvida nas mesmas condições em que foi recebida, considerando o uso normal.</p><p>Danos, rasgos, manchas permanentes, perda de aviamentos ou desgaste além do uso normal serão avaliados, e o valor do reparo ou reposição poderá ser cobrado proporcionalmente.</p></div></details>
+    <details><summary><span>Lavagem e higienização</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>Não é necessário lavar a peça após o uso. A lavagem e a higienização ficam por nossa conta.</p></div></details>
+    <details><summary><span>Horários de atendimento</span><span class="accordion-symbol" aria-hidden="true"></span></summary><div class="accordion-content"><p>Segunda a quinta: 09h às 18h. Sexta: 08h às 12h. Atendimento presencial somente com horário agendado.</p><p>Para dúvidas, reservas e informações, entre em contato pelo Instagram ou WhatsApp da EVY.</p></div></details>
+  </div>
+</section></main><footer class="footer" id="rodape">
+  <div class="evy-footer-grid">
+    <div class="evy-footer-brand"><img src="assets/evy-logo.svg" alt="EVY" width="95" height="56"><p>Acervo de moda feminina para locação. Seu próximo look começa aqui.</p></div>
+    <div><h3>Explore</h3><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como funciona</a><a href="#cuidados">Orientações</a></div>
+    <div><h3>Atendimento</h3><p>Segunda a quinta<br><strong>09h às 18h</strong></p><p>Sexta-feira<br><strong>08h às 12h</strong></p><p>Provas presenciais mediante agendamento.</p></div>
+    <div><h3>Vamos conversar?</h3><a href="https://www.instagram.com/evyaluga/" target="_blank" rel="noopener noreferrer">Instagram · @evyaluga</a><p>Consulte disponibilidade e agendamentos pelo Direct.</p><p>Locação padrão de 24 horas, sujeita à disponibilidade.</p></div>
+  </div>
+  <div class="evy-footer-bottom"><span>© <span id="evyYear">2026</span> EVY · Acervo de aluguel</span><span>Design &amp; Web por <a href="https://alannedias.com" target="_blank" rel="noopener noreferrer">Alanne Dias</a></span></div>
+</footer>
 <div class="shade" id="shade" hidden></div><aside id="drawer" class="drawer" role="dialog" aria-modal="true" aria-label="Detalhes do aluguel" aria-hidden="true"><div class="drawerhead"><span id="drawerTitle">LOOK</span><button id="closeDrawer" aria-label="Fechar">×</button></div><div class="drawerbody" id="drawerBody"></div></aside><div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 'use strict';
@@ -109,5 +178,5 @@ function sendBag(){
 }
 function finishDrag(i){const b=el('dropBag');b.classList.remove('ready','open');if(selected===i){detail(P[i])}else{selected=i;render();detail(P[i])}}
 function bindDrag(){$$('.piece').forEach(btn=>{btn.addEventListener('pointerdown',e=>{if(e.button!==0)return;startPoint={x:e.clientX,y:e.clientY,index:Number(btn.dataset.piece),btn,pid:e.pointerId,moved:false};btn.setPointerCapture(e.pointerId)});btn.addEventListener('pointermove',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const dx=e.clientX-q.x,dy=e.clientY-q.y;if(Math.hypot(dx,dy)>12)q.moved=true;if(q.moved){btn.classList.add('dragging');btn.style.transform='translate('+dx+'px,'+dy+'px)';const r=el('dropBag').getBoundingClientRect();const within=e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;el('dropBag').classList.toggle('ready',within);el('dropBag').classList.toggle('open',within)}});btn.addEventListener('pointerup',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const wasMoved=q.moved;const r=el('dropBag').getBoundingClientRect();const drop=wasMoved&&e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;btn.style.transform='';btn.classList.remove('dragging');startPoint=null;if(drop){el('dropBag').classList.remove('ready');selected=q.index;animateBag();setTimeout(()=>detail(P[q.index]),520)}else if(!wasMoved){selected=q.index;render();detail(P[q.index])}else{el('dropBag').classList.remove('ready','open')}});btn.addEventListener('pointercancel',()=>{btn.style.transform='';btn.classList.remove('dragging');el('dropBag').classList.remove('ready','open');startPoint=null})})}
-el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=()=>toast('Em breve: favoritos do acervo EVY');el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});document.addEventListener('click',e=>{const b=e.target.closest('[data-detail]');if(b)detail(P[Number(b.dataset.detail)])});render();
+el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=()=>toast('Em breve: favoritos do acervo EVY');el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{const b=e.target.closest('[data-detail]');if(b)detail(P[Number(b.dataset.detail)])});render();
 </script></body></html>
