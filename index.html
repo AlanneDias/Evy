@@ -878,6 +878,27 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-rack-piece .evy-rack-garment{filter:none!important}
 #vitrine #sceneBag.evy-luxe-bag{z-index:30!important}
 @media(max-width:650px){#vitrine .evy-rack-left,#vitrine .evy-rack-right{bottom:20%!important}}
+
+/* EVY — cabideiro boutique curvo, inspirado no mockup aprovado.
+   Elementos independentes: roupas continuam arrastáveis, sem imagem achatada. */
+#vitrine .evy-rack-rail{left:6.3%!important;right:6.3%!important;top:11.1%!important;height:1.55%!important;border-radius:999px!important;z-index:2!important}
+#vitrine .evy-rack-rail::before{left:3%!important;right:3%!important;top:115%!important;height:18%!important;box-shadow:0 0 8px 4px #fff0c5aa,0 0 24px 9px #fff0c477!important}
+#vitrine .evy-rack-left,#vitrine .evy-rack-right{top:15.1%!important;bottom:20%!important;width:1.3%!important}
+#vitrine .evy-rack-left{left:4.7%!important}#vitrine .evy-rack-right{right:4.7%!important}
+#vitrine .evy-rack-left::before,#vitrine .evy-rack-right::before{
+ content:""!important;position:absolute!important;display:block!important;
+ top:-6.25%!important;width:420%!important;height:8%!important;
+ border:clamp(3px,.8vw,12px) solid #bd873a!important;
+ border-bottom:0!important;background:transparent!important;
+ box-shadow:inset 2px 2px 2px #ffe5a2,2px -2px 3px #0002!important;
+}
+#vitrine .evy-rack-left::before{left:0!important;border-radius:100% 0 0 0!important;border-right:0!important}
+#vitrine .evy-rack-right::before{right:0!important;border-radius:0 100% 0 0!important;border-left:0!important}
+#vitrine .evy-rack-left::after,#vitrine .evy-rack-right::after{bottom:-.5%!important;height:1.5%!important;width:290%!important;left:-90%!important;border-radius:50%!important;background:#a97a37!important;box-shadow:0 2px 3px #0003!important}
+#vitrine .evy-rack-stage::before{background:radial-gradient(ellipse 70% 60% at 50% 24%,#e2f0c5 0%,#cfe6a9 80%)!important}
+#vitrine .evy-rack-stage::after{height:21%!important;background:linear-gradient(180deg,#eae4d7,#ddd5c7)!important}
+#vitrine .evy-rack-hanger{z-index:3!important}
+#vitrine .evy-rack-piece .evy-rack-garment{z-index:4!important}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
