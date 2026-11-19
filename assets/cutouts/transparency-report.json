@@ -5,7 +5,7 @@
       233,
       233
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.557
   },
   "bag-emmy-snake-preta": {
     "corner_rgb": [
@@ -13,7 +13,7 @@
       241,
       241
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.553
   },
   "bag-suri-triangle-preta": {
     "corner_rgb": [
@@ -21,7 +21,7 @@
       241,
       241
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.39
   },
   "bolsa-lorena-soft-offwhite": {
     "corner_rgb": [
@@ -29,7 +29,7 @@
       248,
       248
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.406
   },
   "casaco-borgonha-cinto": {
     "corner_rgb": [
@@ -45,7 +45,7 @@
       231,
       231
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.479
   },
   "cleo-woven-dark-brown": {
     "corner_rgb": [
@@ -53,7 +53,7 @@
       197,
       191
     ],
-    "transparent_fraction": 0.499
+    "transparent_fraction": 0.628
   },
   "conjunto-vermelho-recortes": {
     "corner_rgb": [
@@ -61,7 +61,7 @@
       240,
       243
     ],
-    "transparent_fraction": 0.312
+    "transparent_fraction": 0.179
   },
   "eliza-small-flap-preta": {
     "corner_rgb": [
@@ -69,7 +69,7 @@
       122,
       127
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.497
   },
   "jaqueta-biker-preta": {
     "corner_rgb": [
@@ -85,7 +85,7 @@
       241,
       241
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.428
   },
   "mini-icon-bardot-preta": {
     "corner_rgb": [
@@ -93,7 +93,7 @@
       238,
       238
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.443
   },
   "mini-malu-offwhite-schutz": {
     "corner_rgb": [
@@ -101,7 +101,7 @@
       247,
       247
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.292
   },
   "mini-tabby-12-preta": {
     "corner_rgb": [
@@ -109,7 +109,7 @@
       254,
       254
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.324
   },
   "mini-wallet-preta-coach": {
     "corner_rgb": [
@@ -117,7 +117,7 @@
       233,
       233
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.615
   },
   "mini-wallet-verde-coach": {
     "corner_rgb": [
@@ -125,7 +125,7 @@
       233,
       233
     ],
-    "transparent_fraction": 0.0
+    "transparent_fraction": 0.566
   },
   "tabby-chain-19-marrom": {
     "corner_rgb": [
@@ -133,7 +133,7 @@
       168,
       159
     ],
-    "transparent_fraction": 0.441
+    "transparent_fraction": 0.47
   },
   "vestido-amarelo-buganvilia": {
     "corner_rgb": [
@@ -141,7 +141,7 @@
       3,
       0
     ],
-    "transparent_fraction": 0.016
+    "transparent_fraction": 0.044
   },
   "vestido-couro-vinho": {
     "corner_rgb": [
@@ -149,7 +149,7 @@
       100,
       103
     ],
-    "transparent_fraction": 0.011
+    "transparent_fraction": 0.276
   },
   "vestido-marrom-balone": {
     "corner_rgb": [
@@ -173,7 +173,7 @@
       209,
       175
     ],
-    "transparent_fraction": 0.114
+    "transparent_fraction": 0.001
   },
   "vestido-veludo-balone": {
     "corner_rgb": [
