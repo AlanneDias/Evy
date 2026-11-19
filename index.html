@@ -709,6 +709,79 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  #vitrine #sceneBag.evy-luxe-bag{left:1%!important;right:auto!important;bottom:5%!important;width:72px!important;height:75px!important}
  #vitrine .evy-rack-piece .evy-hanger{height:17%}
 }
+
+/* EVY studio realism: pistachio wall exactly as header, real lighting, floor and metal rail. */
+#vitrine.showroom{background:var(--green)!important}
+#vitrine .evy-rack-stage{
+ isolation:isolate;
+ background:
+  radial-gradient(ellipse 53% 62% at 80% 24%,rgba(255,255,255,.34) 0%,transparent 100%),
+  radial-gradient(ellipse 52% 90% at 16% 45%,rgba(81,107,50,.08) 0%,transparent 95%),
+  linear-gradient(180deg,rgba(255,255,255,.07),transparent 53%),
+  var(--green)!important;
+}
+#vitrine .evy-rack-stage::before{
+ content:"";pointer-events:none;position:absolute;inset:0 0 23%;z-index:0;
+ background:
+  linear-gradient(95deg,transparent 0 9%,rgba(255,255,255,.18) 12%,transparent 24% 72%,rgba(74,98,43,.07) 100%),
+  radial-gradient(ellipse 39% 80% at 66% 23%,rgba(255,255,255,.16),transparent 86%);
+}
+#vitrine .evy-rack-stage::after{
+ content:"";pointer-events:none;position:absolute;left:0;right:0;bottom:0;height:24%;z-index:0;
+ border-top:1px solid rgba(82,100,61,.2);
+ background:
+  radial-gradient(ellipse 38% 28% at 72% 7%,rgba(70,74,45,.18),transparent 100%),
+  linear-gradient(180deg,#e9e5d9 0%,#e4ddcd 35%,#d6cebd 100%);
+ box-shadow:inset 0 14px 24px rgba(93,103,68,.08);
+}
+#vitrine .evy-rack-display{z-index:2;filter:drop-shadow(17px 11px 12px rgba(51,56,37,.10))}
+#vitrine .evy-rack-rail{
+ top:11%;height:2.7%;left:2%;right:2%;
+ border:1px solid rgba(0,0,0,.72);
+ border-radius:999px;
+ background:linear-gradient(180deg,#191a19 0%,#50514e 17%,#292a29 42%,#080909 72%,#292929 94%,#0a0a0a 100%);
+ box-shadow:0 5px 6px rgba(0,0,0,.19),2px 10px 16px rgba(0,0,0,.11),inset 0 1px rgba(255,255,255,.2);
+}
+#vitrine .evy-rack-left,#vitrine .evy-rack-right{
+ top:12%;bottom:1.2%;width:1.55%;
+ border:1px solid rgba(0,0,0,.7);
+ border-radius:999px;
+ background:linear-gradient(90deg,#080909 0%,#2c2c2c 32%,#575754 49%,#151515 73%,#060606 100%);
+ box-shadow:5px 3px 7px rgba(0,0,0,.17),inset 1px 0 rgba(255,255,255,.18);
+}
+#vitrine .evy-rack-left::after,#vitrine .evy-rack-right::after{
+ content:"";position:absolute;bottom:-1%;left:-165%;width:430%;height:3.5%;
+ border-radius:80%;background:linear-gradient(#3c3c3a,#090909);
+ box-shadow:0 3px 7px rgba(0,0,0,.25);
+}
+#vitrine .evy-rack-shelf{
+ left:-1%;right:-1%;bottom:0.1%;height:11%;
+ border:1px solid rgba(110,133,74,.35);
+ border-radius:50% 50% 14% 14% / 28% 28% 25% 25%;
+ background:linear-gradient(180deg,#e1edc3 0%,#d2e3ac 24%,#bdcd96 28%,#aac17d 90%,#8ca469 100%);
+ box-shadow:0 10px 18px rgba(45,50,29,.24),inset 0 2px 2px rgba(255,255,255,.35);
+}
+#vitrine .evy-rack-piece .evy-hanger{
+ filter:drop-shadow(2px 3px 2px rgba(0,0,0,.23));
+}
+#vitrine .evy-rack-piece .evy-rack-garment{
+ filter:drop-shadow(5px 7px 5px rgba(36,39,28,.22));
+}
+#vitrine .evy-rack-accessory img{
+ filter:drop-shadow(4px 6px 4px rgba(0,0,0,.21));
+}
+#vitrine #sceneBag.evy-luxe-bag{
+ filter:drop-shadow(8px 12px 9px rgba(0,0,0,.27))!important;
+}
+#vitrine #sceneBag.evy-luxe-bag .evy-bag-front{
+ background:linear-gradient(103deg,#171719 0%,#343337 12%,#111113 31%,#19191b 72%,#050506 100%)!important;
+ box-shadow:inset 0 1px 1px rgba(255,255,255,.12),inset -8px 0 15px #0006,7px 8px 11px #0003!important;
+}
+#vitrine .evy-scene-tools{background:var(--green)}
+@media(max-width:650px){
+ #vitrine .evy-rack-stage::after{height:22%}
+ #vitrine .evy-rack-display{filter:drop-shadow(5px 8px 6px rgba(0,0,0,.09))}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
