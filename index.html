@@ -778,6 +778,36 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  box-shadow:inset 0 1px 1px rgba(255,255,255,.12),inset -8px 0 15px #0006,7px 8px 11px #0003!important;
 }
 #vitrine .evy-scene-tools{background:var(--green)}
+/* EVY: imagem enviada em camadas para preservar a vitrine e animar a sacola separadamente. */
+#vitrine.showroom{height:auto!important;min-height:0!important;aspect-ratio:auto!important;overflow:hidden!important}
+#vitrine .evy-rack-stage{position:relative!important;width:100%!important;height:auto!important;aspect-ratio:1312/1199!important;overflow:hidden!important;background:var(--green)!important}
+#vitrine .evy-rack-composite{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1;pointer-events:none;user-select:none}
+#vitrine .evy-rack-display{position:absolute!important;inset:0!important;left:0!important;top:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;z-index:2!important;filter:none!important}
+#vitrine .evy-scene-hotspots{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:3!important}
+#vitrine .evy-rack-rail,#vitrine .evy-rack-left,#vitrine .evy-rack-right,#vitrine .evy-rack-shelf{display:none!important}
+#vitrine .evy-rack-piece>.evy-hanger,#vitrine .evy-rack-piece>.evy-rack-garment,#vitrine .evy-rack-accessory{display:none!important}
+#vitrine .evy-rack-piece{z-index:5!important}
+#vitrine .evy-rack-piece[data-scene="borgonha"]{left:.5%!important;top:14%!important;width:20%!important;height:50%!important}
+#vitrine .evy-rack-piece[data-scene="biker"]{left:19%!important;top:14%!important;width:20%!important;height:46%!important}
+#vitrine .evy-rack-piece[data-scene="fur"]{left:38%!important;top:14%!important;width:20%!important;height:46%!important}
+#vitrine .evy-rack-piece[data-scene="marrom"]{left:55%!important;top:14%!important;width:19%!important;height:48%!important}
+#vitrine .evy-rack-piece[data-scene="assimetrico"]{left:69%!important;top:14%!important;width:17%!important;height:64%!important}
+#vitrine .evy-rack-piece[data-scene="balone"]{left:83%!important;top:14%!important;width:17%!important;height:49%!important}
+#vitrine .evy-rack-piece .evy-hotspot-focus{display:none!important}
+#vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{backdrop-filter:brightness(1.14);-webkit-backdrop-filter:brightness(1.14);border-radius:38% 38% 24% 24%!important;outline:1px solid rgba(239,53,103,.45)!important;outline-offset:-5px!important}
+@media(hover:hover) and (pointer:fine){#vitrine .evy-rack-piece:hover{cursor:grab}}
+#vitrine .evy-rack-piece.evy-is-dragging{z-index:20!important}
+#vitrine .evy-rack-piece.evy-is-dragging::after{content:"";position:absolute;inset:0;border-radius:12px;background:rgba(207,230,169,.38)!important;pointer-events:none}
+#vitrine #sceneBag.evy-luxe-bag{left:32.01%!important;right:auto!important;top:65.89%!important;bottom:auto!important;width:33.54%!important;height:32.53%!important;z-index:30!important;padding:0!important;display:block!important;overflow:visible!important;background:transparent!important;border:0!important;box-shadow:none!important;touch-action:none}
+#vitrine #sceneBag .evy-bag-scene-image{position:absolute;inset:0;display:block!important;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;transform-origin:50% 88%;transition:filter .2s ease,transform .2s ease}
+#vitrine #sceneBag .evy-bag-handles,#vitrine #sceneBag .evy-bag-mouth,#vitrine #sceneBag .evy-bag-front{display:none!important}
+#vitrine #sceneBag.evy-basket-target .evy-bag-scene-image{filter:drop-shadow(0 0 12px rgba(239,53,103,.72)) brightness(1.08)}
+#vitrine #sceneBag.evy-basket-ready .evy-bag-scene-image{transform:translateY(-3px) scale(1.035);filter:drop-shadow(0 0 15px rgba(239,53,103,.88)) brightness(1.12)}
+#vitrine #sceneBag.evy-basket-receive{animation:none!important}
+#vitrine #sceneBag.evy-basket-receive .evy-bag-scene-image{animation:evyBagLand .44s cubic-bezier(.25,.65,.3,1)!important}
+#vitrine #sceneBag:focus-visible{outline:2px solid var(--pink)!important;outline-offset:3px!important}
+@media(max-width:650px){#vitrine .evy-rack-stage{aspect-ratio:1312/1199!important}#vitrine .evy-rack-piece .evy-hotspot-focus{inset:-5% -10%!important;width:120%!important;height:110%!important}#vitrine #sceneBag.evy-luxe-bag{left:32.01%!important;top:65.89%!important;width:33.54%!important;height:32.53%!important}}
+@media(prefers-reduced-motion:reduce){#vitrine .evy-rack-piece .evy-hotspot-focus,#vitrine #sceneBag .evy-bag-scene-image{transition:none!important;animation:none!important}#vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{backdrop-filter:none;-webkit-backdrop-filter:none}}
 @media(max-width:650px){
  #vitrine .evy-rack-stage::after{height:22%}
  #vitrine .evy-rack-display{filter:drop-shadow(5px 8px 6px rgba(0,0,0,.09))}
@@ -788,6 +818,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
 <main><section id="vitrine" class="showroom" aria-label="Vitrine interativa EVY com roupas no cabideiro e sacola">
 <div class="evy-scene-stage evy-rack-stage">
+<img class="evy-rack-composite" src="assets/evy-rack-scene.png" alt="" aria-hidden="true" draggable="false">
 <div class="evy-rack-display">
  <div class="evy-rack-rail" aria-hidden="true"></div>
  <div class="evy-rack-left" aria-hidden="true"></div>
@@ -811,6 +842,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  </div>
 </div>
 <button id="sceneBag" class="evy-wicker-basket evy-luxe-bag" type="button" aria-label="Sacola EVY: solte sua peça aqui ou abra a sacola">
+ <img class="evy-bag-scene-image" src="assets/evy-brand-bag.png" alt="" aria-hidden="true" draggable="false">
  <span class="evy-bag-handles" aria-hidden="true"></span>
  <span class="evy-bag-mouth" aria-hidden="true"></span>
  <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
@@ -1395,7 +1427,7 @@ function clearBagFeedback(){sceneBag.classList.remove('evy-basket-target','evy-b
 function basketSway(){
  sceneBag.classList.remove('evy-basket-receive');void sceneBag.offsetWidth;
  sceneBag.classList.add('evy-basket-receive');
- setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),650);
+ setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),500);
 }
 let activeSceneDrag=null;
 $$('[data-scene]').forEach(button=>{
@@ -1439,14 +1471,14 @@ $$('[data-scene]').forEach(button=>{
   const done=()=>{
    clear(q);
    basketSway();
-   setTimeout(()=>detail(product,true),canMotion()?190:0);
+   setTimeout(()=>detail(product,true),canMotion()?460:0);
   };
   if(!canMotion()||!q.ghost.animate){done();return}
   const a=q.ghost.animate([
    {transform:'translate3d(-50%,-50%,0) rotate(0deg) scale(1)',opacity:1,offset:0},
    {transform:'translate3d(calc(-50% + '+(dx*.52)+'px),calc(-50% + '+(dy*.48-32)+'px),0) rotate(-7deg) scale(.74)',opacity:1,offset:.5},
    {transform:'translate3d(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px),0) rotate(8deg) scale(.12)',opacity:0,offset:1}
-  ],{duration:420,easing:'cubic-bezier(.27,.7,.32,1)',fill:'forwards'});
+  ],{duration:380,easing:'cubic-bezier(.27,.7,.32,1)',fill:'forwards'});
   a.onfinish=done;a.oncancel=done;
  };
  button.addEventListener('pointerdown',e=>{
@@ -1471,7 +1503,6 @@ $$('[data-scene]').forEach(button=>{
    }
    document.body.append(img);
    button.classList.add('evy-is-dragging');
-   sceneBag.classList.add('evy-basket-target');
   }
   if(!q.raf)q.raf=requestAnimationFrame(()=>{
    q.raf=0;
@@ -1479,6 +1510,7 @@ $$('[data-scene]').forEach(button=>{
    const tilt=Math.max(-9,Math.min(9,(q.x-q.startX)*.018));
    setPosition(q.ghost,q.x,q.y,tilt);
    const hover=withinBasket(q.x,q.y);
+   sceneBag.classList.toggle('evy-basket-target',hover);
    sceneBag.classList.toggle('evy-basket-ready',hover);
    sceneBag.classList.toggle('evy-bag-open',hover);
   });
