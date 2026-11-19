@@ -320,12 +320,12 @@ button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 .evy-accordion details,.evy-accordion summary{border:0!important}
 #catalog .card .product-favorite.favorited svg,
 #catalog .card .product-favorite[aria-pressed="true"] svg{fill:var(--pink)!important;stroke:var(--pink)!important}
-/* EVY: campos rosa suave, sem branco, e ajuste completo para telas mobile */
-:root{--pink-field:#F7B8CC}
+/* EVY: campos em verde suave e layout responsivo para mobile */
+:root{--green-field:#E4F2CA}
 .drawerbody input,.drawerbody select,.drawerbody textarea,
 input[type="text"],input[type="email"],input[type="tel"],input[type="date"],textarea,select{
- background:var(--pink-field)!important;
- background-color:var(--pink-field)!important;
+ background:var(--green-field)!important;
+ background-color:var(--green-field)!important;
  color:#000!important;
  border:0!important;
  border-radius:14px!important;
@@ -336,10 +336,10 @@ input[type="text"],input[type="email"],input[type="tel"],input[type="date"],text
 }
 .drawerbody input[type="date"]{-webkit-appearance:auto;appearance:auto}
 .drawerbody input:focus,.drawerbody select:focus,.drawerbody textarea:focus{
- background:#F4A7C0!important;
+ background:#D9EDB7!important;
  border:0!important;outline:0!important;box-shadow:none!important;
 }
-.drawerbody input::placeholder,.drawerbody textarea::placeholder{color:#624350;opacity:1}
+.drawerbody input::placeholder,.drawerbody textarea::placeholder{color:#48553A;opacity:1}
 html,body{width:100%;max-width:100%;overflow-x:clip}
 main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,.evy-timeline{min-width:0;max-width:100%;box-sizing:border-box}
 .drawerbody label,.drawerbody input,.drawerbody textarea,.drawerbody select{min-width:0;max-width:100%;box-sizing:border-box}
@@ -366,6 +366,14 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(max-width:370px){
  .cards{grid-template-columns:1fr!important}
  .evy-timeline{grid-auto-columns:minmax(210px,84vw)!important}
+}
+/* EVY: mobile sem cortes ou rolagem lateral */
+@media(max-width:600px){
+ .drawer{width:100%!important;max-width:100%!important}
+ .drawerbody,.drawerhead{width:100%!important;max-width:100%!important;box-sizing:border-box}
+ .drawerbody input,.drawerbody select,.drawerbody textarea{min-width:0!important;width:100%!important;max-width:100%!important}
+ .card,.cardart{max-width:100%!important}
+ .evy-timeline{width:100%!important;grid-auto-columns:clamp(205px,76vw,285px)!important}
 }
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
