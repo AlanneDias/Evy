@@ -27,9 +27,16 @@ def cutout(src):
         r, g, b = work.getpixel(seed)
         if (r, g, b) == marker:
             continue
-        if max(r, g, b) < 152 or g < b + 5:
+        if max(r, g, b) < 75:
             continue
-        ImageDraw.floodfill(work, seed, marker, thresh=64)
+        # Verde-claro e fundos neutros de estúdio, sem afetar a silhueta.
+        green_bg = g > b + 8 and g > r + 3 and g > 140
+        neutral_bg = max(r, g, b) - min(r, g, b) < 23 and min(r, g, b) > 160
+        dark_studio_bg = max(r, g, b) - min(r, g, b) < 32 and max(r, g, b) > 75
+        if not (green_bg or neutral_bg or dark_studio_bg):
+            continue
+        tolerance = 64 if green_bg else (32 if neutral_bg else 18)
+        ImageDraw.floodfill(work, seed, marker, thresh=tolerance)
     pixels = list(work.getdata())
     mask = Image.new("L", (w, h))
     mask.putdata([0 if p == marker else 255 for p in pixels])
