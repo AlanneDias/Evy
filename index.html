@@ -394,13 +394,87 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 }
 #favBtn{order:1}
 #headerBag{order:2}
+
+/* EVY fotos reais — vitrine, acervo e filtros */
+.showroom{height:auto!important;min-height:0!important;overflow:hidden!important;background:var(--green)!important}
+.showroom:before{display:none!important;content:none!important}
+.evy-scene-stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--green);overflow:hidden}
+.evy-showroom-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+.evy-scene-hotspots{position:absolute;inset:0}
+.evy-hotspot{position:absolute!important;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border:0!important;border-radius:12px!important;background:transparent!important;padding:0!important;box-shadow:none!important;outline:0!important;cursor:pointer}
+.evy-hotspot:active{background:#ef356722!important}
+.evy-hotspot:focus-visible{outline:2px solid var(--pink)!important;outline-offset:0}
+.evy-filter-bar{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:5px 0 18px;width:100%}
+.evy-filter-bar .evy-filter{border:0!important;border-radius:999px!important;padding:12px 16px!important;background:var(--green-soft)!important;color:#000!important;font-size:11px;font-weight:600;min-width:0;cursor:pointer;box-shadow:none!important}
+.evy-filter-bar .evy-filter.is-active,.evy-filter-bar .evy-filter[aria-pressed="true"]{background:var(--pink)!important}
+.evy-size-filter{display:flex;align-items:center;gap:12px;margin-left:auto;font-weight:600;font-size:11px}
+.evy-size-filter select{min-width:95px;min-height:42px;padding:9px 12px;background:var(--green-soft)!important;border:0!important;border-radius:14px!important;color:#000}
+.evy-results-count{font-size:11px;font-weight:500;opacity:.75;margin:0 0 16px!important}
+#catalog.cards{margin-top:0!important}
+#catalog .cardart{background:var(--green-soft)!important;height:270px;overflow:hidden}
+#catalog .evy-product-photo{width:100%;height:100%;display:block;object-position:center;pointer-events:none}
+#catalog .evy-product-photo.is-cover{object-fit:cover}
+#catalog .evy-product-photo.is-contain{object-fit:contain;padding:10px}
+#catalog .card{position:relative;overflow:hidden}
+#catalog .card button.product-favorite{z-index:3!important}
+.evy-selected-photo{width:100%;height:min(340px,44vh);overflow:hidden;border-radius:18px;background:var(--green-soft);margin-bottom:19px}
+.evy-selected-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.evy-form-step{margin:24px 0 0}
+.evy-form-step-title{font-size:13px;font-weight:700;display:block;margin:0 0 12px}
+.evy-bagline-photo{display:grid;grid-template-columns:86px 1fr;gap:15px;align-items:start}
+.evy-bagline-photo>img{display:block;width:86px;height:105px;object-fit:cover;object-position:center;background:var(--green-soft);border-radius:14px}
+.evy-bagline-photo>div{min-width:0}
+@media(max-width:750px){
+ .showroom{height:440px!important;min-height:0!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin;scrollbar-color:var(--pink) var(--green)}
+ .evy-scene-stage{width:782px!important;height:440px!important;aspect-ratio:auto!important}
+ .evy-filter-bar{gap:7px}
+ .evy-filter-bar .evy-filter{padding:10px 13px!important;font-size:10px}
+ .evy-size-filter{margin:6px 0 0;width:100%;justify-content:space-between}
+ #catalog .cardart{height:205px!important}
+ #catalog .evy-product-photo.is-contain{padding:6px}
+ .evy-selected-photo{height:min(290px,39vh)}
+}
+@media(max-width:390px){
+ #catalog .cardart{height:170px!important}
+ #catalog .evy-product-photo.is-contain{padding:3px}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
-<main><section id="vitrine" class="showroom" aria-label="Vitrine interativa de aluguel"><div class="rackbar"></div><div class="rackleg left"></div><div class="rackleg right"></div><div class="rack" id="rack"></div><div class="ottoman"></div><div class="bag-drop" id="dropBag" role="button" tabindex="0" aria-label="Abrir bolsa e consultar sacola"><span class="bag-tooltip" id="bagHint">ARRASTE SEU LOOK</span><div class="bag-wrap"><div class="bag-handle"></div><div class="bag-body"></div><div class="bag-flap"></div></div></div></section>
+<main><section id="vitrine" class="showroom" aria-label="Vitrine fotográfica interativa da EVY">
+<div class="evy-scene-stage">
+<img class="evy-showroom-photo" src="assets/evy-vitrine-realista.webp" alt="Vitrine realista da EVY, com vestidos pendurados em arara preta e bolsas sobre uma base verde" fetchpriority="high">
+<div class="evy-scene-hotspots" aria-label="Selecionar peças diretamente na vitrine">
+<button class="evy-hotspot" style="--x:20%;--y:18%;--w:14%;--h:54%" data-scene="corset" aria-label="Ver vestido corset vinho"></button>
+<button class="evy-hotspot" style="--x:35%;--y:18%;--w:15%;--h:54%" data-scene="assimetrico" aria-label="Ver vestido preto assimétrico"></button>
+<button class="evy-hotspot" style="--x:51%;--y:18%;--w:15%;--h:54%" data-scene="marrom" aria-label="Ver vestido marrom"></button>
+<button class="evy-hotspot" style="--x:67%;--y:18%;--w:16%;--h:54%" data-scene="balone" aria-label="Ver vestido preto com saia balonê"></button>
+<button class="evy-hotspot" style="--x:7%;--y:72%;--w:12%;--h:22%" data-scene="lorena" aria-label="Ver bolsa Lorena"></button>
+<button class="evy-hotspot" style="--x:19%;--y:73%;--w:10%;--h:20%" data-scene="wallet-preta" aria-label="Ver carteira preta"></button>
+<button class="evy-hotspot" style="--x:30%;--y:73%;--w:11%;--h:20%" data-scene="mini-944" aria-label="Ver bolsa marrom"></button>
+<button class="evy-hotspot" style="--x:42%;--y:71%;--w:9%;--h:22%" data-scene="mini-malu" aria-label="Ver bolsa off-white"></button>
+<button class="evy-hotspot" style="--x:53%;--y:74%;--w:10%;--h:19%" data-scene="emmy" aria-label="Ver bolsa preta"></button>
+<button class="evy-hotspot" style="--x:64%;--y:73%;--w:10%;--h:20%" data-scene="wallet-verde" aria-label="Ver mini wallet verde"></button>
+<button class="evy-hotspot" style="--x:74%;--y:73%;--w:10%;--h:20%" data-scene="anna" aria-label="Ver bolsa vermelha"></button>
+<button class="evy-hotspot" style="--x:85%;--y:72%;--w:10%;--h:21%" data-scene="tabby12" aria-label="Ver bolsa preta Coach"></button>
+</div></div><div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
+</section>
 <section class="intro"><div class="intro-logo"><img src="assets/evy-logo.svg" alt="EVY"></div><p></p></section>
-<section class="section" id="acervo"><div id="catalog" class="cards"></div></section>
+<section class="section" id="acervo">
+<div class="evy-filter-bar" role="group" aria-label="Filtrar peças do acervo">
+<button class="evy-filter is-active" type="button" data-evy-filter="Todos" aria-pressed="true">Todos</button>
+<button class="evy-filter" type="button" data-evy-filter="Vestidos" aria-pressed="false">Vestidos</button>
+<button class="evy-filter" type="button" data-evy-filter="Conjuntos" aria-pressed="false">Conjuntos</button>
+<button class="evy-filter" type="button" data-evy-filter="Jaquetas" aria-pressed="false">Jaquetas</button>
+<button class="evy-filter" type="button" data-evy-filter="Bolsas" aria-pressed="false">Bolsas</button>
+<label class="evy-size-filter">Tamanho
+<select id="sizeFilter" aria-label="Filtrar por tamanho">
+<option value="Todos">Todos</option><option value="P">P</option><option value="M">M</option><option value="G">G</option><option value="Único">Único</option>
+</select></label></div>
+<p class="evy-results-count" id="resultsCount" aria-live="polite"></p>
+<div id="catalog" class="cards"></div>
+</section>
 <section class="section rules" id="como-alugar" aria-labelledby="como-heading">
   <p class="eyebrow">SIMPLES, DO SEU JEITO</p>
   <h2 id="como-heading">Como funciona</h2>
@@ -441,12 +515,286 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 'use strict';
 const WHATSAPP='5583991000141'; // Número comercial divulgado pela EVY.
 const P=[
-{id:'corset',name:'Minivestido corset marsala',size:['P','M'],price:null,color:'#762c3d',type:0},
-{id:'cutout',name:'Vestido preto cut-out',size:['P','M'],price:null,color:'#111',type:1},
-{id:'mesh',name:'Vestido preto em tule',size:['P','M','G'],price:null,color:'#282422',type:2},
-{id:'coat',name:'Casaco marsala',size:['P','M','G'],price:null,color:'#92434c',type:3},
-{id:'leather',name:'Jaqueta preta',size:['M'],price:null,color:'#191919',type:4},
-{id:'fur',name:'Casaco preto de pelos',size:['P','M','G'],price:90,color:'#101010',type:5}];
+ {
+  "id": "corset",
+  "name": "Vestido mini corset com cadarço",
+  "kind": "Vestidos",
+  "size": [
+   "P"
+  ],
+  "price": null,
+  "color": "Vinho",
+  "image": "assets/vestido-couro-vinho.webp",
+  "fit": "cover"
+ },
+ {
+  "id": "suzanna",
+  "name": "Vestido Suzanna · KyCo",
+  "kind": "Vestidos",
+  "size": [
+   "P"
+  ],
+  "price": 150,
+  "color": "Branco",
+  "image": "assets/vestido-suzanna-branco.webp",
+  "fit": "cover"
+ },
+ {
+  "id": "conjunto-vermelho",
+  "name": "Conjunto vermelho com recortes",
+  "kind": "Conjuntos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Vermelho",
+  "image": "assets/conjunto-vermelho-recortes.webp",
+  "fit": "cover"
+ },
+ {
+  "id": "vestido-amarelo",
+  "name": "Vestido curto amarelo",
+  "kind": "Vestidos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Amarelo",
+  "image": "assets/vestido-amarelo-buganvilia.webp",
+  "fit": "cover"
+ },
+ {
+  "id": "fur",
+  "name": "Casaco preto de pelos",
+  "kind": "Jaquetas",
+  "size": [
+   "P",
+   "M",
+   "G"
+  ],
+  "price": 90,
+  "color": "Preto",
+  "image": "assets/casaco-pelo-preto.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "biker",
+  "name": "Jaqueta biker preta",
+  "kind": "Jaquetas",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Preto",
+  "image": "assets/jaqueta-biker-preta.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "assimetrico",
+  "name": "Vestido preto assimétrico",
+  "kind": "Vestidos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Preto",
+  "image": "assets/vestido-preto-assimetrico.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "marrom",
+  "name": "Vestido mini marrom chocolate",
+  "kind": "Vestidos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Marrom",
+  "image": "assets/vestido-marrom-balone.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "borgonha",
+  "name": "Casaco vestido borgonha",
+  "kind": "Vestidos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Borgonha",
+  "image": "assets/casaco-borgonha-cinto.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "balone",
+  "name": "Vestido preto com saia balonê",
+  "kind": "Vestidos",
+  "size": [
+   "A confirmar"
+  ],
+  "price": null,
+  "color": "Preto",
+  "image": "assets/vestido-veludo-balone.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "lorena",
+  "name": "Bolsa Lorena Soft · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 50,
+  "color": "Off-white",
+  "image": "assets/bolsa-lorena-soft-offwhite.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "wallet-preta",
+  "name": "Mini Wallet preta · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 60,
+  "color": "Preto",
+  "image": "assets/mini-wallet-preta-coach.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "mini-944",
+  "name": "Mini 944 marrom · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 50,
+  "color": "Marrom",
+  "image": "assets/mini-944-marrom-schutz.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "mini-malu",
+  "name": "Mini Malu off-white · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 50,
+  "color": "Off-white",
+  "image": "assets/mini-malu-offwhite-schutz.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "bardot",
+  "name": "Mini Icon Bardot preta · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 40,
+  "color": "Preto",
+  "image": "assets/mini-icon-bardot-preta.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "suri",
+  "name": "Bag Suri Triangle preta · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 50,
+  "color": "Preto",
+  "image": "assets/bag-suri-triangle-preta.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "emmy",
+  "name": "Bag Emmy Snake preta · Schutz",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 50,
+  "color": "Preto",
+  "image": "assets/bag-emmy-snake-preta.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "wallet-verde",
+  "name": "Mini Wallet verde · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 60,
+  "color": "Verde",
+  "image": "assets/mini-wallet-verde-coach.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "anna",
+  "name": "Anna Foldover Crossbody · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 80,
+  "color": "Vermelho",
+  "image": "assets/anna-foldover-vermelha.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "tabby12",
+  "name": "Mini Tabby 12 preta · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 120,
+  "color": "Preto",
+  "image": "assets/mini-tabby-12-preta.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "tabby19",
+  "name": "Tabby Chain 19 · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 150,
+  "color": "Marrom",
+  "image": "assets/tabby-chain-19-marrom.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "cleo",
+  "name": "Cleo Woven · JW Pei",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 80,
+  "color": "Marrom escuro",
+  "image": "assets/cleo-woven-dark-brown.webp",
+  "fit": "contain"
+ },
+ {
+  "id": "eliza",
+  "name": "Eliza Small Flap · Coach",
+  "kind": "Bolsas",
+  "size": [
+   "Único"
+  ],
+  "price": 80,
+  "color": "Preto",
+  "image": "assets/eliza-small-flap-preta.webp",
+  "fit": "contain"
+ }
+];
+
 const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null;
 let favorites=new Set();
 try{const saved=JSON.parse(localStorage.getItem('evy-favorites')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(id=>P.some(p=>p.id===id)))}catch(e){}
@@ -479,53 +827,99 @@ function pieceSVG(p){const base='<defs><linearGradient id="fold" x1="0" x2="1"><
 '<path d="M14 21 34 12 67 12 88 21 97 69 81 76 76 56 76 102 24 102 24 56 18 76 3 69Z"/><path d="M12 41Q40 53 86 41M19 61Q53 75 81 61M24 82Q50 94 76 82" stroke="#777" stroke-opacity=".5" stroke-width="4" fill="none"/>'][p.type];return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 185" aria-hidden="true">'+base+'<g fill="'+p.color+'">'+garment+'</g><g fill="url(#fold)">'+garment+'</g></svg>'}
 const hanger='<svg class="hanger" viewBox="0 0 80 54" aria-hidden="true"><path d="M40 15V11C40 2 51 2 51 11C51 17 40 20 40 24L8 43Q3 47 13 47H67Q77 47 72 43L40 24"/></svg>';
 function toast(msg){const t=el('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2600)}
-function render(){el('rack').innerHTML=P.slice(0,4).map((p,i)=>'<button class="piece '+(selected===i?'selected':'')+'" style="--tilt:'+(i%2?3:-3)+'deg" type="button" data-piece="'+i+'" aria-label="Ver '+p.name+'">'+hanger+'<span class="cloth">'+pieceSVG(p)+'</span></button>').join('');el('catalog').innerHTML=P.map((p,i)=>'<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'"><div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+pieceSVG(p)+'</div><button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button><h3>'+p.name+'</h3><p>'+p.size.join(' / ')+(p.price?' · R$ '+p.price+',00':' · consulte valor')+'</p><button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>').join('');bindDrag();syncFavorites()}
+function render(){
+ const list=P.filter(p=>(activeCategory==='Todos'||p.kind===activeCategory)&&(activeSize==='Todos'||p.size.includes(activeSize)));
+ el('catalog').innerHTML=list.map(p=>{
+ const i=P.findIndex(x=>x.id===p.id);
+ return '<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'">'+
+ '<div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+
+ '<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+p.image+'" alt="'+p.name+'" loading="lazy"></div>'+
+ '<button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button>'+
+ '<h3>'+p.name+'</h3><p>'+p.color+' · '+p.size.join(' / ')+(p.price!==null?' · R$ '+p.price+',00':' · consulte valor')+'</p>'+
+ '<button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>'
+ }).join('');
+ el('resultsCount').textContent=list.length+' '+(list.length===1?'peça encontrada':'peças encontradas');
+ syncFavorites()
+}
+let activeCategory='Todos',activeSize='Todos';
+
 function openDrawer(title,body){el('drawerTitle').textContent=title;el('drawerBody').innerHTML=body;el('shade').hidden=false;el('drawer').classList.add('visible');el('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';el('closeDrawer').focus()}
 function closeDrawer(){el('drawer').classList.remove('visible');el('drawer').setAttribute('aria-hidden','true');el('shade').hidden=true;document.body.style.overflow=''}
 function detail(p){
  current=p;
+ const isClothing=p.kind!=='Bolsas';
+ const i=P.findIndex(x=>x.id===p.id);
+ const code='EVY-'+String(i+1).padStart(3,'0');
+ const proofFields=isClothing?
+ '<div class="evy-form-step"><strong class="evy-form-step-title">1. Agendamento de prova</strong>'+
+ '<p class="note">Solicite a prova antes da data da locação. O horário depende da confirmação da EVY.</p>'+
+ '<label>DATA DA PROVA<input id="tryOnDate" type="date" min="'+today()+'"></label>'+
+ '<label>PERÍODO DA PROVA<select id="tryOnPeriod"><option value="">Selecione</option><option value="manhã">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite (consultar disponibilidade)</option></select></label></div>':'';
  openDrawer('SOLICITAR LOCAÇÃO',
- '<h2>'+p.name+'</h2>'+
- '<label>TAMANHO<select id="rSize">'+p.size.map(s=>'<option>'+s+'</option>').join('')+'</select></label>'+
+ '<div class="evy-selected-photo"><img src="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>'+
+ '<h2>'+p.name+'</h2><p class="note">Código '+code+' · '+p.kind+(p.price!==null?' · R$ '+p.price+',00':' · valor sob consulta')+'</p>'+
+ '<label>TAMANHO<select id="rSize">'+p.size.map(sz=>'<option>'+sz+'</option>').join('')+'</select></label>'+
+ proofFields+
+ '<div class="evy-form-step"><strong class="evy-form-step-title">'+(isClothing?'2. Período da locação':'1. Período da locação')+'</strong>'+
  '<label>LOCAÇÃO — DATA INICIAL<input id="rDate" type="date" min="'+today()+'"></label>'+
  '<label>LOCAÇÃO — DATA FINAL<input id="returnDate" type="date" readonly></label>'+
- '<label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label>'+
- '<label>DESEJA AGENDAR UMA PROVA?<select id="requestTryOn"><option value="nao">Não, apenas consultar locação</option><option value="sim">Sim, quero solicitar uma prova</option></select></label>'+
- '<div id="tryOnFields" hidden><label>DIA DESEJADO PARA A PROVA<input id="tryOnDate" type="date" min="'+today()+'"></label>'+
- '<label>PERÍODO DA PROVA<select id="tryOnPeriod"><option value="">Selecione</option><option value="manhã">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite</option></select></label>'+
- '<p class="note">Prova presencial sujeita à confirmação da EVY e à disponibilidade de horários.</p></div>'+
- '<p class="note">Locação padrão de 24 horas, com devolução no dia seguinte. Reserva confirmada somente após pagamento.</p>'+
+ '<label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label></div>'+
+ '<p class="note">Locação padrão de 24 horas. A disponibilidade e o agendamento precisam ser confirmados. Reserva efetivada somente após pagamento.</p>'+
  '<button type="button" class="primary" id="confirmRental">ADICIONAR À BOLSA</button>');
  el('rDate').addEventListener('change',e=>el('returnDate').value=nextDay(e.target.value));
- el('requestTryOn').addEventListener('change',e=>{el('tryOnFields').hidden=e.target.value!=='sim'});
  el('confirmRental').addEventListener('click',()=>{
-  if(!el('rDate').value){toast('Informe a data de retirada');return}
-  const wantsTryOn=el('requestTryOn').value==='sim';
-  if(wantsTryOn&&(!el('tryOnDate').value||!el('tryOnPeriod').value)){toast('Informe o dia e o período da prova');return}
-  bag.push({id:p.id,name:p.name,size:el('rSize').value,date:el('rDate').value,returnDate:el('returnDate').value,method:el('method').value,tryOnDate:wantsTryOn?el('tryOnDate').value:null,tryOnPeriod:wantsTryOn?el('tryOnPeriod').value:null});
-  el('bagCount').textContent=bag.length;closeDrawer();animateBag();toast('Look adicionado à bolsa!')
+  const date=el('rDate').value;
+  if(!date){toast('Informe a data de locação');return}
+  const proofDate=isClothing?el('tryOnDate').value:null;
+  const proofPeriod=isClothing?el('tryOnPeriod').value:null;
+  if(isClothing&&(!proofDate||!proofPeriod)){toast('Informe a data e o período da prova');return}
+  if(isClothing&&proofDate>=date){toast('A prova deve acontecer antes da locação');return}
+  bag.push({id:p.id,name:p.name,image:p.image,size:el('rSize').value,date,returnDate:el('returnDate').value,method:el('method').value,tryOnDate:proofDate,tryOnPeriod:proofPeriod});
+  el('bagCount').textContent=bag.length;closeDrawer();toast('Peça adicionada à sacola')
  })
 }
 function animateBag(){const b=el('dropBag');b.classList.remove('accept');b.classList.add('open');void b.offsetWidth;b.classList.add('accept');setTimeout(()=>b.classList.remove('accept','open','ready'),950)}
-function bagDrawer(){openDrawer('BOLSA DE LOCAÇÃO',bag.length?bag.map((x,i)=>'<div class="bagline"><strong>'+x.name+'</strong><p>Tamanho '+x.size+' · '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p><p>'+x.method+'</p>'+(x.tryOnDate?'<p>Prova solicitada: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+'</p>':'')+'<button data-remove="'+i+'">REMOVER</button></div>').join('')+'<p class="note">Pedido sujeito à confirmação da EVY. A reserva só é efetivada após o pagamento.</p><button class="primary" id="sendRequest">CONSULTAR PELO WHATSAPP</button>':'<p class="note">A bolsa está vazia. Arraste uma peça da arara até ela ou selecione um look para informar a data de locação.</p>');const send=el('sendRequest');if(send)send.onclick=sendBag;$$('[data-remove]').forEach(b=>b.onclick=()=>{bag.splice(Number(b.dataset.remove),1);el('bagCount').textContent=bag.length;bagDrawer()})}
+function bagDrawer(){
+ const body=bag.length?
+ bag.map((x,i)=>'<div class="bagline evy-bagline-photo"><img src="'+x.image+'" alt="'+x.name+'">'+
+ '<div><strong>'+x.name+'</strong><p>Tamanho: '+x.size+'</p><p>Locação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p>'+
+ (x.tryOnDate?'<p>Prova: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+'</p>':'')+
+ '<p>'+x.method+'</p><button data-remove="'+i+'">REMOVER</button></div></div>').join('')+
+ '<p class="note">Pedido sujeito à confirmação da EVY. A reserva só é efetivada após o pagamento.</p>'+
+ '<button class="primary" id="sendRequest">CONSULTAR PELO WHATSAPP</button>':
+ '<p class="note">A sacola está vazia. Selecione uma roupa ou bolsa para consultar datas e disponibilidade.</p>';
+ openDrawer('BOLSA DE LOCAÇÃO',body);
+ const send=el('sendRequest');if(send)send.onclick=sendBag;
+ $$('[data-remove]').forEach(btn=>btn.onclick=()=>{bag.splice(Number(btn.dataset.remove),1);el('bagCount').textContent=bag.length;bagDrawer()})
+}
 function sendBag(){
+ if(!bag.length)return;
  const samePeriod=bag.every(x=>x.date===bag[0].date&&x.returnDate===bag[0].returnDate);
  const opening=bag.length===1?'Oi, EVY! Essa peça está disponível':'Oi, EVY! Essas peças estão disponíveis';
- const question=samePeriod?opening+' para o período de '+dateBR(bag[0].date)+' a '+dateBR(bag[0].returnDate)+'?':opening+' para os períodos indicados abaixo?';
+ const question=samePeriod?opening+' para o período de '+dateBR(bag[0].date)+' a '+dateBR(bag[0].returnDate)+'?':opening+' para os períodos abaixo?';
  const details=bag.map((x,i)=>{
- const itemIndex=P.findIndex(p=>p.id===x.id);
- const code='EVY-'+String(itemIndex+1).padStart(3,'0');
- const link='https://alannedias.github.io/Evy/#peca-'+encodeURIComponent(x.id);
- return (i+1)+'. '+x.name+'\n'+'Código: '+code+'\n'+'Tamanho: '+x.size+'\n'+'Período: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'\n'+'Modalidade: '+x.method+'\n'+'Locação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'\n'+(x.tryOnDate?'Agendamento da prova: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+' (sujeito à confirmação)\n':'')+'Ver peça: '+link;
-});
- const m=[question,'',...details].join('\n');
- if(WHATSAPP){window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(m),'_blank','noopener')}
- else if(navigator.clipboard?.writeText){navigator.clipboard.writeText(m).then(()=>toast('Consulta copiada. Falta cadastrar o WhatsApp da EVY.')).catch(()=>toast('WhatsApp ainda não configurado'))}
- else toast('WhatsApp ainda não configurado')
+  const n=P.findIndex(p=>p.id===x.id),code='EVY-'+String(n+1).padStart(3,'0');
+  const photo='https://alannedias.github.io/Evy/'+x.image;
+  const link='https://alannedias.github.io/Evy/#peca-'+encodeURIComponent(x.id);
+  return (i+1)+'. '+x.name+'\nCódigo: '+code+'\nTamanho: '+x.size+
+  '\nLocação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+
+  (x.tryOnDate?'\nSolicitação de prova: '+dateBR(x.tryOnDate)+' no período da '+x.tryOnPeriod+' (a confirmar)':'')+
+  '\nModalidade: '+x.method+'\nFoto da peça: '+photo+'\nVer no acervo: '+link;
+ });
+ const msg=[question,'',...details].join('\n\n');
+ window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener')
 }
+
 function finishDrag(i){const b=el('dropBag');b.classList.remove('ready','open');if(selected===i){detail(P[i])}else{selected=i;render();detail(P[i])}}
 function bindDrag(){$$('.piece').forEach(btn=>{btn.addEventListener('pointerdown',e=>{if(e.button!==0)return;startPoint={x:e.clientX,y:e.clientY,index:Number(btn.dataset.piece),btn,pid:e.pointerId,moved:false};btn.setPointerCapture(e.pointerId)});btn.addEventListener('pointermove',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const dx=e.clientX-q.x,dy=e.clientY-q.y;if(Math.hypot(dx,dy)>12)q.moved=true;if(q.moved){btn.classList.add('dragging');btn.style.transform='translate('+dx+'px,'+dy+'px)';const r=el('dropBag').getBoundingClientRect();const within=e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;el('dropBag').classList.toggle('ready',within);el('dropBag').classList.toggle('open',within)}});btn.addEventListener('pointerup',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const wasMoved=q.moved;const r=el('dropBag').getBoundingClientRect();const drop=wasMoved&&e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;btn.style.transform='';btn.classList.remove('dragging');startPoint=null;if(drop){el('dropBag').classList.remove('ready');selected=q.index;animateBag();setTimeout(()=>detail(P[q.index]),520)}else if(!wasMoved){selected=q.index;render();detail(P[q.index])}else{el('dropBag').classList.remove('ready','open')}});btn.addEventListener('pointercancel',()=>{btn.style.transform='';btn.classList.remove('dragging');el('dropBag').classList.remove('ready','open');startPoint=null})})}
-el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=favoritesDrawer;el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{
+el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=favoritesDrawer;el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});$('[data-evy-filter]').forEach(btn=>btn.addEventListener('click',()=>{
+ activeCategory=btn.dataset.evyFilter;
+ $('[data-evy-filter]').forEach(b=>{b.classList.toggle('is-active',b===btn);b.setAttribute('aria-pressed',String(b===btn))});
+ render()
+}));
+el('sizeFilter').addEventListener('change',e=>{activeSize=e.target.value;render()});
+$('[data-scene]').forEach(btn=>btn.addEventListener('click',()=>{const p=P.find(x=>x.id===btn.dataset.scene);if(p)detail(p)}));
+el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{
  const fav=e.target.closest('[data-favorite]');
  if(fav){e.preventDefault();e.stopPropagation();toggleFavorite(fav.dataset.favorite);return}
  const remove=e.target.closest('[data-favorite-remove]');
