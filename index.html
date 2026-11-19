@@ -822,25 +822,58 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  #vitrine .evy-rack-stage::after{height:22%}
  #vitrine .evy-rack-display{filter:drop-shadow(5px 8px 6px rgba(0,0,0,.09))}
 }
+
+/* Novo cabide preto e dourado; a roupa e o SVG viajam como uma única composição. */
+#vitrine .evy-rack-hanger{
+ position:absolute!important;left:var(--hanger-x)!important;top:9.8%!important;width:15.2%!important;height:11.5%!important;
+ display:block!important;overflow:visible!important;transform:translateX(-50%)!important;pointer-events:none!important;z-index:0!important;
+ filter:drop-shadow(2px 4px 3px rgba(0,0,0,.24));transition:none;
+}
+#vitrine .evy-rack-hanger[data-scene="borgonha"]{--hanger-x:16.75%}
+#vitrine .evy-rack-hanger[data-scene="biker"]{--hanger-x:32.67%}
+#vitrine .evy-rack-hanger[data-scene="fur"]{--hanger-x:47.27%}
+#vitrine .evy-rack-hanger[data-scene="marrom"]{--hanger-x:60.74%}
+#vitrine .evy-rack-hanger[data-scene="assimetrico"]{--hanger-x:74.17%}
+#vitrine .evy-rack-hanger[data-scene="balone"]{--hanger-x:86.48%}
+#vitrine .evy-rack-hanger .hanger-hook-shadow{fill:none;stroke:#735a32;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;opacity:.52}
+#vitrine .evy-rack-hanger .hanger-hook{fill:none;stroke:#d0b174;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+#vitrine .evy-rack-hanger .hanger-body{fill:none;stroke:#111213;stroke-width:13;stroke-linecap:round;stroke-linejoin:round}
+#vitrine .evy-rack-hanger .hanger-highlight{fill:none;stroke:#626466;stroke-width:2.4;stroke-linecap:round;opacity:.62}
+#vitrine .evy-rack-hanger.evy-hanger-away{opacity:0!important;visibility:hidden!important;transition:none!important}
+/* Keep hit targets unchanged while reducing only the visible garment by 20%. */
+#vitrine .evy-rack-piece .evy-rack-garment{transform:scale(.80)!important;transform-origin:center top!important}
+.evy-scene-preview.evy-scene-assembly{
+ position:fixed!important;left:0;top:0;width:var(--assembly-width)!important;height:var(--assembly-height)!important;
+ padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;filter:none!important;
+ pointer-events:none!important;overflow:visible!important;transform:translate(-50%,-50%);z-index:99999!important;
+}
+.evy-scene-assembly .evy-scene-ghost-hanger{position:absolute!important;display:block!important;overflow:visible!important;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.26))}
+.evy-scene-assembly .evy-scene-ghost-garment{position:absolute!important;display:block!important;object-fit:contain!important;object-position:center top!important;filter:drop-shadow(5px 8px 6px rgba(0,0,0,.27))}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
 <main><section id="vitrine" class="showroom" aria-label="Vitrine interativa EVY com roupas no cabideiro e sacola">
 <div class="evy-scene-stage evy-rack-stage">
-<img class="evy-rack-composite" src="assets/evy-rack-empty.png" alt="" aria-hidden="true" draggable="false">
+<img class="evy-rack-composite" src="assets/evy-rack-frame.png" alt="" aria-hidden="true" draggable="false">
 <div class="evy-rack-display">
  <div class="evy-rack-rail" aria-hidden="true"></div>
  <div class="evy-rack-left" aria-hidden="true"></div>
  <div class="evy-rack-right" aria-hidden="true"></div>
  <div class="evy-rack-shelf" aria-hidden="true"></div>
  <div class="evy-scene-hotspots" aria-label="Arraste uma peça ou toque para selecionar">
- <button class="evy-hotspot evy-rack-piece" data-scene="borgonha" style="--x:2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco vinho com cinto: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/casaco-borgonha-cinto.png" data-original-photo="assets/casaco-borgonha-cinto.webp" alt="" draggable="false"></button>
-<button class="evy-hotspot evy-rack-piece" data-scene="biker" style="--x:18.1%;--y:15%;--w:16%;--h:58%" aria-label="Jaqueta biker preta: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/jaqueta-biker-preta.png" data-original-photo="assets/jaqueta-biker-preta.webp" alt="" draggable="false"></button>
-<button class="evy-hotspot evy-rack-piece" data-scene="fur" style="--x:34.2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco preto de pelos: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/casaco-pelo-preto.png" data-original-photo="assets/casaco-pelo-preto.webp" alt="" draggable="false"></button>
-<button class="evy-hotspot evy-rack-piece" data-scene="marrom" style="--x:50.300000000000004%;--y:15%;--w:16%;--h:58%" aria-label="Vestido marrom balonê: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-marrom-balone.png" data-original-photo="assets/vestido-marrom-balone.webp" alt="" draggable="false"></button>
-<button class="evy-hotspot evy-rack-piece" data-scene="assimetrico" style="--x:66.4%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto assimétrico: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-preto-assimetrico.png" data-original-photo="assets/vestido-preto-assimetrico.webp" alt="" draggable="false"></button>
-<button class="evy-hotspot evy-rack-piece" data-scene="balone" style="--x:82.5%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto balonê: arraste até a sacola ou toque para ver detalhes"><svg class="evy-hanger" viewBox="0 0 110 43" aria-hidden="true"><path d="M56 13C48 11 49 2 55 2c7 0 9 9 2 13v5l49 17c6 3 4 5-1 5H5c-5 0-7-2-1-5l49-17" stroke="#121212" stroke-width="2.4" stroke-linejoin="round" fill="#191919"/></svg><img class="evy-rack-garment" src="assets/cutouts/vestido-veludo-balone.png" data-original-photo="assets/vestido-veludo-balone.webp" alt="" draggable="false"></button>
+<svg class="evy-rack-hanger" data-scene="borgonha" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <svg class="evy-rack-hanger" data-scene="biker" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <svg class="evy-rack-hanger" data-scene="fur" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <svg class="evy-rack-hanger" data-scene="marrom" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <svg class="evy-rack-hanger" data-scene="assimetrico" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <svg class="evy-rack-hanger" data-scene="balone" viewBox="0 0 320 230" aria-hidden="true" focusable="false"><path class="hanger-hook-shadow" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-hook" d="M160 111V39c0-17-11-28-25-28-13 0-21 10-21 22 0 10 7 18 17 22"/><path class="hanger-body" d="M160 104c-28 12-71 33-126 57-10 4-10 10 1 14l115 29q10 3 20 0l115-29c11-4 11-10 1-14-55-24-98-45-126-57Z"/><path class="hanger-highlight" d="M157 110c-31 13-73 33-119 53m125-53c31 13 73 33 119 53"/></svg>
+ <button class="evy-hotspot evy-rack-piece" data-scene="borgonha" style="--x:2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco vinho com cinto: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/casaco-borgonha-cinto.png" data-original-photo="assets/casaco-borgonha-cinto.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="biker" style="--x:18.1%;--y:15%;--w:16%;--h:58%" aria-label="Jaqueta biker preta: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/jaqueta-biker-preta.png" data-original-photo="assets/jaqueta-biker-preta.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="fur" style="--x:34.2%;--y:15%;--w:16%;--h:58%" aria-label="Casaco preto de pelos: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/casaco-pelo-preto.png" data-original-photo="assets/casaco-pelo-preto.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="marrom" style="--x:50.300000000000004%;--y:15%;--w:16%;--h:58%" aria-label="Vestido marrom balonê: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/vestido-marrom-balone.png" data-original-photo="assets/vestido-marrom-balone.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="assimetrico" style="--x:66.4%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto assimétrico: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/vestido-preto-assimetrico.png" data-original-photo="assets/vestido-preto-assimetrico.webp" alt="" draggable="false"></button>
+<button class="evy-hotspot evy-rack-piece" data-scene="balone" style="--x:82.5%;--y:15%;--w:16%;--h:58%" aria-label="Vestido preto balonê: arraste até a sacola ou toque para ver detalhes"><img class="evy-rack-garment" src="assets/cutouts/vestido-veludo-balone.png" data-original-photo="assets/vestido-veludo-balone.webp" alt="" draggable="false"></button>
  <button class="evy-hotspot evy-rack-accessory" data-scene="lorena" style="--x:3%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver lorena"><img src="assets/cutouts/bolsa-lorena-soft-offwhite.png" data-original-photo="assets/bolsa-lorena-soft-offwhite.webp" alt="" draggable="false"></button>
 <button class="evy-hotspot evy-rack-accessory" data-scene="wallet-preta" style="--x:15%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver wallet-preta"><img src="assets/cutouts/mini-wallet-preta-coach.png" data-original-photo="assets/mini-wallet-preta-coach.webp" alt="" draggable="false"></button>
 <button class="evy-hotspot evy-rack-accessory" data-scene="mini-944" style="--x:27%;--y:78%;--w:11.5%;--h:17%" aria-label="Ver mini-944"><img src="assets/cutouts/mini-944-marrom-schutz.png" data-original-photo="assets/mini-944-marrom-schutz.webp" alt="" draggable="false"></button>
@@ -1269,8 +1302,11 @@ const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(s
 function rackButton(id){return document.querySelector('.evy-rack-piece[data-scene="'+id+'"]')}
 function syncRackPieces(){
  $$('.evy-rack-piece[data-scene]').forEach(button=>{
-  const inBag=bag.some(item=>item.id===button.dataset.scene);
+  const id=button.dataset.scene;
+  const inBag=bag.some(item=>item.id===id);
   button.classList.toggle('evy-piece-in-bag',inBag);
+  const hanger=document.querySelector('.evy-rack-hanger[data-scene="'+id+'"]');
+  hanger?.classList.toggle('evy-hanger-away',inBag||pendingRackScene===id||button.classList.contains('evy-is-dragging'));
  });
 }
 function restorePendingRackScene(){
@@ -1466,17 +1502,34 @@ $$('[data-scene]').forEach(button=>{
   node.style.left=x+'px';node.style.top=y+'px';
   node.style.transform='translate3d(-50%,-50%,0) rotate('+angle+'deg)';
  };
- /* Clone the displayed garment, following Bibilica's .foto clone pattern. */
+ /* Keep the newly drawn hanger and the garment together as one drag group. */
  const createSceneGhost=()=>{
   const source=button.querySelector('.evy-rack-garment');
-  const img=source?source.cloneNode(true):document.createElement('img');
-  img.removeAttribute('style');img.removeAttribute('id');img.className='evy-scene-preview';
-  img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
-  if(product.image){img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image}
-  const carriedHeight=Math.min(innerHeight*.48,Math.max(190,button.clientHeight*1.18))*1.56;
-  img.style.width=carriedHeight*.8+'px';img.style.height=carriedHeight+'px';
-  if(!product.image)img.style.display='none';
-  return img;
+  const hangerSource=document.querySelector('.evy-rack-hanger[data-scene="'+product.id+'"]');
+  if(!source||!hangerSource){
+   const img=button.querySelector('img')?.cloneNode(true)||document.createElement('img');
+   img.removeAttribute('style');img.removeAttribute('id');img.className='evy-scene-preview';
+   img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
+   if(product.image){img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image}
+   const h=Math.min(innerHeight*.42,Math.max(150,button.clientHeight*1.05));
+   img.style.setProperty('width',(h*.8)+'px','important');img.style.setProperty('height',h+'px','important');
+   if(!product.image)img.style.display='none';
+   return img;
+  }
+  const garmentRect=source.getBoundingClientRect(),hangerRect=hangerSource.getBoundingClientRect();
+  const bounds={left:Math.min(garmentRect.left,hangerRect.left),top:Math.min(garmentRect.top,hangerRect.top),right:Math.max(garmentRect.right,hangerRect.right),bottom:Math.max(garmentRect.bottom,hangerRect.bottom)};
+  const targetHeight=Math.min(innerHeight*.42,Math.max(150,garmentRect.height*1.08));
+  const scale=targetHeight/Math.max(1,garmentRect.height);
+  const ghost=document.createElement('div');
+  ghost.className='evy-scene-preview evy-scene-assembly';ghost.setAttribute('aria-hidden','true');
+  ghost.style.setProperty('--assembly-width',((bounds.right-bounds.left)*scale)+'px');
+  ghost.style.setProperty('--assembly-height',((bounds.bottom-bounds.top)*scale)+'px');
+  const hanger=hangerSource.cloneNode(true);hanger.setAttribute('class','evy-scene-ghost-hanger');
+  const garment=source.cloneNode(true);garment.setAttribute('class','evy-scene-ghost-garment');
+  const place=(node,rect)=>{node.style.cssText='position:absolute;left:'+((rect.left-bounds.left)*scale)+'px;top:'+((rect.top-bounds.top)*scale)+'px;width:'+(rect.width*scale)+'px;height:'+(rect.height*scale)+'px;transform:none;display:block;pointer-events:none;';};
+  place(hanger,hangerRect);place(garment,garmentRect);ghost.append(hanger,garment);
+  ghost.evyHome={x:(bounds.left+bounds.right)/2,y:(bounds.top+bounds.bottom)/2};
+  return ghost;
  };
  const clear=(q)=>{
   if(q.raf)cancelAnimationFrame(q.raf);
@@ -1488,7 +1541,7 @@ $$('[data-scene]').forEach(button=>{
  };
  const goHome=(q)=>{
   if(!q.ghost){clear(q);return}
-  const r=button.getBoundingClientRect(),targetX=r.left+r.width*.5,targetY=r.top+r.height*.5;
+  const r=button.getBoundingClientRect(),home=q.ghost.evyHome||{x:r.left+r.width*.5,y:r.top+r.height*.5},targetX=home.x,targetY=home.y;
   if(!canMotion()||!q.ghost.animate){clear(q);return}
   const dx=targetX-q.x,dy=targetY-q.y;
   const a=q.ghost.animate([
