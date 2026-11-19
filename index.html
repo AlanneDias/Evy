@@ -555,6 +555,15 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  #vitrine #sceneBag.evy-basket-receive{animation:none!important}
  #vitrine .evy-hotspot .evy-hotspot-focus{transition:none!important}
 }
+
+/* Catálogo EVY: fotografias ausentes não são substituídas por imagens fictícias. */
+#catalog .evy-photo-pending{height:100%;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:var(--green-soft);color:#000;text-align:center;padding:14px}
+#catalog .evy-photo-pending span{font-family:Georgia,serif;font-weight:400;font-size:clamp(38px,6vw,64px);letter-spacing:.07em}
+#catalog .evy-photo-pending small{font:500 10px/1.5 Montserrat,Arial,sans-serif;letter-spacing:.11em;max-width:150px}
+.evy-selected-photo-pending{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;text-align:center;padding:24px;color:#000}
+.evy-selected-photo-pending strong{font:400 60px Georgia,serif;letter-spacing:.08em}
+.evy-selected-photo-pending span{font-size:12px}
+.evy-bag-photo-pending{width:86px;height:105px;background:var(--green-soft);display:grid;place-items:center;font:400 24px Georgia,serif;border-radius:14px}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -919,6 +928,63 @@ const P=[
   "image": "assets/eliza-small-flap-preta.webp",
   "fit": "contain"
  }
+,{"id":"zap-001","name":"Vestido Bárbara","kind":"Vestidos","size":["M"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-002","name":"Vestido em Tule","kind":"Vestidos","size":["P"],"price":75,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-003","name":"Jumpsuit Gown · Okey","kind":"Conjuntos","size":["38"],"price":90,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-004","name":"Vestido Tubinho Plissado","kind":"Vestidos","size":["P"],"price":40,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-005","name":"Vestido Eva","kind":"Vestidos","size":["M"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-006","name":"Vestido Gola Alta com Ombreira","kind":"Vestidos","size":["M"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-007","name":"Vestido em Vinil Café","kind":"Vestidos","size":["M"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-008","name":"Vestido Marina","kind":"Vestidos","size":["M"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-009","name":"Vestido Sandy","kind":"Vestidos","size":["Único (36 a 40)"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-010","name":"Vestido Poliana","kind":"Vestidos","size":["Único (36 a 40)"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-011","name":"Vestido Juliete","kind":"Vestidos","size":["Único (36 a 40)"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-012","name":"Vestido Laisa","kind":"Vestidos","size":["Único (36 a 40)"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-013","name":"Vestido Madá · Okey","kind":"Vestidos","size":["40"],"price":100,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-014","name":"Vestido Cordel Branco · Okey","kind":"Vestidos","size":["38"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-015","name":"Vestido Nega Maluca","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-016","name":"Vestido Sienna · Mithix","kind":"Vestidos","size":["P"],"price":40,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-017","name":"Vestido Boho · LéRose","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-018","name":"Vestido Tubinho em Cordas · Other Girls","kind":"Vestidos","size":["P"],"price":90,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-019","name":"Vestido Collina · Other Girls","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-020","name":"Vestido Balonê P&B","kind":"Vestidos","size":["P"],"price":30,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-021","name":"Vestido Balonê Marrom","kind":"Vestidos","size":["M"],"price":40,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-022","name":"Vestido Thayla Marrom · Padock","kind":"Vestidos","size":["P"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-023","name":"Vestido Vick Vermelho · Okey","kind":"Vestidos","size":["36"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-024","name":"Vestido Sunas · Okey","kind":"Vestidos","size":["38"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-025","name":"Vestido Jurdi · Okey","kind":"Vestidos","size":["36"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-026","name":"Vestido Nuvem · Okey","kind":"Vestidos","size":["36"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-027","name":"Vestido Poesia · Okey","kind":"Vestidos","size":["38"],"price":90,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-028","name":"Vestido Jardim · Okey","kind":"Vestidos","size":["38"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-029","name":"Vestido Marrom com Corte Estruturado","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-030","name":"Vestido Rodado com Aplicações","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-031","name":"Vestido Solar · Okey","kind":"Vestidos","size":["36"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-032","name":"Vestido Cabana · Okey","kind":"Vestidos","size":["38"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-033","name":"Vestido Cancún · Okey","kind":"Vestidos","size":["38"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-034","name":"Vestido Preto com Amarração · 3Marias","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-035","name":"Vestido + Camisa · 3Marias","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-036","name":"Vestido em Camurça com Franjas · 3Marias","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-037","name":"Vestido em Veludo com Strass","kind":"Vestidos","size":["M"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-038","name":"Vestido Cathy · Okey","kind":"Vestidos","size":["36"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-039","name":"Vestido Mister · Okey","kind":"Vestidos","size":["36"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-040","name":"Vestido Espelhos · Salgunamu","kind":"Vestidos","size":["P"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-041","name":"Vestido Larisse · LovClub","kind":"Vestidos","size":["38"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-042","name":"Vestido Safira · Okey","kind":"Vestidos","size":["38"],"price":40,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-043","name":"Vestido Nocciola · Okey","kind":"Vestidos","size":["38"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-044","name":"Vestido Brume · Okey","kind":"Vestidos","size":["36"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-045","name":"Vestido em Vinil com Cintos · Salgunamu","kind":"Vestidos","size":["P"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-046","name":"Vestido em Couro Eco · Tova","kind":"Vestidos","size":["P"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-047","name":"Vestido Xadrez · 3Marias","kind":"Vestidos","size":["P"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-048","name":"Vestido Franzido Furta Cor · Ave Rara","kind":"Vestidos","size":["38"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-049","name":"Vestido Paetê Bronze","kind":"Vestidos","size":["M"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-050","name":"Vestido Crystal · Padock","kind":"Vestidos","size":["M"],"price":100,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-051","name":"Vestido Vony · Okey","kind":"Vestidos","size":["38"],"price":50,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-052","name":"Vestido Vick Preto · Okey","kind":"Vestidos","size":["38"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-053","name":"Vestido Sophie · Okey","kind":"Vestidos","size":["38"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-054","name":"Vestido Branco com Babados · Other Girls","kind":"Vestidos","size":["P"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-055","name":"Vestido com Amarração · Salgunamu","kind":"Vestidos","size":["P"],"price":60,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-056","name":"Blazer Laure · Okey","kind":"Jaquetas","size":["36/38"],"price":70,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"},
+{"id":"zap-057","name":"Conjunto Seraphine · Okey","kind":"Conjuntos","size":["38"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"}
 ];
 
 const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null;
@@ -959,7 +1025,7 @@ function render(){
  const i=P.findIndex(x=>x.id===p.id);
  return '<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'">'+
  '<div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+
- '<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+p.image+'" alt="'+p.name+'" loading="lazy"></div>'+
+ (p.image?'<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+p.image+'" alt="'+p.name+'" loading="lazy">':'<div class="evy-photo-pending" role="img" aria-label="Foto original pendente de '+p.name+'"><span>EVY</span><small>FOTOGRAFIA EM ATUALIZAÇÃO</small></div>')+'</div>'+
  '<button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button>'+
  '<h3>'+p.name+'</h3><p>'+p.color+' · '+p.size.join(' / ')+(p.price!==null?' · R$ '+p.price+',00':' · consulte valor')+'</p>'+
  '<button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>'
@@ -983,7 +1049,7 @@ function detail(p,fromScene=false){
  '<label>PERÍODO DA PROVA<select id="tryOnPeriod"><option value="">Selecione</option><option value="manhã">Manhã</option><option value="tarde">Tarde</option><option value="noite">Noite (consultar disponibilidade)</option></select></label></div>':'';
  el('drawer').classList.toggle('evy-scene-detail',fromScene);
  openDrawer('SOLICITAR LOCAÇÃO',
- '<div class="evy-selected-photo"><img src="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>'+
+ (p.image?'<div class="evy-selected-photo"><img src="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>':'<div class="evy-selected-photo evy-selected-photo-pending"><strong>EVY</strong><span>Fotografia original em atualização</span></div>')+
  '<h2>'+p.name+'</h2><p class="note">Código '+code+' · '+p.kind+(p.price!==null?' · R$ '+p.price+',00':' · valor sob consulta')+'</p>'+
  '<label>TAMANHO<select id="rSize">'+p.size.map(sz=>'<option>'+sz+'</option>').join('')+'</select></label>'+
  proofFields+
@@ -1008,6 +1074,7 @@ function detail(p,fromScene=false){
 /* Miniatura da peça viaja para a sacola como confirmação visual da escolha. */
 function animatePieceToBag(p){
  const target=el('headerBag');
+ if(!p.image){if(target){target.classList.remove('evy-bag-pulse');void target.offsetWidth;target.classList.add('evy-bag-pulse')}return}
  const source=el('drawerBody')?.querySelector('.evy-selected-photo img');
  if(!target)return;
  const targetRect=target.getBoundingClientRect();
@@ -1043,7 +1110,7 @@ function animateBag(){
 }
 function bagDrawer(){
  const body=bag.length?
- bag.map((x,i)=>'<div class="bagline evy-bagline-photo"><img src="'+x.image+'" alt="'+x.name+'">'+
+ bag.map((x,i)=>'<div class="bagline evy-bagline-photo">'+(x.image?'<img src="'+x.image+'" alt="'+x.name+'">':'<div class="evy-bag-photo-pending" aria-label="Foto pendente">EVY</div>')+
  '<div><strong>'+x.name+'</strong><p>Tamanho: '+x.size+'</p><p>Locação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+'</p>'+
  (x.tryOnDate?'<p>Prova: '+dateBR(x.tryOnDate)+' · '+x.tryOnPeriod+'</p>':'')+
  '<p>'+x.method+'</p><button data-remove="'+i+'">REMOVER</button></div></div>').join('')+
@@ -1066,7 +1133,7 @@ function sendBag(){
   return (i+1)+'. '+x.name+'\nCódigo: '+code+'\nTamanho: '+x.size+
   '\nLocação: '+dateBR(x.date)+' a '+dateBR(x.returnDate)+
   (x.tryOnDate?'\nSolicitação de prova: '+dateBR(x.tryOnDate)+' no período da '+x.tryOnPeriod+' (a confirmar)':'')+
-  '\nModalidade: '+x.method+'\nFoto da peça: '+photo+'\nVer no acervo: '+link;
+  '\nModalidade: '+x.method+(x.image?'\nFoto da peça: '+photo:'\nFoto da peça: em atualização')+'\nVer no acervo: '+link;
  });
  const msg=[question,'',...details].join('\n\n');
  window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank','noopener')
