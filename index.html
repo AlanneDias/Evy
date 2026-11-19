@@ -20,6 +20,19 @@ input,select,textarea{border:0!important;box-shadow:none!important;border-radius
 button,.card,.drawer,.drawerhead,.drawerbody,.bag-drop,.sidemenu{box-shadow:none!important;}
 /* Apenas o foco via teclado, sem contorno permanente */
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,[role="button"]:focus-visible{outline:2px solid #000!important;outline-offset:3px;}
+/* EVY: eliminar cinzas e unir o menu à vitrine sem linha divisória */
+:root{--paper:var(--green)}
+html,body,.sitebar,.showroom,.intro,.section,.section.rules,.drawer,.drawerbody,.sidemenu{background:var(--green)!important}
+.sitebar{border:0!important;border-bottom:0!important;box-shadow:none!important}
+.showroom{border:0!important;border-top:0!important}
+.showroom::before{background:var(--green)!important;border:0!important}
+.intro{border:0!important;border-top:0!important}
+.ottoman{background:#CFE6A9!important;box-shadow:none!important;border:0!important}
+.card,.cardart{background:var(--green)!important;border:0!important}
+.card{box-shadow:none!important}
+.drawerbody input,.drawerbody select,.drawerbody textarea{background:#fff!important;border:0!important;box-shadow:none!important}
+.rules article,.bagline{border:0!important}
+.footer{background:var(--pink)!important}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="searchBtn" aria-label="Ir ao acervo"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="7"/><path d="m16 16 5 5"/></svg></button><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
