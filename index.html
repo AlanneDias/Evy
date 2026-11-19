@@ -778,26 +778,36 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  box-shadow:inset 0 1px 1px rgba(255,255,255,.12),inset -8px 0 15px #0006,7px 8px 11px #0003!important;
 }
 #vitrine .evy-scene-tools{background:var(--green)}
-/* EVY: imagem enviada em camadas para preservar a vitrine e animar a sacola separadamente. */
+/* Padrão adaptado da Bibilica: cada roupa é uma camada independente, ocultada durante o movimento. */
+#vitrine .evy-rack-piece .evy-rack-garment{
+ position:absolute!important;left:var(--garment-left,0%)!important;top:var(--garment-top,0%)!important;
+ width:var(--garment-width,100%)!important;height:var(--garment-height,100%)!important;
+ object-fit:fill!important;object-position:center top;display:block!important;pointer-events:none!important;
+ filter:drop-shadow(3px 5px 4px rgba(36,39,28,.19));
+}
+#vitrine .evy-rack-piece.evy-is-dragging>.evy-rack-garment,
+#vitrine .evy-rack-piece.evy-piece-pending>.evy-rack-garment,
+#vitrine .evy-rack-piece.evy-piece-in-bag>.evy-rack-garment{visibility:hidden!important;opacity:0!important}
+#vitrine .evy-rack-piece.evy-piece-pending,#vitrine .evy-rack-piece.evy-piece-in-bag{pointer-events:none!important}
 #vitrine.showroom{height:auto!important;min-height:0!important;aspect-ratio:auto!important;overflow:hidden!important}
 #vitrine .evy-rack-stage{position:relative!important;width:100%!important;height:auto!important;aspect-ratio:1312/1199!important;overflow:hidden!important;background:var(--green)!important}
 #vitrine .evy-rack-composite{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;z-index:1;pointer-events:none;user-select:none}
 #vitrine .evy-rack-display{position:absolute!important;inset:0!important;left:0!important;top:0!important;right:0!important;bottom:0!important;width:100%!important;height:100%!important;z-index:2!important;filter:none!important}
 #vitrine .evy-scene-hotspots{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:3!important}
 #vitrine .evy-rack-rail,#vitrine .evy-rack-left,#vitrine .evy-rack-right,#vitrine .evy-rack-shelf{display:none!important}
-#vitrine .evy-rack-piece>.evy-hanger,#vitrine .evy-rack-piece>.evy-rack-garment,#vitrine .evy-rack-accessory{display:none!important}
+#vitrine .evy-rack-piece>.evy-hanger,#vitrine .evy-rack-accessory{display:none!important}
 #vitrine .evy-rack-piece{z-index:5!important}
-#vitrine .evy-rack-piece[data-scene="borgonha"]{left:.5%!important;top:14%!important;width:20%!important;height:50%!important}
-#vitrine .evy-rack-piece[data-scene="biker"]{left:19%!important;top:14%!important;width:20%!important;height:46%!important}
-#vitrine .evy-rack-piece[data-scene="fur"]{left:38%!important;top:14%!important;width:20%!important;height:46%!important}
-#vitrine .evy-rack-piece[data-scene="marrom"]{left:55%!important;top:14%!important;width:19%!important;height:48%!important}
-#vitrine .evy-rack-piece[data-scene="assimetrico"]{left:69%!important;top:14%!important;width:17%!important;height:64%!important}
-#vitrine .evy-rack-piece[data-scene="balone"]{left:83%!important;top:14%!important;width:17%!important;height:49%!important}
+#vitrine .evy-rack-piece[data-scene="borgonha"]{left:2.59%!important;top:18.18%!important;width:25%!important;height:42.62%!important;z-index:4!important;--garment-left:-7.69%;--garment-top:-1.57%;--garment-width:115.38%;--garment-height:102.94%}
+#vitrine .evy-rack-piece[data-scene="biker"]{left:21.95%!important;top:18.85%!important;width:21.95%!important;height:34.11%!important;z-index:10!important;--garment-left:-.97%;--garment-top:-2.79%;--garment-width:102.19%;--garment-height:104.79%}
+#vitrine .evy-rack-piece[data-scene="fur"]{left:39.99%!important;top:18.93%!important;width:20.58%!important;height:38.95%!important;z-index:6!important;--garment-left:-2.51%;--garment-top:-5.65%;--garment-width:105.26%;--garment-height:109.83%}
+#vitrine .evy-rack-piece[data-scene="marrom"]{left:49.01%!important;top:19.93%!important;width:22.41%!important;height:40.87%!important;z-index:5!important;--garment-left:-16.83%;--garment-top:-6.38%;--garment-width:133.33%;--garment-height:111.70%}
+#vitrine .evy-rack-piece[data-scene="assimetrico"]{left:65.17%!important;top:20.77%!important;width:15.78%!important;height:57.96%!important;z-index:11!important;--garment-left:-66.11%;--garment-top:-.97%;--garment-width:233.33%;--garment-height:102.14%}
+#vitrine .evy-rack-piece[data-scene="balone"]{left:81.55%!important;top:19.52%!important;width:15.55%!important;height:40.95%!important;z-index:7!important;--garment-left:-16.46%;--garment-top:-4.29%;--garment-width:132.91%;--garment-height:107.36%}
 #vitrine .evy-rack-piece .evy-hotspot-focus{display:none!important}
 #vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{outline:none!important;outline-offset:0!important;border-radius:0!important;backdrop-filter:none;-webkit-backdrop-filter:none}
 @media(hover:hover) and (pointer:fine){#vitrine .evy-rack-piece:hover{cursor:grab}}
 #vitrine .evy-rack-piece.evy-is-dragging{z-index:20!important}
-#vitrine .evy-rack-piece.evy-is-dragging::after{content:"";position:absolute;inset:0;border-radius:12px;background:rgba(207,230,169,.58)!important;pointer-events:none}
+#vitrine .evy-rack-piece.evy-is-dragging::after{content:none!important;display:none!important}
 #vitrine #sceneBag.evy-luxe-bag{left:32.01%!important;right:auto!important;top:65.89%!important;bottom:auto!important;width:33.54%!important;height:32.53%!important;z-index:30!important;padding:0!important;display:block!important;overflow:visible!important;background:transparent!important;border:0!important;box-shadow:none!important;touch-action:none}
 #vitrine #sceneBag .evy-bag-scene-image{position:absolute;inset:0;display:block!important;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;transform-origin:50% 88%;transition:filter .2s ease,transform .2s ease}
 #vitrine #sceneBag .evy-bag-handles,#vitrine #sceneBag .evy-bag-mouth,#vitrine #sceneBag .evy-bag-front{display:none!important}
@@ -818,7 +828,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
 <main><section id="vitrine" class="showroom" aria-label="Vitrine interativa EVY com roupas no cabideiro e sacola">
 <div class="evy-scene-stage evy-rack-stage">
-<img class="evy-rack-composite" src="assets/evy-rack-scene.png" alt="" aria-hidden="true" draggable="false">
+<img class="evy-rack-composite" src="assets/evy-rack-empty.png" alt="" aria-hidden="true" draggable="false">
 <div class="evy-rack-display">
  <div class="evy-rack-rail" aria-hidden="true"></div>
  <div class="evy-rack-left" aria-hidden="true"></div>
@@ -1255,7 +1265,19 @@ document.addEventListener('error',event=>{
   img.src=img.dataset.originalPhoto;
  }
 },true);
-const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null;
+const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null,pendingRackScene=null;
+function rackButton(id){return document.querySelector('.evy-rack-piece[data-scene="'+id+'"]')}
+function syncRackPieces(){
+ $$('.evy-rack-piece[data-scene]').forEach(button=>{
+  const inBag=bag.some(item=>item.id===button.dataset.scene);
+  button.classList.toggle('evy-piece-in-bag',inBag);
+ });
+}
+function restorePendingRackScene(){
+ if(!pendingRackScene)return;
+ rackButton(pendingRackScene)?.classList.remove('evy-piece-pending');
+ pendingRackScene=null;syncRackPieces();
+}
 let favorites=new Set();
 try{const saved=JSON.parse(localStorage.getItem('evy-favorites')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(id=>P.some(p=>p.id===id)))}catch(e){}
 const favoriteHeart='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg>';
@@ -1304,7 +1326,7 @@ function render(){
 let activeCategory='Todos',activeSize='Todos';
 
 function openDrawer(title,body){el('drawerTitle').textContent=title;el('drawerBody').innerHTML=body;el('shade').hidden=false;el('drawer').classList.add('visible');el('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';el('closeDrawer').focus()}
-function closeDrawer(){el('drawer').classList.remove('visible','evy-scene-detail');el('drawer').setAttribute('aria-hidden','true');el('shade').hidden=true;document.body.style.overflow=''}
+function closeDrawer(){restorePendingRackScene();el('drawer').classList.remove('visible','evy-scene-detail');el('drawer').setAttribute('aria-hidden','true');el('shade').hidden=true;document.body.style.overflow=''}
 function detail(p,fromScene=false){
  current=p;
  const isClothing=p.kind!=='Bolsas';
@@ -1336,7 +1358,8 @@ function detail(p,fromScene=false){
   if(isClothing&&(!proofDate||!proofPeriod)){toast('Informe a data e o período da prova');return}
   if(isClothing&&proofDate>=date){toast('A prova deve acontecer antes da locação');return}
   bag.push({id:p.id,name:p.name,image:p.image,size:el('rSize').value,date,returnDate:el('returnDate').value,method:el('method').value,tryOnDate:proofDate,tryOnPeriod:proofPeriod});
-  el('bagCount').textContent=bag.length;animatePieceToBag(p);closeDrawer();toast('Peça adicionada à sacola')
+  if(pendingRackScene===p.id){rackButton(p.id)?.classList.remove('evy-piece-pending');pendingRackScene=null}
+  syncRackPieces();el('bagCount').textContent=bag.length;animatePieceToBag(p);closeDrawer();toast('Peça adicionada à sacola')
  })
 }
 /* Miniatura da peça viaja para a sacola como confirmação visual da escolha. */
@@ -1387,7 +1410,7 @@ function bagDrawer(){
  '<p class="note">A sacola está vazia. Selecione uma roupa ou bolsa para consultar datas e disponibilidade.</p>';
  openDrawer('BOLSA DE LOCAÇÃO',body);
  const send=el('sendRequest');if(send)send.onclick=sendBag;
- $$('[data-remove]').forEach(btn=>btn.onclick=()=>{bag.splice(Number(btn.dataset.remove),1);el('bagCount').textContent=bag.length;bagDrawer()})
+ $$('[data-remove]').forEach(btn=>btn.onclick=()=>{bag.splice(Number(btn.dataset.remove),1);syncRackPieces();el('bagCount').textContent=bag.length;bagDrawer()})
 }
 function sendBag(){
  if(!bag.length)return;
@@ -1443,10 +1466,23 @@ $$('[data-scene]').forEach(button=>{
   node.style.left=x+'px';node.style.top=y+'px';
   node.style.transform='translate3d(-50%,-50%,0) rotate('+angle+'deg)';
  };
+ /* Clone the displayed garment, following Bibilica's .foto clone pattern. */
+ const createSceneGhost=()=>{
+  const source=button.querySelector('.evy-rack-garment');
+  const img=source?source.cloneNode(true):document.createElement('img');
+  img.removeAttribute('style');img.removeAttribute('id');img.className='evy-scene-preview';
+  img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
+  if(product.image){img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image}
+  const carriedHeight=Math.min(innerHeight*.48,Math.max(190,button.clientHeight*1.18))*1.56;
+  img.style.width=carriedHeight*.85+'px';img.style.height=carriedHeight+'px';
+  if(!product.image)img.style.display='none';
+  return img;
+ };
  const clear=(q)=>{
   if(q.raf)cancelAnimationFrame(q.raf);
   q.ghost?.remove();
   button.classList.remove('evy-is-dragging');
+  syncRackPieces();
   clearBagFeedback();
   if(activeSceneDrag===q)activeSceneDrag=null;
  };
@@ -1464,6 +1500,7 @@ $$('[data-scene]').forEach(button=>{
  };
  const receive=(q)=>{
   if(!q.ghost){clear(q);detail(product,true);return}
+  pendingRackScene=product.id;button.classList.add('evy-piece-pending');syncRackPieces();
   const r=sceneBag.getBoundingClientRect();
   const dx=r.left+r.width*.5-q.x,dy=r.top+r.height*.59-q.y;
   sceneBag.classList.add('evy-basket-target','evy-bag-open');
@@ -1492,17 +1529,11 @@ $$('[data-scene]').forEach(button=>{
   const q=g;if(!q||e.pointerId!==q.id)return;
   q.x=e.clientX;q.y=e.clientY;
   if(!q.ghost){
-   if(Math.hypot(q.x-q.startX,q.y-q.startY)<9)return;
+   if(Math.hypot(q.x-q.startX,q.y-q.startY)<7)return;
    ignoreClick=true;
-   const img=document.createElement('img');
-   img.className='evy-scene-preview';img.alt='';img.setAttribute('aria-hidden','true');
-   img.src=product.image?cutoutSrc(product.image):'';if(product.image)img.dataset.originalPhoto=product.image;
-   q.ghost=img;
-   if(!product.image){
-    img.style.display='none'; /* Produto sem foto: não inventar uma. */
-   }
-   document.body.append(img);
-   button.classList.add('evy-is-dragging');
+   q.ghost=createSceneGhost();
+   document.body.append(q.ghost);
+   button.classList.add('evy-is-dragging');syncRackPieces();
   }
   if(!q.raf)q.raf=requestAnimationFrame(()=>{
    q.raf=0;
@@ -1524,11 +1555,9 @@ $$('[data-scene]').forEach(button=>{
   if(q.ghost&&withinBasket(q.x,q.y))receive(q);
   else if(q.ghost)goHome(q);
   else if(product.image){
-   const r=button.getBoundingClientRect(),img=document.createElement('img');
-   img.className='evy-scene-preview';img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
-   img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image;
+   const r=button.getBoundingClientRect(),img=createSceneGhost();
    q.ghost=img;q.x=r.left+r.width*.52;q.y=r.top+r.height*.45;
-   document.body.append(img);setPosition(img,q.x,q.y,0);button.classList.add('evy-is-dragging');
+   document.body.append(img);setPosition(img,q.x,q.y,0);button.classList.add('evy-is-dragging');syncRackPieces();
    receive(q);
   }
   else{clear(q);detail(product,true)}
