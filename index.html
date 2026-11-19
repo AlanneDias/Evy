@@ -200,6 +200,51 @@ button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 #catalog .card button[data-detail]{background:var(--green)!important;color:#000!important;border:0!important;border-radius:999px!important;box-shadow:none!important;transition:background-color .18s ease!important}
 #catalog .card button[data-detail]:active,#catalog .card button[data-detail]:focus,#catalog .card button[data-detail].is-active{background:var(--pink)!important;color:#000!important}
 #catalog .card button[data-detail]:focus-visible{outline:2px solid #000!important;outline-offset:3px}
+/* EVY | Favoritos rosa por peça; contador da bolsa sem bolinha */
+#headerBag .bagcount{
+ background:transparent!important;
+ color:#000!important;
+ border:0!important;
+ border-radius:0!important;
+ padding:0 0 0 3px!important;
+ font-size:11px!important;
+ font-weight:600!important;
+ vertical-align:baseline!important;
+ display:inline!important;
+}
+#catalog .card{position:relative}
+#catalog .card button.product-favorite{
+ position:absolute!important;
+ z-index:5;
+ top:10px;right:10px;
+ width:43px!important;height:43px!important;min-height:43px!important;
+ margin:0!important;padding:9px!important;
+ display:grid!important;place-items:center;
+ background:var(--green)!important;
+ color:var(--pink)!important;
+ border:0!important;border-radius:50%!important;
+ box-shadow:none!important;
+}
+#catalog .card button.product-favorite svg{
+ width:25px;height:25px;
+ display:block;fill:none;
+ stroke:var(--pink);stroke-width:1.8;
+ stroke-linecap:round;stroke-linejoin:round;
+ transition:fill .18s ease,transform .18s ease;
+}
+#catalog .card button.product-favorite.favorited svg{
+ fill:var(--pink)!important;stroke:var(--pink)!important;
+}
+#catalog .card button.product-favorite:active svg{transform:scale(1.13)}
+#favBtn{font-size:28px!important}
+#favBtn.has-favorites{color:var(--pink)!important}
+.drawerbody .favorite-view,.drawerbody .favorite-remove{
+ background:var(--green-soft)!important;color:#000!important;
+ border:0!important;border-radius:999px!important;padding:11px 14px!important;
+ text-decoration:none!important;font-size:11px!important;
+ display:inline-block;margin:8px 8px 4px 0!important
+}
+.drawerbody .favorite-view:active,.drawerbody .favorite-remove:active{background:var(--pink)!important}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
@@ -253,6 +298,25 @@ const P=[
 {id:'leather',name:'Jaqueta preta',size:['M'],price:null,color:'#191919',type:4},
 {id:'fur',name:'Casaco preto de pelos',size:['P','M','G'],price:90,color:'#101010',type:5}];
 const el=id=>document.getElementById(id),$$=sel=>[...document.querySelectorAll(sel)];let selected=null,bag=[],current=null,startPoint=null,dragInfo=null;
+let favorites=new Set();
+try{const saved=JSON.parse(localStorage.getItem('evy-favorites')||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(id=>P.some(p=>p.id===id)))}catch(e){}
+const favoriteHeart='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.4 5.4 0 0 0-7.6 0L12 5.8l-1.2-1.2a5.4 5.4 0 0 0-7.6 7.6L12 21l8.8-8.8a5.4 5.4 0 0 0 0-7.6Z"/></svg>';
+function syncFavorites(){
+ $('[data-favorite]').forEach(b=>{const active=favorites.has(b.dataset.favorite),p=P.find(x=>x.id===b.dataset.favorite);b.classList.toggle('favorited',active);b.setAttribute('aria-pressed',String(active));b.setAttribute('aria-label',(active?'Remover dos favoritos: ':'Adicionar aos favoritos: ')+(p?.name||'peça'))});
+ el('favBtn').classList.toggle('has-favorites',favorites.size>0);
+ el('favBtn').setAttribute('aria-label','Ver favoritos: '+favorites.size+' peças');
+}
+function toggleFavorite(id){
+ if(favorites.has(id))favorites.delete(id);else favorites.add(id);
+ try{localStorage.setItem('evy-favorites',JSON.stringify([...favorites]))}catch(e){}
+ syncFavorites();
+ toast(favorites.has(id)?'Peça adicionada aos favoritos':'Peça removida dos favoritos');
+}
+function favoritesDrawer(){
+ const list=P.filter(p=>favorites.has(p.id));
+ openDrawer('MEUS FAVORITOS',list.length?'<h2>Peças favoritas</h2><p class="note">Seus favoritos ficam salvos neste navegador. Consulte a disponibilidade de cada peça para o período desejado.</p>'+list.map(p=>'<div class="bagline"><strong>'+p.name+'</strong><p>Tamanhos: '+p.size.join(', ')+'</p><button type="button" class="favorite-view" data-favorite-detail="'+p.id+'">VER PEÇA</button> <button type="button" class="favorite-remove" data-favorite-remove="'+p.id+'">REMOVER ♡</button></div>').join(''):'<h2>Seus favoritos</h2><p class="note">Toque no coração rosa de cada peça para salvar seus looks preferidos aqui.</p>');
+}
+
 const today=()=>{let d=new Date();return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 const nextDay=s=>{if(!s)return'';let d=new Date(s+'T12:00:00');d.setDate(d.getDate()+1);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-')};
 const dateBR=s=>s.split('-').reverse().join('/');
@@ -265,7 +329,7 @@ function pieceSVG(p){const base='<defs><linearGradient id="fold" x1="0" x2="1"><
 '<path d="M14 21 34 12 67 12 88 21 97 69 81 76 76 56 76 102 24 102 24 56 18 76 3 69Z"/><path d="M12 41Q40 53 86 41M19 61Q53 75 81 61M24 82Q50 94 76 82" stroke="#777" stroke-opacity=".5" stroke-width="4" fill="none"/>'][p.type];return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 185" aria-hidden="true">'+base+'<g fill="'+p.color+'">'+garment+'</g><g fill="url(#fold)">'+garment+'</g></svg>'}
 const hanger='<svg class="hanger" viewBox="0 0 80 54" aria-hidden="true"><path d="M40 15V11C40 2 51 2 51 11C51 17 40 20 40 24L8 43Q3 47 13 47H67Q77 47 72 43L40 24"/></svg>';
 function toast(msg){const t=el('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.classList.remove('show'),2600)}
-function render(){el('rack').innerHTML=P.slice(0,4).map((p,i)=>'<button class="piece '+(selected===i?'selected':'')+'" style="--tilt:'+(i%2?3:-3)+'deg" type="button" data-piece="'+i+'" aria-label="Ver '+p.name+'">'+hanger+'<span class="cloth">'+pieceSVG(p)+'</span></button>').join('');el('catalog').innerHTML=P.map((p,i)=>'<article class="card"><div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+pieceSVG(p)+'</div><h3>'+p.name+'</h3><p>'+p.size.join(' / ')+(p.price?' · R$ '+p.price+',00':' · consulte valor')+'</p><button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>').join('');bindDrag()}
+function render(){el('rack').innerHTML=P.slice(0,4).map((p,i)=>'<button class="piece '+(selected===i?'selected':'')+'" style="--tilt:'+(i%2?3:-3)+'deg" type="button" data-piece="'+i+'" aria-label="Ver '+p.name+'">'+hanger+'<span class="cloth">'+pieceSVG(p)+'</span></button>').join('');el('catalog').innerHTML=P.map((p,i)=>'<article class="card"><div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+pieceSVG(p)+'</div><button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button><h3>'+p.name+'</h3><p>'+p.size.join(' / ')+(p.price?' · R$ '+p.price+',00':' · consulte valor')+'</p><button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>').join('');bindDrag();syncFavorites()}
 function openDrawer(title,body){el('drawerTitle').textContent=title;el('drawerBody').innerHTML=body;el('shade').hidden=false;el('drawer').classList.add('visible');el('drawer').setAttribute('aria-hidden','false');document.body.style.overflow='hidden';el('closeDrawer').focus()}
 function closeDrawer(){el('drawer').classList.remove('visible');el('drawer').setAttribute('aria-hidden','true');el('shade').hidden=true;document.body.style.overflow=''}
 function detail(p){current=p;openDrawer('SOLICITAR LOCAÇÃO','<span class="label">ITEM DEMONSTRATIVO</span><h2>'+p.name+'</h2><p class="note">Esta vitrine usa ilustrações e valores de teste até receber o acervo e a tabela oficial da EVY.</p><label>TAMANHO<select id="rSize">'+p.size.map(s=>'<option>'+s+'</option>').join('')+'</select></label><label>DATA DE RETIRADA<input id="rDate" type="date" min="'+today()+'"></label><label>DATA DE DEVOLUÇÃO<input id="returnDate" type="date" readonly placeholder="Dia seguinte"></label><label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label><p class="note">Duração padrão: 24 horas, com devolução no dia seguinte. Sujeito à disponibilidade. Reserva confirmada somente após pagamento.</p><button type="button" class="primary" id="confirmRental">ADICIONAR À BOLSA</button>');el('rDate').addEventListener('change',e=>el('returnDate').value=nextDay(e.target.value));el('confirmRental').addEventListener('click',()=>{if(!el('rDate').value){toast('Informe a data de retirada');return}bag.push({id:p.id,name:p.name,size:el('rSize').value,date:el('rDate').value,returnDate:el('returnDate').value,method:el('method').value});el('bagCount').textContent=bag.length;closeDrawer();animateBag();toast('Look adicionado à bolsa!')})}
@@ -283,5 +347,13 @@ function sendBag(){
 }
 function finishDrag(i){const b=el('dropBag');b.classList.remove('ready','open');if(selected===i){detail(P[i])}else{selected=i;render();detail(P[i])}}
 function bindDrag(){$$('.piece').forEach(btn=>{btn.addEventListener('pointerdown',e=>{if(e.button!==0)return;startPoint={x:e.clientX,y:e.clientY,index:Number(btn.dataset.piece),btn,pid:e.pointerId,moved:false};btn.setPointerCapture(e.pointerId)});btn.addEventListener('pointermove',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const dx=e.clientX-q.x,dy=e.clientY-q.y;if(Math.hypot(dx,dy)>12)q.moved=true;if(q.moved){btn.classList.add('dragging');btn.style.transform='translate('+dx+'px,'+dy+'px)';const r=el('dropBag').getBoundingClientRect();const within=e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;el('dropBag').classList.toggle('ready',within);el('dropBag').classList.toggle('open',within)}});btn.addEventListener('pointerup',e=>{const q=startPoint;if(!q||q.pid!==e.pointerId||q.btn!==btn)return;const wasMoved=q.moved;const r=el('dropBag').getBoundingClientRect();const drop=wasMoved&&e.clientX>=r.left-24&&e.clientX<=r.right+24&&e.clientY>=r.top-25&&e.clientY<=r.bottom+25;btn.style.transform='';btn.classList.remove('dragging');startPoint=null;if(drop){el('dropBag').classList.remove('ready');selected=q.index;animateBag();setTimeout(()=>detail(P[q.index]),520)}else if(!wasMoved){selected=q.index;render();detail(P[q.index])}else{el('dropBag').classList.remove('ready','open')}});btn.addEventListener('pointercancel',()=>{btn.style.transform='';btn.classList.remove('dragging');el('dropBag').classList.remove('ready','open');startPoint=null})})}
-el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=()=>toast('Em breve: favoritos do acervo EVY');el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{const b=e.target.closest('[data-detail]');if(b)detail(P[Number(b.dataset.detail)])});render();
+el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menuBtn').setAttribute('aria-expanded',String(!el('sideMenu').hidden))};$$('.sidemenu a').forEach(a=>a.onclick=()=>{el('sideMenu').hidden=true;el('menuBtn').setAttribute('aria-expanded','false')});el('favBtn').onclick=favoritesDrawer;el('headerBag').onclick=bagDrawer;el('dropBag').onclick=bagDrawer;el('dropBag').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();bagDrawer()}};el('shade').onclick=closeDrawer;el('closeDrawer').onclick=closeDrawer;document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();if(e.key==='Enter'&&e.target.matches('[data-detail]'))detail(P[Number(e.target.dataset.detail)])});el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{
+ const fav=e.target.closest('[data-favorite]');
+ if(fav){e.preventDefault();e.stopPropagation();toggleFavorite(fav.dataset.favorite);return}
+ const remove=e.target.closest('[data-favorite-remove]');
+ if(remove){toggleFavorite(remove.dataset.favorite);favoritesDrawer();return}
+ const view=e.target.closest('[data-favorite-detail]');
+ if(view){const p=P.find(x=>x.id===view.dataset.favoriteDetail);if(p)detail(p);return}
+ const b=e.target.closest('[data-detail]');if(b)detail(P[Number(b.dataset.detail)])
+});render();
 </script></body></html>
