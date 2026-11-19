@@ -564,6 +564,73 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 .evy-selected-photo-pending strong{font:400 60px Georgia,serif;letter-spacing:.08em}
 .evy-selected-photo-pending span{font-size:12px}
 .evy-bag-photo-pending{width:86px;height:105px;background:var(--green-soft);display:grid;place-items:center;font:400 24px Georgia,serif;border-radius:14px}
+
+/* Ajuste da interação: sem cartão quadrado durante o arraste. */
+#vitrine .evy-hotspot .evy-hotspot-focus{
+ background:transparent!important;border-radius:0!important;
+ filter:drop-shadow(0 9px 7px #0002)!important;object-fit:contain!important;
+}
+#vitrine .evy-hotspot.evy-is-dragging::after{background:rgba(207,230,169,.18)!important}
+.evy-scene-preview{
+ background:transparent!important;box-shadow:none!important;border-radius:0!important;
+ filter:drop-shadow(0 13px 12px #0004)!important;
+ width:clamp(110px,15vw,190px)!important;height:clamp(140px,21vw,235px)!important;
+ object-fit:contain!important;transition:none!important;z-index:99999!important;
+}
+/* Sacola preta minimalista: não altera o cabeçalho ou a vitrine de fundo. */
+#vitrine #sceneBag.evy-luxe-bag{
+ position:absolute!important;right:2.5%!important;bottom:3%!important;
+ display:block!important;z-index:16!important;width:clamp(92px,15vw,180px)!important;
+ height:clamp(91px,15vw,180px)!important;border:0!important;
+ background:transparent!important;box-shadow:none!important;filter:none;
+ transform-origin:50% 88%;transition:transform .18s ease,filter .18s ease;
+}
+#sceneBag.evy-luxe-bag .evy-bag-front{
+ position:absolute;z-index:4;inset:31% 6% 7%;border-radius:3px 3px 9px 9px;
+ background:linear-gradient(120deg,#272729 0%,#111113 44%,#222225 100%);
+ clip-path:polygon(8% 0,92% 0,100% 100%,0 100%);
+ box-shadow:inset -7px 0 13px #0004,0 9px 14px #0003!important;
+ display:grid;place-items:center;
+}
+#sceneBag.evy-luxe-bag .evy-bag-front span{
+ color:#d8be87;font:400 clamp(17px,2.5vw,34px) Georgia,serif;
+ letter-spacing:.12em;text-shadow:0 1px 2px #0005;
+}
+#sceneBag.evy-luxe-bag .evy-bag-handles{
+ position:absolute;left:24%;right:24%;top:8%;height:57%;z-index:2;
+ border:clamp(5px,.8vw,10px) solid #101012;
+ border-bottom:0;border-radius:45% 45% 0 0;
+}
+#sceneBag.evy-luxe-bag .evy-bag-mouth{
+ position:absolute;left:13%;right:13%;top:30%;height:10%;z-index:5;
+ border-radius:50%;background:#080809;
+ box-shadow:inset 0 2px 2px #333!important;
+ transition:transform .18s ease,background .18s ease;
+}
+#vitrine #sceneBag.evy-luxe-bag.evy-basket-target{filter:brightness(1.12)!important}
+#vitrine #sceneBag.evy-luxe-bag.evy-basket-ready{
+ transform:translateY(-4px) scale(1.11)!important;filter:drop-shadow(0 8px 10px #0003)!important;
+}
+#sceneBag.evy-luxe-bag.evy-bag-open .evy-bag-mouth{
+ transform:translateY(-6px) scaleY(1.5);background:#343437;
+}
+#vitrine #sceneBag.evy-luxe-bag.evy-basket-receive{
+ animation:evyBagLand .6s cubic-bezier(.25,.65,.3,1)!important;
+}
+@keyframes evyBagLand{
+ 0%,100%{transform:rotate(0deg) scale(1)}
+ 21%{transform:rotate(-7deg) scale(1.05)}
+ 46%{transform:rotate(5deg) scale(.98)}
+ 72%{transform:rotate(-2deg) scale(1.02)}
+}
+@media(max-width:650px){
+ #vitrine #sceneBag.evy-luxe-bag{width:78px!important;height:78px!important;right:1.5%!important;bottom:1%!important}
+ .evy-scene-preview{width:115px!important;height:145px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #vitrine #sceneBag.evy-luxe-bag{transition:none!important}
+ #vitrine #sceneBag.evy-luxe-bag.evy-basket-receive{animation:none!important}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -585,12 +652,10 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 <button class="evy-hotspot" style="--x:74%;--y:73%;--w:10%;--h:20%" data-scene="anna" aria-label="Ver bolsa vermelha"></button>
 <button class="evy-hotspot" style="--x:85%;--y:72%;--w:10%;--h:21%" data-scene="tabby12" aria-label="Ver bolsa preta Coach"></button>
 </div>
-<button id="sceneBag" class="evy-wicker-basket" type="button" aria-label="Cesta de vime: arraste a peça aqui ou abra a sacola">
- <span class="evy-basket-handle" aria-hidden="true"></span>
- <span class="evy-basket-mouth" aria-hidden="true"></span>
- <span class="evy-basket-body" aria-hidden="true"></span>
- <span class="evy-basket-weave" aria-hidden="true"></span>
- <span class="evy-basket-caption" aria-hidden="true">SACOLA</span>
+<button id="sceneBag" class="evy-wicker-basket evy-luxe-bag" type="button" aria-label="Sacola preta EVY: arraste uma peça para cá ou abra sua sacola">
+ <span class="evy-bag-handles" aria-hidden="true"></span>
+ <span class="evy-bag-mouth" aria-hidden="true"></span>
+ <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
 </button></div>
 <div class="evy-scene-tools"><span>Arraste uma peça até a cesta ou toque para conferir os detalhes.</span></div>
 <div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
@@ -1147,121 +1212,127 @@ el('menuBtn').onclick=()=>{el('sideMenu').hidden=!el('sideMenu').hidden;el('menu
  render()
 }));
 el('sizeFilter').addEventListener('change',e=>{activeSize=e.target.value;render()});
-/* EVY: seleção tátil da peça e cesta de vime, com entrada de 380ms. */
+/* EVY: drag & drop contínuo, com sensação de roupa leve e aterrissagem na sacola. */
 const sceneBag=el('sceneBag');
 sceneBag.onclick=bagDrawer;
 const canMotion=()=>!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const withinBasket=(x,y)=>{
- const r=sceneBag.getBoundingClientRect(),margin=16;
- return x>=r.left-margin&&x<=r.right+margin&&y>=r.top-margin&&y<=r.bottom+margin;
+ const r=sceneBag.getBoundingClientRect(),m=Math.max(20,Math.min(38,r.width*.25));
+ return x>=r.left-m&&x<=r.right+m&&y>=r.top-m&&y<=r.bottom+m;
 };
-const clearBasketState=()=>{
- sceneBag.classList.remove('evy-basket-target','evy-basket-ready');
-};
+function clearBagFeedback(){sceneBag.classList.remove('evy-basket-target','evy-basket-ready','evy-bag-open')}
 function basketSway(){
  sceneBag.classList.remove('evy-basket-receive');void sceneBag.offsetWidth;
  sceneBag.classList.add('evy-basket-receive');
- setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),560)
+ setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),650);
 }
+let activeSceneDrag=null;
 $$('[data-scene]').forEach(button=>{
  const product=P.find(p=>p.id===button.dataset.scene);
  if(!product)return;
- const preview=document.createElement('img');
- preview.className='evy-hotspot-focus';
- preview.src=product.image;
- preview.alt='';
- preview.setAttribute('aria-hidden','true');
- button.append(preview);
- let gesture=null;
- let skipClick=false;
- function finishVisual(g){
-  g.preview?.remove();
+ if(product.image){
+  const photo=document.createElement('img');
+  photo.className='evy-hotspot-focus';photo.src=product.image;photo.alt='';
+  photo.setAttribute('aria-hidden','true');button.append(photo);
+ }
+ let g=null,ignoreClick=false;
+ const setPosition=(node,x,y,angle=0)=>{
+  node.style.left=x+'px';node.style.top=y+'px';
+  node.style.transform='translate3d(-50%,-50%,0) rotate('+angle+'deg)';
+ };
+ const clear=(q)=>{
+  if(q.raf)cancelAnimationFrame(q.raf);
+  q.ghost?.remove();
   button.classList.remove('evy-is-dragging');
-  clearBasketState();
- }
- function animateDrop(g){
-  const picture=g.preview,rect=sceneBag.getBoundingClientRect();
-  if(!picture){finishVisual(g);detail(product);return}
-  const targetX=rect.left+rect.width*.5,targetY=rect.top+rect.height*.61;
-  const dx=targetX-g.x,dy=targetY-g.y;
+  clearBagFeedback();
+  if(activeSceneDrag===q)activeSceneDrag=null;
+ };
+ const goHome=(q)=>{
+  if(!q.ghost){clear(q);return}
+  const r=button.getBoundingClientRect(),targetX=r.left+r.width*.5,targetY=r.top+r.height*.5;
+  if(!canMotion()||!q.ghost.animate){clear(q);return}
+  const dx=targetX-q.x,dy=targetY-q.y;
+  const a=q.ghost.animate([
+   {transform:'translate3d(-50%,-50%,0) rotate(0deg) scale(1)',opacity:1},
+   {transform:'translate3d(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px),0) rotate(-4deg) scale(.78)',opacity:0}
+  ],{duration:240,easing:'cubic-bezier(.2,.75,.3,1)',fill:'forwards'});
+  a.onfinish=()=>clear(q);
+  a.oncancel=()=>clear(q);
+ };
+ const receive=(q)=>{
+  if(!q.ghost){clear(q);detail(product,true);return}
+  const r=sceneBag.getBoundingClientRect();
+  const dx=r.left+r.width*.5-q.x,dy=r.top+r.height*.59-q.y;
+  sceneBag.classList.add('evy-basket-target','evy-bag-open');
   sceneBag.classList.remove('evy-basket-ready');
-  sceneBag.classList.add('evy-basket-target');
-  let opened=false;
-  const completed=()=>{
-   if(opened)return;opened=true;
-   finishVisual(g);
+  const done=()=>{
+   clear(q);
    basketSway();
-   setTimeout(()=>detail(product),canMotion()?140:0)
+   setTimeout(()=>detail(product,true),canMotion()?190:0);
   };
-  if(!canMotion()||!picture.animate){completed();return}
-  const motion=picture.animate([
-   {transform:'translate(-50%,-50%) scale(1) rotate(0deg)',opacity:1,offset:0},
-   {transform:'translate(calc(-50% + '+(dx*.52)+'px),calc(-50% + '+(dy*.47-20)+'px)) scale(.64) rotate(-5deg)',opacity:.95,offset:.55},
-   {transform:'translate(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px)) scale(.08) rotate(9deg)',opacity:0,offset:1}
-  ],{duration:380,easing:'cubic-bezier(.27,.67,.26,1)',fill:'forwards'});
-  motion.onfinish=completed;
-  motion.oncancel=completed
- }
- function cancelDrop(g){
-  if(!g.preview){finishVisual(g);return}
-  const backX=g.startX-g.x,backY=g.startY-g.y;
-  const done=()=>finishVisual(g);
-  if(!canMotion()||!g.preview.animate){done();return}
-  const motion=g.preview.animate([
-   {transform:'translate(-50%,-50%) scale(1)',opacity:1},
-   {transform:'translate(calc(-50% + '+backX+'px),calc(-50% + '+backY+'px)) scale(.75)',opacity:0}
-  ],{duration:190,easing:'ease-out',fill:'forwards'});
-  motion.onfinish=done;motion.oncancel=done
- }
- button.addEventListener('pointerdown',event=>{
-  if(!event.isPrimary||(event.pointerType==='mouse'&&event.button!==0))return;
-  skipClick=false;
-  gesture={id:event.pointerId,startX:event.clientX,startY:event.clientY,x:event.clientX,y:event.clientY,preview:null};
-  try{button.setPointerCapture(event.pointerId)}catch(e){}
+  if(!canMotion()||!q.ghost.animate){done();return}
+  const a=q.ghost.animate([
+   {transform:'translate3d(-50%,-50%,0) rotate(0deg) scale(1)',opacity:1,offset:0},
+   {transform:'translate3d(calc(-50% + '+(dx*.52)+'px),calc(-50% + '+(dy*.48-32)+'px),0) rotate(-7deg) scale(.74)',opacity:1,offset:.5},
+   {transform:'translate3d(calc(-50% + '+dx+'px),calc(-50% + '+dy+'px),0) rotate(8deg) scale(.12)',opacity:0,offset:1}
+  ],{duration:420,easing:'cubic-bezier(.27,.7,.32,1)',fill:'forwards'});
+  a.onfinish=done;a.oncancel=done;
+ };
+ button.addEventListener('pointerdown',e=>{
+  if(!e.isPrimary||(e.pointerType==='mouse'&&e.button!==0)||activeSceneDrag)return;
+  ignoreClick=false;
+  g={id:e.pointerId,x:e.clientX,y:e.clientY,startX:e.clientX,startY:e.clientY,ghost:null,raf:0,origin:button};
+  activeSceneDrag=g;
+  try{button.setPointerCapture(e.pointerId)}catch(_){}
  });
- button.addEventListener('pointermove',event=>{
-  const g=gesture;
-  if(!g||g.id!==event.pointerId)return;
-  g.x=event.clientX;g.y=event.clientY;
-  if(!g.preview){
-   if(Math.hypot(event.clientX-g.startX,event.clientY-g.startY)<9)return;
-   skipClick=true;
-   const ghost=document.createElement('img');
-   ghost.className='evy-scene-preview';
-   ghost.src=product.image;
-   ghost.alt='';
-   ghost.setAttribute('aria-hidden','true');
-   document.body.append(ghost);
-   g.preview=ghost;
+ button.addEventListener('pointermove',e=>{
+  const q=g;if(!q||e.pointerId!==q.id)return;
+  q.x=e.clientX;q.y=e.clientY;
+  if(!q.ghost){
+   if(Math.hypot(q.x-q.startX,q.y-q.startY)<9)return;
+   ignoreClick=true;
+   const img=document.createElement('img');
+   img.className='evy-scene-preview';img.alt='';img.setAttribute('aria-hidden','true');
+   img.src=product.image||'';
+   q.ghost=img;
+   if(!product.image){
+    img.style.display='none'; /* Produto sem foto: não inventar uma. */
+   }
+   document.body.append(img);
    button.classList.add('evy-is-dragging');
    sceneBag.classList.add('evy-basket-target');
   }
-  g.preview.style.left=g.x+'px';
-  g.preview.style.top=g.y+'px';
-  sceneBag.classList.toggle('evy-basket-ready',withinBasket(g.x,g.y));
-  if(event.cancelable)event.preventDefault()
+  if(!q.raf)q.raf=requestAnimationFrame(()=>{
+   q.raf=0;
+   if(!q.ghost)return;
+   const tilt=Math.max(-9,Math.min(9,(q.x-q.startX)*.018));
+   setPosition(q.ghost,q.x,q.y,tilt);
+   const hover=withinBasket(q.x,q.y);
+   sceneBag.classList.toggle('evy-basket-ready',hover);
+   sceneBag.classList.toggle('evy-bag-open',hover);
+  });
+  if(e.cancelable)e.preventDefault();
  });
- button.addEventListener('pointerup',event=>{
-  const g=gesture;
-  if(!g||g.id!==event.pointerId)return;
-  gesture=null;
-  g.x=event.clientX;g.y=event.clientY;
-  if(g.preview&&withinBasket(g.x,g.y))animateDrop(g);
-  else if(g.preview)cancelDrop(g);
-  else detail(product);
+ button.addEventListener('pointerup',e=>{
+  const q=g;if(!q||e.pointerId!==q.id)return;g=null;
+  q.x=e.clientX;q.y=e.clientY;
+  if(q.raf){cancelAnimationFrame(q.raf);q.raf=0}
+  if(q.ghost)setPosition(q.ghost,q.x,q.y,0);
+  if(q.ghost&&withinBasket(q.x,q.y))receive(q);
+  else if(q.ghost)goHome(q);
+  else{clear(q);detail(product,true)}
  });
- button.addEventListener('pointercancel',event=>{
-  const g=gesture;if(!g||g.id!==event.pointerId)return;
-  gesture=null;cancelDrop(g);skipClick=true
+ button.addEventListener('pointercancel',e=>{
+  if(!g||e.pointerId!==g.id)return;
+  const q=g;g=null;ignoreClick=true;goHome(q);
  });
  button.addEventListener('lostpointercapture',()=>{
-  const g=gesture;
   if(!g)return;
-  gesture=null;cancelDrop(g)
+  const q=g;g=null;ignoreClick=true;goHome(q);
  });
- button.addEventListener('click',event=>{
-  if(event.detail===0){detail(product);return}
-  if(skipClick){event.preventDefault();skipClick=false}
+ button.addEventListener('click',e=>{
+  if(ignoreClick){e.preventDefault();ignoreClick=false;return}
+  if(e.detail===0)detail(product,true);
  });
 });
 el('evyYear').textContent=String(new Date().getFullYear());document.addEventListener('click',e=>{
