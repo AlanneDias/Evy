@@ -396,9 +396,10 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #headerBag{order:2}
 
 /* EVY fotos reais — vitrine, acervo e filtros */
-.showroom{height:auto!important;min-height:0!important;overflow:hidden!important;background:var(--green)!important}
+.showroom{height:auto!important;min-height:0!important;aspect-ratio:1000/505;overflow:hidden!important;background:var(--green)!important}
 .showroom:before{display:none!important;content:none!important}
-.evy-scene-stage{position:relative;width:100%;aspect-ratio:16/9;background:var(--green);overflow:hidden}
+/* Keep the photo and its hotspots together and crop the header embedded in the photo. */
+.evy-scene-stage{position:absolute;inset:auto 0 0;width:100%;aspect-ratio:1000/563}
 .evy-showroom-photo{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
 .evy-scene-hotspots{position:absolute;inset:0}
 .evy-hotspot{position:absolute!important;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border:0!important;border-radius:12px!important;background:transparent!important;padding:0!important;box-shadow:none!important;outline:0!important;cursor:pointer}
@@ -425,8 +426,6 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 .evy-bagline-photo>img{display:block;width:86px;height:105px;object-fit:cover;object-position:center;background:var(--green-soft);border-radius:14px}
 .evy-bagline-photo>div{min-width:0}
 @media(max-width:750px){
- .showroom{height:440px!important;min-height:0!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:thin;scrollbar-color:var(--pink) var(--green)}
- .evy-scene-stage{width:782px!important;height:440px!important;aspect-ratio:auto!important}
  .evy-filter-bar{gap:7px}
  .evy-filter-bar .evy-filter{padding:10px 13px!important;font-size:10px}
  .evy-size-filter{margin:6px 0 0;width:100%;justify-content:space-between}
