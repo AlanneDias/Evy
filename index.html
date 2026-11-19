@@ -574,7 +574,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 .evy-scene-preview{
  background:transparent!important;box-shadow:none!important;border-radius:0!important;
  filter:drop-shadow(0 13px 12px #0004)!important;
- width:clamp(110px,15vw,190px)!important;height:clamp(140px,21vw,235px)!important;
+ width:clamp(150px,20vw,280px)!important;height:clamp(190px,29vw,375px)!important;
  object-fit:contain!important;transition:none!important;z-index:99999!important;
 }
 /* Sacola preta minimalista: não altera o cabeçalho ou a vitrine de fundo. */
@@ -625,7 +625,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 }
 @media(max-width:650px){
  #vitrine #sceneBag.evy-luxe-bag{width:78px!important;height:78px!important;right:1.5%!important;bottom:1%!important}
- .evy-scene-preview{width:115px!important;height:145px!important}
+ .evy-scene-preview{width:150px!important;height:190px!important}
 }
 @media(prefers-reduced-motion:reduce){
  #vitrine #sceneBag.evy-luxe-bag{transition:none!important}
@@ -794,10 +794,10 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-rack-piece[data-scene="assimetrico"]{left:69%!important;top:14%!important;width:17%!important;height:64%!important}
 #vitrine .evy-rack-piece[data-scene="balone"]{left:83%!important;top:14%!important;width:17%!important;height:49%!important}
 #vitrine .evy-rack-piece .evy-hotspot-focus{display:none!important}
-#vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{backdrop-filter:brightness(1.14);-webkit-backdrop-filter:brightness(1.14);border-radius:38% 38% 24% 24%!important;outline:1px solid rgba(239,53,103,.45)!important;outline-offset:-5px!important}
+#vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{outline:none!important;outline-offset:0!important;border-radius:0!important;backdrop-filter:none;-webkit-backdrop-filter:none}
 @media(hover:hover) and (pointer:fine){#vitrine .evy-rack-piece:hover{cursor:grab}}
 #vitrine .evy-rack-piece.evy-is-dragging{z-index:20!important}
-#vitrine .evy-rack-piece.evy-is-dragging::after{content:"";position:absolute;inset:0;border-radius:12px;background:rgba(207,230,169,.38)!important;pointer-events:none}
+#vitrine .evy-rack-piece.evy-is-dragging::after{content:"";position:absolute;inset:0;border-radius:12px;background:rgba(207,230,169,.58)!important;pointer-events:none}
 #vitrine #sceneBag.evy-luxe-bag{left:32.01%!important;right:auto!important;top:65.89%!important;bottom:auto!important;width:33.54%!important;height:32.53%!important;z-index:30!important;padding:0!important;display:block!important;overflow:visible!important;background:transparent!important;border:0!important;box-shadow:none!important;touch-action:none}
 #vitrine #sceneBag .evy-bag-scene-image{position:absolute;inset:0;display:block!important;width:100%;height:100%;object-fit:fill;pointer-events:none;user-select:none;transform-origin:50% 88%;transition:filter .2s ease,transform .2s ease}
 #vitrine #sceneBag .evy-bag-handles,#vitrine #sceneBag .evy-bag-mouth,#vitrine #sceneBag .evy-bag-front{display:none!important}
@@ -848,7 +848,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
 </button>
 </div>
-<div class="evy-scene-tools"><span>Arraste uma peça até a sacola ou toque para conferir os detalhes.</span></div>
+<div class="evy-scene-tools"><span>Arraste ou toque em uma peça: ela voa até a sacola e abre os detalhes para conferir tamanhos e valores.</span></div>
 <div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
 </section>
 <section class="intro"><div class="intro-logo"><img src="assets/evy-logo.svg" alt="EVY"></div><p></p></section>
@@ -1523,6 +1523,14 @@ $$('[data-scene]').forEach(button=>{
   if(q.ghost)setPosition(q.ghost,q.x,q.y,0);
   if(q.ghost&&withinBasket(q.x,q.y))receive(q);
   else if(q.ghost)goHome(q);
+  else if(product.image){
+   const r=button.getBoundingClientRect(),img=document.createElement('img');
+   img.className='evy-scene-preview';img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
+   img.src=cutoutSrc(product.image);img.dataset.originalPhoto=product.image;
+   q.ghost=img;q.x=r.left+r.width*.52;q.y=r.top+r.height*.45;
+   document.body.append(img);setPosition(img,q.x,q.y,0);button.classList.add('evy-is-dragging');
+   receive(q);
+  }
   else{clear(q);detail(product,true)}
  });
  button.addEventListener('pointercancel',e=>{
