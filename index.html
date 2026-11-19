@@ -196,6 +196,10 @@ button:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 .drawerbody button.primary:disabled{background:#DAE9C4!important}
 /* EVY: etiquetas de texto sem retângulo colorido */
 .label,.section .label,#acervo .label{background:transparent!important;color:#000!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important}
+/* EVY — botões das peças no verde principal; rosa ao clicar */
+#catalog .card button[data-detail]{background:var(--green)!important;color:#000!important;border:0!important;border-radius:999px!important;box-shadow:none!important;transition:background-color .18s ease!important}
+#catalog .card button[data-detail]:active,#catalog .card button[data-detail]:focus,#catalog .card button[data-detail].is-active{background:var(--pink)!important;color:#000!important}
+#catalog .card button[data-detail]:focus-visible{outline:2px solid #000!important;outline-offset:3px}
 </style></head><body>
 <header class="sitebar"><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos">♡</button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button></div></header>
 <nav class="sidemenu" id="sideMenu" aria-label="Navegação" hidden><a href="#vitrine">Vitrine</a><a href="#acervo">Acervo</a><a href="#como-alugar">Como alugar</a><a href="#cuidados">Cuidados e reservas</a></nav>
