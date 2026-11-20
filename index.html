@@ -907,7 +907,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
   perspective-origin:center 30%!important;
 }
 #vitrine .evy-rack-piece .evy-rack-garment{
-  transform:perspective(750px) rotateY(var(--evy-tilt,0deg)) scale(.80)!important;
+  transform:perspective(750px) rotateY(var(--evy-tilt,0deg)) scale(1.28)!important;
   transform-origin:50% 12%!important;
   backface-visibility:visible!important;
   transition:transform .36s cubic-bezier(.22,.7,.26,1),filter .3s ease!important;
@@ -922,7 +922,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(hover:hover) and (pointer:fine){
   #vitrine .evy-rack-piece:hover>.evy-rack-garment,
   #vitrine .evy-rack-piece:focus-visible>.evy-rack-garment{
-    transform:perspective(750px) rotateY(0deg) scale(.86)!important;
+    transform:perspective(750px) rotateY(0deg) scale(1.48)!important;
     filter:drop-shadow(1px 5px 6px rgba(0,0,0,.10))!important;
   }
   #vitrine .evy-rack-piece:hover{z-index:24!important}
@@ -933,7 +933,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 
 /* EVY: 15 peças com cabides centralizados e vistas individuais. */
 #vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{
- transform:scale(.95)!important;
+ transform:scale(1.28)!important;
  object-fit:contain!important;
  object-position:center top!important;
  filter:none!important;
@@ -941,7 +941,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 }
 @media(hover:hover) and (pointer:fine){
  #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{
-  transform:scale(1.13)!important;
+  transform:scale(1.48)!important;
  }
  #vitrine .evy-rack-piece.evy-new-look:hover{z-index:35!important}
 }
