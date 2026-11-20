@@ -931,23 +931,44 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
   #vitrine .evy-rack-piece .evy-rack-garment{transition:none!important}
 }
 
-/* EVY: 15 peças com cabides centralizados e vistas individuais. */
+/* EVY — arara editorial: quinze peças independentes, sem sobreposição.
+   A leitura natural é lateral; ao focar a roupa fica frontal. */
+#vitrine .evy-rack-piece{
+  --evy-tilt:65deg;
+  perspective:900px!important;
+  isolation:isolate;
+}
+#vitrine .evy-rack-piece .evy-rack-garment{
+  transform:perspective(900px) rotateY(var(--evy-tilt)) scale(1)!important;
+  transform-origin:center 8%!important;
+  object-fit:contain!important;
+  object-position:center top!important;
+  filter:none!important;
+  transition:transform .30s ease,filter .30s ease!important;
+}
+#vitrine .evy-rack-piece.evy-new-look{--evy-tilt:0deg}
 #vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{
- transform:scale(1.28)!important;
- object-fit:contain!important;
- object-position:center top!important;
- filter:none!important;
- transition:transform .32s ease,opacity .2s ease!important;
+  transform:scale(.92)!important;
+  transform-origin:center top!important;
+  /* Retira resíduos das bordas dos PNGs compostos, especialmente ganchos soltos. */
+  clip-path:inset(0 0 10% 0);
 }
 @media(hover:hover) and (pointer:fine){
- #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{
-  transform:scale(1.48)!important;
+ #vitrine .evy-rack-piece:hover{z-index:40!important}
+ #vitrine .evy-rack-piece:hover>.evy-rack-garment{
+   transform:perspective(900px) rotateY(0deg) scale(1.60)!important;
+   filter:drop-shadow(0 5px 8px rgba(0,0,0,.12))!important;
  }
- #vitrine .evy-rack-piece.evy-new-look:hover{z-index:35!important}
+ #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{
+   transform:scale(1.42)!important;
+ }
 }
-#vitrine .evy-rack-piece.evy-new-look:focus-visible>.evy-rack-garment{transform:scale(1.13)!important}
+#vitrine .evy-rack-piece:focus-visible{z-index:40!important}
+#vitrine .evy-rack-piece:focus-visible>.evy-rack-garment{
+ transform:scale(1.42)!important;
+}
 @media(prefers-reduced-motion:reduce){
- #vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{transition:none!important}
+ #vitrine .evy-rack-piece .evy-rack-garment{transition:none!important}
 }
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
@@ -1635,27 +1656,30 @@ function basketSway(){
   button.addEventListener('pointerup',()=>{if(!button.matches(':hover'))photo.src=photo.dataset.threequarters});
  });
  const all=[...existing,...news.map(p=>p.id)];
+ // Mesma distância entre os 15 ganchos, todos presos à mesma barra.
  all.forEach((id,i)=>{
   const piece=stage.querySelector('.evy-rack-piece[data-scene="'+id+'"]');
   if(!piece)return;
-  const center=8.2+i*5.9;
+  const center=7.2+i*(85.6/14);
   const isNew=id.startsWith('look-');
-  piece.style.setProperty('left',(center-4.7)+'%','important');
-  piece.style.setProperty('top',(isNew?12.5:17.7)+'%','important');
-  piece.style.setProperty('width','9.4%','important');
-  piece.style.setProperty('height',(isNew?51:49)+'%','important');
+  piece.style.setProperty('left',(center-3.35)+'%','important');
+  piece.style.setProperty('top',(isNew?11.4:17.0)+'%','important');
+  piece.style.setProperty('width','6.7%','important');
+  piece.style.setProperty('height',(isNew?50:47)+'%','important');
   piece.style.setProperty('--garment-left','0%');
   piece.style.setProperty('--garment-top','0%');
   piece.style.setProperty('--garment-width','100%');
   piece.style.setProperty('--garment-height','100%');
+  piece.style.setProperty('--evy-tilt',isNew?'0deg':(i%2===0?'65deg':'-65deg'));
   const hanger=stage.querySelector('.evy-rack-hanger[data-scene="'+id+'"]');
   if(hanger){
    hanger.style.setProperty('--hanger-x',center+'%');
-   hanger.style.setProperty('width','9.5%','important');
-   hanger.style.setProperty('height','9%','important');
-   hanger.style.setProperty('top','10.4%','important');
+   hanger.style.setProperty('width','6.4%','important');
+   hanger.style.setProperty('height','8.5%','important');
+   hanger.style.setProperty('top','10.5%','important');
   }
  });
+
 })();
 
 let activeSceneDrag=null;
