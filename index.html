@@ -930,6 +930,25 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(prefers-reduced-motion:reduce){
   #vitrine .evy-rack-piece .evy-rack-garment{transition:none!important}
 }
+
+/* EVY: 15 peças com cabides centralizados e vistas individuais. */
+#vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{
+ transform:scale(.95)!important;
+ object-fit:contain!important;
+ object-position:center top!important;
+ filter:none!important;
+ transition:transform .32s ease,opacity .2s ease!important;
+}
+@media(hover:hover) and (pointer:fine){
+ #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{
+  transform:scale(1.13)!important;
+ }
+ #vitrine .evy-rack-piece.evy-new-look:hover{z-index:35!important}
+}
+#vitrine .evy-rack-piece.evy-new-look:focus-visible>.evy-rack-garment{transform:scale(1.13)!important}
+@media(prefers-reduced-motion:reduce){
+ #vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{transition:none!important}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -972,7 +991,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
 </button>
 </div>
-<div class="evy-scene-tools"><span>Arraste o look para a sacola.</span></div>
+<div class="evy-scene-tools"><span>Toque para ver a peça de frente ou arraste para a sacola.</span></div>
 <div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
 </section>
 <section class="section rules" id="como-alugar" aria-labelledby="como-heading">
@@ -1367,6 +1386,21 @@ const P=[
 {"id":"zap-057","name":"Conjunto Seraphine · Okey","kind":"Conjuntos","size":["38"],"price":80,"color":"Conforme fotografia original","image":null,"fit":"contain","source":"Catálogo WhatsApp EVY — gravação de 19/11/2026"}
 ];
 
+
+/* EVY: nove vestidos baseados nas referências visuais enviadas pela cliente.
+   Tamanhos e valores não foram informados para essas fotos e devem ser consultados. */
+P.push(
+ {id:"look-01",name:"Vestido branco de babados esculturais",kind:"Vestidos",size:["A confirmar"],price:null,color:"Off-white",image:"assets/evy-looks/01-branco-babados-frontal.png",fit:"contain"},
+ {id:"look-02",name:"Vestido blazer branco com botões",kind:"Vestidos",size:["A confirmar"],price:null,color:"Branco",image:"assets/evy-looks/02-blazer-branco-frontal.png",fit:"contain"},
+ {id:"look-03",name:"Vestido marrom de gola alta",kind:"Vestidos",size:["A confirmar"],price:null,color:"Marrom",image:"assets/evy-looks/03-marrom-gola-alta-frontal.png",fit:"contain"},
+ {id:"look-04",name:"Vestido marrom drapeado",kind:"Vestidos",size:["A confirmar"],price:null,color:"Marrom",image:"assets/evy-looks/04-marrom-drapeado-frontal.png",fit:"contain"},
+ {id:"look-05",name:"Vestido vermelho com alça assimétrica",kind:"Vestidos",size:["A confirmar"],price:null,color:"Vermelho",image:"assets/evy-looks/05-vermelho-alca-frontal.png",fit:"contain"},
+ {id:"look-06",name:"Vestido preto com recorte frontal",kind:"Vestidos",size:["A confirmar"],price:null,color:"Preto",image:"assets/evy-looks/06-preto-recorte-frontal.png",fit:"contain"},
+ {id:"look-07",name:"Vestido marrom com saia estruturada",kind:"Vestidos",size:["A confirmar"],price:null,color:"Marrom",image:"assets/evy-looks/07-marrom-estruturado-frontal.png",fit:"contain"},
+ {id:"look-08",name:"Vestido branco com decote em V",kind:"Vestidos",size:["A confirmar"],price:null,color:"Branco",image:"assets/evy-looks/08-branco-decote-v-frontal.png",fit:"contain"},
+ {id:"look-09",name:"Vestido preto com saia balonê",kind:"Vestidos",size:["A confirmar"],price:null,color:"Preto",image:"assets/evy-looks/09-preto-balone-frontal.png",fit:"contain"}
+);
+
 /* PNGs com recorte transparente gerados a partir das fotos originais. */
 const photoNeedsOriginal=new Set(['vestido-suzanna-branco','vestido-amarelo-buganvilia']);
 const cutoutSrc=src=>src&&src.startsWith('assets/')&&src.endsWith('.webp')&&!photoNeedsOriginal.has(src.slice(7,-5))?
@@ -1568,6 +1602,62 @@ function basketSway(){
  sceneBag.classList.add('evy-basket-receive');
  setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),500);
 }
+
+/* Acrescenta as nove peças mantendo os antigos looks e suas funções de sacola. */
+(function evyMountCompleteCollection(){
+ const stage=document.querySelector('#vitrine .evy-scene-hotspots');
+ if(!stage)return;
+ const existing=['borgonha','biker','fur','marrom','assimetrico','balone'];
+ const news=P.filter(p=>/^look-0[1-9]$/.test(p.id));
+ news.forEach((product,i)=>{
+  const base=product.image.replace(/-frontal\.png$/, '');
+  const button=document.createElement('button');
+  button.type='button';
+  button.className='evy-hotspot evy-rack-piece evy-new-look';
+  button.dataset.scene=product.id;
+  button.setAttribute('aria-label',product.name+': toque para ver ou arraste para a sacola');
+  const photo=document.createElement('img');
+  photo.className='evy-rack-garment';
+  photo.src=base+'-tres-quartos.png';
+  photo.dataset.front=product.image;
+  photo.dataset.threequarters=photo.src;
+  photo.dataset.side=base+'-lateral.png';
+  photo.dataset.originalPhoto=product.image;
+  photo.alt='';
+  photo.draggable=false;
+  button.append(photo);
+  stage.append(button);
+  button.addEventListener('mouseenter',()=>{photo.src=photo.dataset.front});
+  button.addEventListener('mouseleave',()=>{photo.src=photo.dataset.threequarters});
+  button.addEventListener('focus',()=>{photo.src=photo.dataset.front});
+  button.addEventListener('blur',()=>{photo.src=photo.dataset.threequarters});
+  button.addEventListener('pointerdown',()=>{photo.src=photo.dataset.front});
+  button.addEventListener('pointerup',()=>{if(!button.matches(':hover'))photo.src=photo.dataset.threequarters});
+ });
+ const all=[...existing,...news.map(p=>p.id)];
+ all.forEach((id,i)=>{
+  const piece=stage.querySelector('.evy-rack-piece[data-scene="'+id+'"]');
+  if(!piece)return;
+  const center=8.2+i*5.9;
+  const isNew=id.startsWith('look-');
+  piece.style.setProperty('left',(center-4.7)+'%','important');
+  piece.style.setProperty('top',(isNew?12.5:17.7)+'%','important');
+  piece.style.setProperty('width','9.4%','important');
+  piece.style.setProperty('height',(isNew?51:49)+'%','important');
+  piece.style.setProperty('--garment-left','0%');
+  piece.style.setProperty('--garment-top','0%');
+  piece.style.setProperty('--garment-width','100%');
+  piece.style.setProperty('--garment-height','100%');
+  const hanger=stage.querySelector('.evy-rack-hanger[data-scene="'+id+'"]');
+  if(hanger){
+   hanger.style.setProperty('--hanger-x',center+'%');
+   hanger.style.setProperty('width','9.5%','important');
+   hanger.style.setProperty('height','9%','important');
+   hanger.style.setProperty('top','10.4%','important');
+  }
+ });
+})();
+
 let activeSceneDrag=null;
 $$('[data-scene]').forEach(button=>{
  const product=P.find(p=>p.id===button.dataset.scene);
