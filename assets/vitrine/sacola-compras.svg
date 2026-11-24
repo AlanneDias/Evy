@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 360">
+<defs>
+<linearGradient id="frente" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FBF9F5"/><stop offset=".55" stop-color="#F3EFE8"/><stop offset="1" stop-color="#E6E0D6"/></linearGradient>
+<linearGradient id="lado" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#D9D2C6"/><stop offset="1" stop-color="#E9E4DB"/></linearGradient>
+<linearGradient id="dentro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2E2B27"/><stop offset="1" stop-color="#57514A"/></linearGradient>
+</defs>
+<!-- alças de trás -->
+<path d="M128 92 C128 20 214 20 214 92" fill="none" stroke="#141414" stroke-width="5" stroke-linecap="round"/>
+<!-- abertura (interior) -->
+<path d="M30 100 L72 82 L272 82 L232 100 Z" fill="url(#dentro)"/>
+<!-- lateral (fole) -->
+<path d="M232 100 L272 82 L272 322 L232 348 Z" fill="url(#lado)"/>
+<path d="M252 91 L252 335" stroke="#C9C0B2" stroke-width="1.2"/>
+<path d="M232 100 L252 91 L272 82" fill="none" stroke="#CFC7BA" stroke-width="1"/>
+<!-- frente -->
+<rect x="30" y="100" width="202" height="248" fill="url(#frente)"/>
+<rect x="30" y="100" width="202" height="16" fill="#EDE8E0"/>
+<path d="M30 116 H232" stroke="#DDD5C9" stroke-width="1"/>
+<!-- alças da frente -->
+<path d="M86 108 C86 30 176 30 176 108" fill="none" stroke="#141414" stroke-width="5.5" stroke-linecap="round"/>
+<circle cx="86" cy="110" r="3.4" fill="#141414"/><circle cx="176" cy="110" r="3.4" fill="#141414"/>
+<!-- marca -->
+<g transform="translate(81 176) scale(.29)"><path fill="#141414" fill-rule="evenodd" d="M32,18 28,20 28,50 29,51 28,109 26,111 16,113 10,116 8,118 8,122 15,117 22,114 26,114 29,118 28,130 27,131 27,166 28,168 72,168 72,164 71,163 60,163 59,164 49,164 48,165 44,165 40,163 38,159 38,119 41,114 49,116 67,117 75,115 80,111 79,109 77,109 69,113 52,114 51,113 42,112 39,109 39,25 41,21 45,21 46,22 73,23 70,21 62,19Z M213,17 211,17 207,20 201,45 196,59 196,62 186,90 186,93 176,121 175,127 172,134 170,136 168,133 165,120 160,107 160,104 156,94 156,91 152,81 152,78 148,68 148,65 144,55 144,52 139,39 139,36 137,33 134,21 132,18 129,17 121,18 121,21 149,104 149,107 151,111 151,114 153,118 153,121 164,157 164,168 167,166 169,155 180,122 182,119 191,90 193,87 198,70 200,67 200,64 214,22 214,18Z M252,14 245,21 283,87 283,95 284,96 284,135 285,136 286,162 289,168 294,168 297,166 296,165 296,152 295,151 295,86 317,43 319,41 331,16 328,17 303,65 298,73 293,78 283,64 262,29 254,14Z"/></g>
+<text x="131" y="249" text-anchor="middle" font-family="Montserrat,Arial,sans-serif" font-size="11" letter-spacing="7" fill="#141414">ALUGA</text>
+<!-- sombra suave na base -->
+<rect x="30" y="338" width="202" height="10" fill="#000" opacity=".05"/>
+</svg>
