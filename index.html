@@ -970,6 +970,41 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(prefers-reduced-motion:reduce){
  #vitrine .evy-rack-piece .evy-rack-garment{transition:none!important}
 }
+
+/* EVY 24/11 — vitrine na altura da tela: arara proporcional, peças legíveis
+   e sacola sem distorção. Posições horizontais definidas no script da arara. */
+#vitrine .evy-rack-stage{aspect-ratio:auto!important;height:clamp(520px,calc(100svh - 113px),860px)!important}
+#vitrine #sceneBag .evy-bag-scene-image{object-fit:contain!important;object-position:center bottom!important}
+#vitrine .evy-rack-piece .evy-rack-garment{transform:perspective(900px) rotateY(var(--evy-tilt)) scale(1)!important;transform-origin:center 6%!important}
+#vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{transform:perspective(900px) rotateY(var(--evy-tilt)) scale(1)!important;transform-origin:center 4%!important;clip-path:none!important}
+/* Cabides das peças antigas giram junto, no mesmo sentido das roupas. */
+#vitrine .evy-rack-hanger{transform:translateX(-50%) perspective(600px) rotateY(58deg)!important}
+@media(hover:hover) and (pointer:fine){
+ #vitrine .evy-rack-piece:hover>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important;filter:drop-shadow(0 8px 10px rgba(0,0,0,.16))!important}
+ #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important}
+}
+#vitrine .evy-rack-piece:focus-visible>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important}
+#vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{z-index:40!important}
+/* Sem placa colorida no lugar da peça enquanto ela é arrastada. */
+#vitrine button.evy-hotspot.evy-rack-piece,#vitrine button.evy-hotspot.evy-rack-piece:hover,#vitrine button.evy-hotspot.evy-rack-piece:active,#vitrine button.evy-hotspot.evy-rack-piece:focus,#vitrine button.evy-hotspot.evy-rack-piece.evy-is-dragging{background:transparent!important}
+#vitrine .evy-rack-piece .evy-hotspot-focus{display:none!important}
+/* O cabide que viaja com a roupa mantém o dourado da arara. */
+.evy-scene-ghost-hanger .hanger-hook-shadow{fill:none;stroke:#785124;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;opacity:.52}
+.evy-scene-ghost-hanger .hanger-hook{fill:none;stroke:#c3944b;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.evy-scene-ghost-hanger .hanger-body{fill:none;stroke:#a87539;stroke-width:11;stroke-linecap:round;stroke-linejoin:round}
+.evy-scene-ghost-hanger .hanger-highlight{fill:none;stroke:#f6d69a;stroke-width:2.4;stroke-linecap:round;opacity:.8}
+/* Celular: a arara desliza para os lados; arrastar para baixo leva a peça à sacola. */
+@media(max-width:750px){
+ #vitrine .evy-rack-stage{height:clamp(460px,calc(100svh - 101px),640px)!important}
+ #vitrine .evy-rack-display{overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+ #vitrine .evy-rack-display::-webkit-scrollbar{display:none}
+ #vitrine .evy-scene-hotspots{width:320%!important;right:auto!important}
+ #vitrine .evy-rack-rail{left:3%!important;right:auto!important;width:314%!important}
+ #vitrine .evy-rack-left{left:2.4%!important}
+ #vitrine .evy-rack-right{right:auto!important;left:calc(317% - 1.3%)!important}
+ #vitrine .evy-rack-piece{touch-action:pan-x!important}
+ #vitrine #sceneBag.evy-luxe-bag{left:22%!important;width:56%!important;top:69%!important;height:29%!important}
+}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -1012,7 +1047,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
  <span class="evy-bag-front" aria-hidden="true"><span>EVY</span></span>
 </button>
 </div>
-<div class="evy-scene-tools"><span>Toque para ver a peça de frente ou arraste para a sacola.</span></div>
+<div class="evy-scene-tools"><span>Deslize a arara, toque na peça para vê-la de frente ou arraste-a até a sacola.</span></div>
 <div class="rack" id="rack" hidden></div><div class="bag-drop" id="dropBag" hidden></div>
 </section>
 <section class="section rules" id="como-alugar" aria-labelledby="como-heading">
@@ -1639,7 +1674,7 @@ function basketSway(){
   button.setAttribute('aria-label',product.name+': toque para ver ou arraste para a sacola');
   const photo=document.createElement('img');
   photo.className='evy-rack-garment';
-  photo.src=base+'-tres-quartos.png';
+  photo.src=product.image;
   photo.dataset.front=product.image;
   photo.dataset.threequarters=photo.src;
   photo.dataset.side=base+'-lateral.png';
@@ -1648,29 +1683,27 @@ function basketSway(){
   photo.draggable=false;
   button.append(photo);
   stage.append(button);
-  button.addEventListener('mouseenter',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('mouseleave',()=>{photo.src=photo.dataset.threequarters});
-  button.addEventListener('focus',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('blur',()=>{photo.src=photo.dataset.threequarters});
-  button.addEventListener('pointerdown',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('pointerup',()=>{if(!button.matches(':hover'))photo.src=photo.dataset.threequarters});
  });
  const all=[...existing,...news.map(p=>p.id)];
- // Mesma distância entre os 15 ganchos, todos presos à mesma barra.
+ // Mesma distância entre os 15 ganchos, todos presos à mesma barra e dentro das hastes.
+ const first=10,last=90,step=(last-first)/Math.max(1,all.length-1),slot=7.6;
  all.forEach((id,i)=>{
   const piece=stage.querySelector('.evy-rack-piece[data-scene="'+id+'"]');
   if(!piece)return;
-  const center=7.2+i*(85.6/14);
+  const center=first+i*step;
   const isNew=id.startsWith('look-');
-  piece.style.setProperty('left',(center-3.35)+'%','important');
-  piece.style.setProperty('top',(isNew?11.4:17.0)+'%','important');
-  piece.style.setProperty('width','6.7%','important');
-  piece.style.setProperty('height',(isNew?50:47)+'%','important');
-  piece.style.setProperty('--garment-left','0%');
+  piece.style.setProperty('left',(center-slot/2)+'%','important');
+  piece.style.setProperty('top',(isNew?11.4:16.6)+'%','important');
+  piece.style.setProperty('width',slot+'%','important');
+  piece.style.setProperty('height',(isNew?52:46)+'%','important');
+  // As fotos antigas são frontais (4:5): a imagem ganha largura extra para não encolher
+  // e é girada de lado como numa arara real; ao passar o mouse, fica de frente.
+  piece.style.setProperty('--garment-left',isNew?'0%':'-35%');
   piece.style.setProperty('--garment-top','0%');
-  piece.style.setProperty('--garment-width','100%');
+  piece.style.setProperty('--garment-width',isNew?'100%':'170%');
   piece.style.setProperty('--garment-height','100%');
-  piece.style.setProperty('--evy-tilt',isNew?'0deg':(i%2===0?'65deg':'-65deg'));
+  // Todas as peças viradas para o mesmo lado, como numa arara de loja.
+  piece.style.setProperty('--evy-tilt','58deg');
   const hanger=stage.querySelector('.evy-rack-hanger[data-scene="'+id+'"]');
   if(hanger){
    hanger.style.setProperty('--hanger-x',center+'%');
