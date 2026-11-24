@@ -185,11 +185,37 @@ let pecaPendente=null;
 VITRINE.forEach(v=>{
   const p=PORID[v.id];if(!p)return;
   const li=document.createElement('li');
-  li.innerHTML='<button class="peca" type="button" data-id="'+esc(p.id)+'" style="--len:'+v.length+'" aria-label="'+esc(p.name)+': toque para ver detalhes ou arraste até a sacola">'+
-    '<span class="peca-corpo">'+cabideSVG+'<img class="peca-foto" src="'+esc(v.img)+'" alt="" draggable="false" decoding="async"></span>'+
+  li.innerHTML='<button class="peca'+(v.semCabide?' sem-cabide':'')+'" type="button" data-id="'+esc(p.id)+'" style="--len:'+v.length+'" aria-label="'+esc(p.name)+': toque para ver detalhes ou arraste até a sacola">'+
+    '<span class="peca-corpo">'+(v.semCabide?'':cabideSVG)+'<img class="peca-foto" src="'+esc(v.img)+'" alt="" draggable="false" decoding="async"></span>'+
     '<span class="peca-nome" aria-hidden="true">'+esc(p.name)+'</span></button>';
   $('araraPecas').append(li);
 });
+
+/* Barra ondulada: a curva acompanha a largura da arara e cada peça pende na altura da barra. */
+const arara=$('arara'),curva=$('araraCurva');
+function alturaBarra(x,W,H){
+  const t=x/W,base=H*.21,amp=H*.032;
+  return base+amp*Math.sin(2*Math.PI*1.15*t+.5)+(t>.96?Math.pow((t-.96)/.06,2)*H*.05:0);
+}
+function desenharArara(){
+  const W=arara.offsetWidth,H=arara.offsetHeight;if(!W||!H)return;
+  const espessura=H*.013,pts=[];
+  for(let i=0;i<=80;i++){const x=-W*.02+(W*1.04)*i/80;pts.push(x.toFixed(1)+','+alturaBarra(x,W,H).toFixed(1))}
+  const d='M'+pts.join(' L');
+  const suportes=[.3,.7].map(t=>{const x=W*t;return '<circle class="suporte" cx="'+x.toFixed(1)+'" cy="'+(alturaBarra(x,W,H)-espessura*.2).toFixed(1)+'" r="'+(espessura*1.15).toFixed(1)+'"/>'}).join('');
+  curva.setAttribute('viewBox','0 0 '+W+' '+H);
+  curva.innerHTML='<defs><linearGradient id="evyMadeira" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58560"/><stop offset=".45" stop-color="#76583A"/><stop offset="1" stop-color="#4C3824"/></linearGradient></defs>'+
+    '<path class="sombra" d="'+d+'" transform="translate('+(espessura*1.2)+','+(espessura*2.4)+')" stroke-width="'+espessura+'"/>'+
+    '<path class="madeira" d="'+d+'" stroke-width="'+espessura+'"/>'+suportes;
+  const ar=arara.getBoundingClientRect(),base=H*.21;
+  document.querySelectorAll('#araraPecas>li').forEach(li=>{
+    const r=li.getBoundingClientRect(),cx=r.left+r.width/2-ar.left;
+    li.style.setProperty('--dy',(alturaBarra(cx,W,H)-base).toFixed(1)+'px');
+  });
+}
+new ResizeObserver(desenharArara).observe(arara);
+document.querySelectorAll('.peca-foto').forEach(img=>{if(!img.complete)img.addEventListener('load',desenharArara,{once:true})});
+desenharArara();
 
 /* Pêndulo amortecido: cada peça balança a partir do gancho. */
 const pendulos=new Map();let loopPendulo=0,ultimoPendulo=0;

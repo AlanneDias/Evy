@@ -94,5 +94,6 @@ window.EVY_ACERVO=[
 ];
 
 /* Peças da vitrine (arara): somente peças com foto em alta resolução.
-   length = comprimento relativo da peça na arara (1 = vestido longo). */
-window.EVY_VITRINE=[{"id": "biker", "img": "assets/vitrine/biker.webp", "length": 0.64}, {"id": "fur", "img": "assets/vitrine/fur.webp", "length": 0.62}, {"id": "marrom", "img": "assets/vitrine/marrom.webp", "length": 0.86}, {"id": "assimetrico", "img": "assets/vitrine/assimetrico.webp", "length": 1.06}, {"id": "balone", "img": "assets/vitrine/balone.webp", "length": 0.84}];
+   length = comprimento relativo da peça na arara (1 = vestido longo);
+   semCabide = bolsa pendurada direto pela alça. */
+window.EVY_VITRINE=[{"id": "lorena", "img": "assets/vitrine/lorena.webp", "length": 0.44, "semCabide": true}, {"id": "biker", "img": "assets/vitrine/biker.webp", "length": 0.64}, {"id": "fur", "img": "assets/vitrine/fur.webp", "length": 0.62}, {"id": "marrom", "img": "assets/vitrine/marrom.webp", "length": 0.86}, {"id": "assimetrico", "img": "assets/vitrine/assimetrico.webp", "length": 1.06}, {"id": "balone", "img": "assets/vitrine/balone.webp", "length": 0.84}];
