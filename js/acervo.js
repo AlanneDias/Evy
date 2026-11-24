@@ -90,7 +90,10 @@ window.EVY_ACERVO=[
  {"id": "look-06", "name": "Vestido preto com recorte frontal", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/evy-looks/06-preto-recorte-frontal.png", "fit": "contain", "code": "EVY-086"},
  {"id": "look-07", "name": "Vestido marrom com saia estruturada", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Marrom", "photo": "assets/evy-looks/07-marrom-estruturado-frontal.png", "fit": "contain", "code": "EVY-087"},
  {"id": "look-08", "name": "Vestido branco com decote em V", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Branco", "photo": "assets/evy-looks/08-branco-decote-v-frontal.png", "fit": "contain", "code": "EVY-088"},
- {"id": "look-09", "name": "Vestido preto com saia balonê", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/evy-looks/09-preto-balone-frontal.png", "fit": "contain", "code": "EVY-089"}
+ {"id": "look-09", "name": "Vestido preto com saia balonê", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/evy-looks/09-preto-balone-frontal.png", "fit": "contain", "code": "EVY-089"},
+ {"id": "caramelo", "name": "Conjunto caramelo com sobretudo", "kind": "Conjuntos", "size": ["A confirmar"], "price": null, "color": "Caramelo", "photo": "assets/vitrine/novas/caramelo-frente.webp", "fit": "contain", "code": "EVY-090"},
+ {"id": "renda", "name": "Vestido de renda preta com drapeado", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/vitrine/novas/renda-frente.webp", "fit": "contain", "code": "EVY-091"},
+ {"id": "creme", "name": "Vestido creme drapeado assimétrico", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Creme", "photo": "assets/vitrine/novas/creme-34.webp", "fit": "contain", "code": "EVY-092"}
 ];
 
 /* Vitrine: foto da boutique EVY separada em camadas.
@@ -105,10 +108,26 @@ window.EVY_VITRINE={
  "altura": 1402,
  "pecas": [
   {
-   "id": "biker",
+   "id": "caramelo",
+   "img": "assets/vitrine/novas/caramelo-frente.webp",
    "area": [
-    37.333,
-    16.833,
+    31.632,
+    17.404,
+    10.833,
+    31.384
+   ],
+   "pivo": [
+    49.2,
+    0.0
+   ],
+   "z": 2
+  },
+  {
+   "id": "biker",
+   "img": "assets/vitrine/camadas/biker.webp",
+   "area": [
+    37.597,
+    16.414,
     7.133,
     24.75
    ],
@@ -116,14 +135,29 @@ window.EVY_VITRINE={
     44.9,
     4.0
    ],
-   "img": "assets/vitrine/camadas/biker.webp",
+   "z": 3
+  },
+  {
+   "id": "renda",
+   "img": "assets/vitrine/novas/renda-frente.webp",
+   "area": [
+    40.273,
+    17.404,
+    8.867,
+    37.874
+   ],
+   "pivo": [
+    49.2,
+    0.0
+   ],
    "z": 2
   },
   {
    "id": "fur",
+   "img": "assets/vitrine/camadas/fur.webp",
    "area": [
-    41.9,
-    16.833,
+    43.959,
+    16.397,
     8.167,
     27.96
    ],
@@ -131,14 +165,29 @@ window.EVY_VITRINE={
     55.2,
     3.6
    ],
-   "img": "assets/vitrine/camadas/fur.webp",
    "z": 3
   },
   {
-   "id": "marrom",
+   "id": "creme",
+   "img": "assets/vitrine/novas/creme-34.webp",
    "area": [
-    47.167,
-    16.833,
+    49.207,
+    17.404,
+    6.733,
+    36.662
+   ],
+   "pivo": [
+    45.9,
+    0.0
+   ],
+   "z": 2
+  },
+  {
+   "id": "marrom",
+   "img": "assets/vitrine/camadas/marrom.webp",
+   "area": [
+    52.965,
+    16.414,
     6.467,
     26.034
    ],
@@ -146,14 +195,14 @@ window.EVY_VITRINE={
     49.0,
     3.8
    ],
-   "img": "assets/vitrine/camadas/marrom.webp",
-   "z": 2
+   "z": 3
   },
   {
    "id": "assimetrico",
+   "img": "assets/vitrine/camadas/assimetrico.webp",
    "area": [
-    52.633,
-    16.833,
+    57.539,
+    16.404,
     5.267,
     38.445
    ],
@@ -161,14 +210,14 @@ window.EVY_VITRINE={
     46.1,
     2.6
    ],
-   "img": "assets/vitrine/camadas/assimetrico.webp",
-   "z": 3
+   "z": 2
   },
   {
    "id": "balone",
+   "img": "assets/vitrine/camadas/balone.webp",
    "area": [
-    56.267,
-    16.833,
+    60.634,
+    16.477,
     6.867,
     28.959
    ],
@@ -176,8 +225,7 @@ window.EVY_VITRINE={
     46.1,
     3.2
    ],
-   "img": "assets/vitrine/camadas/balone.webp",
-   "z": 2
+   "z": 3
   }
  ],
  "sacola": [
