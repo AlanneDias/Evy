@@ -1013,7 +1013,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-store-scene{position:relative;width:100%;aspect-ratio:1671/941}
 #vitrine .evy-store-photo{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
 #vitrine .evy-pieces{position:absolute;inset:0;z-index:5}
-#vitrine .evy-pc{position:absolute;padding:0;margin:0;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;cursor:grab;z-index:5;touch-action:none;-webkit-tap-highlight-color:transparent}
+#vitrine .evy-pc{-webkit-user-select:none;-webkit-touch-callout:none;position:absolute;padding:0;margin:0;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;cursor:grab;z-index:5;touch-action:none;-webkit-tap-highlight-color:transparent}
 #vitrine .evy-pc:active{cursor:grabbing}
 #vitrine .evy-pc img{position:absolute;display:block;max-width:none;pointer-events:none;user-select:none;-webkit-user-drag:none}
 #vitrine .evy-pc .evy-pc-side{opacity:1;transition:opacity .24s ease;filter:drop-shadow(4px 7px 5px rgba(45,36,12,.30))}
@@ -1041,7 +1041,7 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 @media(hover:none){.evy-hint-mouse{display:none}}
 @media(max-width:750px){
  #vitrine .evy-store-scene{width:190vw;margin-left:-45vw}
- #vitrine .evy-pc{touch-action:pan-x}
+ #vitrine .evy-pc{touch-action:none}
 }
 @media(prefers-reduced-motion:reduce){#vitrine .evy-pc img,#vitrine .evy-store #sceneBag .evy-bag-scene-image{transition:none!important;animation:none!important}}
 
