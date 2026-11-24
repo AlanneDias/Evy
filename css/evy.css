@@ -73,7 +73,8 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .vitrine-pontos{position:absolute;inset:0;z-index:2}
 .ponto{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);padding:0;border:0;background:transparent;cursor:grab;touch-action:none;-webkit-tap-highlight-color:transparent;border-radius:14px;transition:background-color .25s}
 .ponto:active{cursor:grabbing}
-@media (hover:hover) and (pointer:fine){.ponto:hover{background:radial-gradient(ellipse at 50% 45%,#ffffff26,transparent 70%)}}
+.camada{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transform-origin:var(--px) var(--py);transform:rotate(var(--balanco,0deg));will-change:transform}
+.ponto.arrastando .camada,.ponto.na-sacola .camada{visibility:hidden}
 .ponto:focus-visible{outline:2px solid var(--branco);outline-offset:2px}
 .ponto-nome{position:absolute;left:50%;bottom:-12px;transform:translate(-50%,8px);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
 @media (hover:hover) and (pointer:fine){.ponto:hover .ponto-nome{opacity:1;transform:translate(-50%,100%)}}
@@ -83,7 +84,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .ponto.na-sacola{cursor:pointer}
 /* Peça arrastada: recorte que segue o ponteiro com balanço de pêndulo */
 .peca-voando{position:absolute;left:0;top:0;z-index:20;pointer-events:none;transform-origin:50% 0;will-change:transform}
-.peca-voando img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(10px 24px 18px #1d22144d)}
+.peca-voando img{display:block;width:100%;height:100%;filter:drop-shadow(8px 18px 14px #1d221438)}
 .peca-voando.caindo{z-index:5}
 .sacola-ponto{position:absolute;z-index:6;padding:0;border:0;background:transparent;border-radius:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:box-shadow .25s,transform .25s}
 .sacola-ponto.alvo{box-shadow:0 0 0 3px var(--rosa),0 0 40px 10px #EF356755;transform:scale(1.03)}

@@ -93,74 +93,105 @@ window.EVY_ACERVO=[
  {"id": "look-09", "name": "Vestido preto com saia balonê", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/evy-looks/09-preto-balone-frontal.png", "fit": "contain", "code": "EVY-089"}
 ];
 
-/* Vitrine: foto da boutique EVY com áreas interativas sobre cada peça e sobre a sacola.
-   area = [esquerda, topo, largura, altura] em % da foto; img = recorte usado ao arrastar.
-   Ao trocar a foto, atualize apenas as áreas. */
+/* Vitrine: foto da boutique EVY separada em camadas.
+   fundo = foto sem as roupas e sem as sombras; cada peça é uma camada com o recorte em alta
+   resolução da roupa e o cabide/gancho recortados da foto que balança presa ao gancho.
+   area = [esquerda, topo, largura, altura] em % da foto; pivo = ponto do gancho em % da camada. */
 window.EVY_VITRINE={
- "foto": "assets/vitrine/boutique.webp",
- "fotoCelular": "assets/vitrine/boutique-800.webp",
+ "fundo": "assets/vitrine/boutique-fundo.webp",
+ "fundoCelular": "assets/vitrine/boutique-fundo-800.webp",
  "largura": 1122,
  "altura": 1402,
  "pecas": [
   {
    "id": "borgonha",
    "area": [
-    8.47,
-    21.4,
-    20.5,
-    27.1
+    8.645,
+    16.833,
+    20.321,
+    28.959
    ],
-   "img": "assets/cutouts/casaco-borgonha-cinto.png"
+   "pivo": [
+    44.8,
+    3.2
+   ],
+   "img": "assets/vitrine/camadas/borgonha.webp",
+   "z": 1
   },
   {
    "id": "biker",
    "area": [
-    24.06,
-    22.25,
-    18.89,
-    24.25
+    23.886,
+    16.833,
+    19.073,
+    24.75
    ],
-   "img": "assets/vitrine/biker.webp"
+   "pivo": [
+    44.9,
+    4.0
+   ],
+   "img": "assets/vitrine/camadas/biker.webp",
+   "z": 2
   },
   {
    "id": "fur",
    "area": [
-    36.36,
-    22.25,
-    21.39,
-    24.25
+    36.096,
+    16.833,
+    21.836,
+    27.96
    ],
-   "img": "assets/vitrine/fur.webp"
+   "pivo": [
+    55.2,
+    3.6
+   ],
+   "img": "assets/vitrine/camadas/fur.webp",
+   "z": 3
   },
   {
    "id": "marrom",
    "area": [
-    50.45,
-    22.68,
-    16.93,
-    26.03
+    50.178,
+    16.833,
+    17.291,
+    26.034
    ],
-   "img": "assets/vitrine/marrom.webp"
+   "pivo": [
+    49.0,
+    3.8
+   ],
+   "img": "assets/vitrine/camadas/marrom.webp",
+   "z": 2
   },
   {
    "id": "assimetrico",
    "area": [
-    64.88,
-    22.68,
-    13.55,
-    37.8
+    64.795,
+    16.833,
+    14.082,
+    38.445
    ],
-   "img": "assets/vitrine/assimetrico.webp"
+   "pivo": [
+    46.1,
+    2.6
+   ],
+   "img": "assets/vitrine/camadas/assimetrico.webp",
+   "z": 3
   },
   {
    "id": "balone",
    "area": [
-    74.87,
-    22.68,
-    17.83,
-    25.32
+    74.51,
+    16.833,
+    18.36,
+    28.959
    ],
-   "img": "assets/vitrine/balone.webp"
+   "pivo": [
+    46.1,
+    3.2
+   ],
+   "img": "assets/vitrine/camadas/balone.webp",
+   "z": 2
   }
  ],
  "sacola": [
