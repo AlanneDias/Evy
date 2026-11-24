@@ -324,7 +324,10 @@ sacolaCena.addEventListener('click',()=>{if(!ignorarClique)abrirSacola()});
 const TIPOS=['Todos','Vestidos','Conjuntos','Jaquetas','Bolsas'];
 const POR_PAGINA=12;
 let filtroTipo='Todos',filtroTamanho='Todos',mostrando=POR_PAGINA;
-const ordenado=[...ACERVO].sort((a,b)=>(!!b.photo)-(!!a.photo)); // peças com foto primeiro (ordem estável)
+// Ordem do acervo: peças da vitrine primeiro (as mais recentes), depois as demais com foto, depois sem foto.
+const naVitrine=(VITRINE.pecas||[]).map(v=>v.id);
+const peso=p=>naVitrine.includes(p.id)?0:(p.photo?1:2);
+const ordenado=[...ACERVO].sort((a,b)=>peso(a)-peso(b)||(peso(a)===0?naVitrine.indexOf(a.id)-naVitrine.indexOf(b.id):0));
 const ordemTam=s=>{const i=['P','M','G'].indexOf(s);if(i>=0)return i;const n=parseInt(s,10);return isNaN(n)?200:10+n};
 const tamanhos=[...new Set(ACERVO.flatMap(p=>p.size))].filter(s=>s!=='A confirmar').sort((a,b)=>ordemTam(a)-ordemTam(b)||a.localeCompare(b));
 
