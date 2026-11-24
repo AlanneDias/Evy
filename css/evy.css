@@ -133,7 +133,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .cabide .gancho{fill:none;stroke:#7A5B34;stroke-width:3.4;stroke-linecap:round}
 .cabide .ombro{fill:#E8C9AE;stroke:#D9B394;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 .cabide .brilho{fill:none;stroke:#F6E3D2;stroke-width:1.4;stroke-linecap:round;opacity:.9}
-.peca-foto{position:relative;z-index:2;height:calc(var(--len) * 39cqh);width:auto;max-width:none;margin-top:-4.6cqh;pointer-events:none;
+.peca-foto{position:relative;z-index:2;height:calc(var(--len) * var(--tam,39cqh));width:auto;max-width:none;margin-top:-4.6cqh;pointer-events:none;
   filter:drop-shadow(1.6cqh 2.6cqh 1.6cqh #3d452a42);transition:filter .3s}
 @media (hover:hover) and (pointer:fine){
   .peca:hover .peca-foto{filter:drop-shadow(2cqh 3.2cqh 2cqh #3d452a55)}
@@ -142,7 +142,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .peca.na-sacola{cursor:default}
 .peca:focus-visible{outline:none}
 .peca:focus-visible .peca-foto{outline:2px solid var(--preto);outline-offset:6px;border-radius:8px}
-.peca-nome{position:absolute;left:50%;top:calc(var(--len) * 39cqh + 6cqh);transform:translate(-50%,6px);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:4}
+.peca-nome{position:absolute;left:50%;top:calc(var(--len) * var(--tam,39cqh) + 6cqh);transform:translate(-50%,6px);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:4}
 @media (hover:hover) and (pointer:fine){
   .peca:not(.na-sacola):hover .peca-nome{opacity:1;transform:translate(-50%,0)}
 }
@@ -310,7 +310,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   :root{--topo:62px}
   body{font-size:14px}
   .topo-logo img{width:78px}
-  .palco{height:clamp(520px,calc(100svh - var(--topo) - 30px),700px)}
+  .palco{height:clamp(520px,calc(100svh - var(--topo) - 30px),700px);--tam:45cqh}
   .espelho,.prateleiras{display:none}
   .vaso-planta{left:-6cqh;opacity:.95}
   .sacola{width:21cqh}
@@ -328,6 +328,11 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   .rodape-grade{grid-template-columns:1fr 1fr;gap:28px 18px;padding:48px var(--margem) 32px}
   .rodape-marca,.rodape-grade>div:last-child{grid-column:1/-1}
   .painel{width:100%}
+}
+/* Celular deitado ou telas baixas: a vitrine cabe inteira na tela. */
+@media (max-height:520px) and (orientation:landscape){
+  .palco{height:calc(100svh - var(--topo));min-height:300px}
+  .vitrine-dica{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
