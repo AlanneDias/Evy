@@ -1132,7 +1132,7 @@ const P=[
   ],
   "price": 80,
   "color": "Vinho",
-  "image": "assets/vestido-couro-vinho.webp",
+  "image": "assets/vestido-mini-corset-cadarco.webp",
   "fit": "cover"
  },
  {
@@ -1476,7 +1476,7 @@ P.push(
 );
 
 /* PNGs com recorte transparente gerados a partir das fotos originais. */
-const photoNeedsOriginal=new Set(['vestido-suzanna-branco','vestido-amarelo-buganvilia','pecas/jaqueta-pelo-frontal','pecas/body-redinha-frontal','pecas/vestido-renda-frontal','pecas/jaqueta-vinho-frontal','pecas/jaqueta-oliva-frontal','pecas/conjunto-caramelo-frontal','bolsas/b-madreperola','bolsas/b-santalolla','bolsas/b-schutz','bolsas/b-concha','bolsas/b-lodi','pecas/vestido-creme-lateral','pecas/vestido-branco-frontal']);
+const photoNeedsOriginal=new Set(['vestido-suzanna-branco','vestido-amarelo-buganvilia','vestido-mini-corset-cadarco','pecas/jaqueta-pelo-frontal','pecas/body-redinha-frontal','pecas/vestido-renda-frontal','pecas/jaqueta-vinho-frontal','pecas/jaqueta-oliva-frontal','pecas/conjunto-caramelo-frontal','bolsas/b-madreperola','bolsas/b-santalolla','bolsas/b-schutz','bolsas/b-concha','bolsas/b-lodi','pecas/vestido-creme-lateral','pecas/vestido-branco-frontal']);
 const cutoutSrc=src=>src&&src.startsWith('assets/')&&src.endsWith('.webp')&&!photoNeedsOriginal.has(src.slice(7,-5))?
  'assets/cutouts/'+src.slice(7,-5)+'.png':src;
 document.addEventListener('error',event=>{
