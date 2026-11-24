@@ -1583,6 +1583,7 @@ function detail(p,fromScene=false){
  '<label>RETIRADA OU ENTREGA<select id="method"><option value="Retirada">Retirada</option><option value="Entrega">Consultar entrega</option></select></label></div>'+
  '<p class="note">Locação padrão de 24 horas. A disponibilidade e o agendamento precisam ser confirmados. Reserva efetivada somente após pagamento.</p>'+
  '<button type="button" class="primary" id="confirmRental">ADICIONAR À BOLSA</button>');
+ if(RENTALS[p.id]){const rm=nextDay(RENTALS[p.id].to);el('rDate').min=rm>today()?rm:today()}
  el('rDate').addEventListener('change',e=>el('returnDate').value=nextDay(e.target.value));
  el('confirmRental').addEventListener('click',()=>{
   const date=el('rDate').value;
@@ -1812,7 +1813,7 @@ $$('[data-scene]').forEach(button=>{
   a.oncancel=()=>clear(q);
  };
  const receive=(q)=>{
-  if(RENTALS[product.id]){showRentAlert(product.id);if(q.ghost)goHome(q);else clear(q);return}
+  if(RENTALS[product.id])showRentAlert(product.id);
   if(!q.ghost){clear(q);detail(product,true);return}
   pendingRackScene=product.id;button.classList.add('evy-piece-pending');syncRackPieces();
   const r=sceneBag.getBoundingClientRect();
