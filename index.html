@@ -65,33 +65,23 @@
 </nav>
 
 <main>
-  <!-- Vitrine: arara com as peças em alta resolução; cada peça pode ser arrastada até a sacola. -->
-  <section class="vitrine" id="vitrine" aria-label="Vitrine interativa">
-    <div class="palco" id="palco">
-      <!-- Cenário: sala com janela e piso de mármore (foto Adobe Stock 731443036, licença padrão), parede tingida no verde EVY -->
-      <div class="cena" aria-hidden="true"><div class="parede"></div></div>
-      <div class="arara-rolagem" id="araraRolagem">
-        <div class="arara" id="arara">
-          <svg class="arara-curva" id="araraCurva" aria-hidden="true" focusable="false"></svg>
-          <ul class="arara-pecas" id="araraPecas" aria-label="Peças na arara"></ul>
-        </div>
-      </div>
-      <div class="puff-sacola" aria-hidden="true"></div>
-      <button class="sacola" id="sacolaCena" type="button" aria-label="Sacola EVY: solte uma peça aqui ou toque para abrir a sacola">
-        <img src="assets/vitrine/sacola-compras.svg" alt="" width="300" height="360" draggable="false">
+  <!-- Vitrine: foto da boutique EVY com áreas interativas sobre as peças e a sacola. -->
+  <section class="vitrine" id="vitrine" aria-labelledby="vitrine-titulo">
+    <div class="vitrine-foto" id="palco">
+      <picture>
+        <source media="(max-width:640px)" srcset="assets/vitrine/boutique-800.webp">
+        <img class="vitrine-img" src="assets/vitrine/boutique.webp" width="1122" height="1402" alt="Boutique EVY: arara com casaco vinho, jaqueta biker, casaco de pelos, vestido marrom balonê, vestido assimétrico e vestido de veludo; sacola EVY no chão" draggable="false" fetchpriority="high">
+      </picture>
+      <div class="vitrine-pontos" id="vitrinePontos"></div>
+      <button class="sacola-ponto" id="sacolaCena" type="button" aria-label="Sacola EVY: solte uma peça aqui ou toque para abrir a sacola">
         <span class="sacola-num" id="sacolaCenaNum" hidden>0</span>
       </button>
-      <p class="vitrine-dica"><span class="dica-grande">Arraste uma peça até a sacola <b aria-hidden="true">·</b> toque para ver detalhes</span><span class="dica-celular">Deslize a arara <b aria-hidden="true">·</b> arraste uma peça até a sacola</span></p>
     </div>
-  </section>
-
-  <section class="abertura">
-    <div>
+    <div class="vitrine-texto">
       <p class="sobretitulo">EVY Aluga · Campina Grande–PB</p>
-      <h1>Peças exclusivas.<br>Marcas desejadas.</h1>
-    </div>
-    <div class="abertura-texto">
+      <h1 id="vitrine-titulo">Peças exclusivas.<br>Marcas desejadas.</h1>
       <p>Aluguel de roupas e acessórios femininos com atendimento online e provas em showroom privativo, com hora marcada.</p>
+      <p class="vitrine-dica"><span class="dica-grande">Passe o mouse nas peças da arara: clique para ver ou arraste até a sacola.</span><span class="dica-celular">Toque numa peça da arara para ver, ou arraste até a sacola.</span></p>
       <div class="botoes">
         <a class="botao botao--rosa" href="#acervo">Ver o acervo</a>
         <a class="botao botao--linha" href="https://wa.me/5583991000141" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>

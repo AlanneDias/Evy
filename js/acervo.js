@@ -93,7 +93,80 @@ window.EVY_ACERVO=[
  {"id": "look-09", "name": "Vestido preto com saia balonê", "kind": "Vestidos", "size": ["A confirmar"], "price": null, "color": "Preto", "photo": "assets/evy-looks/09-preto-balone-frontal.png", "fit": "contain", "code": "EVY-089"}
 ];
 
-/* Peças da vitrine (arara): somente peças com foto em alta resolução.
-   length = comprimento relativo da peça na arara (1 = vestido longo);
-   semCabide = bolsa pendurada direto pela alça. */
-window.EVY_VITRINE=[{"id": "lorena", "img": "assets/vitrine/lorena.webp", "length": 0.44, "semCabide": true}, {"id": "biker", "img": "assets/vitrine/biker.webp", "length": 0.64}, {"id": "fur", "img": "assets/vitrine/fur.webp", "length": 0.62}, {"id": "marrom", "img": "assets/vitrine/marrom.webp", "length": 0.86}, {"id": "assimetrico", "img": "assets/vitrine/assimetrico.webp", "length": 1.06}, {"id": "balone", "img": "assets/vitrine/balone.webp", "length": 0.84}];
+/* Vitrine: foto da boutique EVY com áreas interativas sobre cada peça e sobre a sacola.
+   area = [esquerda, topo, largura, altura] em % da foto; img = recorte usado ao arrastar.
+   Ao trocar a foto, atualize apenas as áreas. */
+window.EVY_VITRINE={
+ "foto": "assets/vitrine/boutique.webp",
+ "fotoCelular": "assets/vitrine/boutique-800.webp",
+ "largura": 1122,
+ "altura": 1402,
+ "pecas": [
+  {
+   "id": "borgonha",
+   "area": [
+    8.47,
+    21.4,
+    20.5,
+    27.1
+   ],
+   "img": "assets/cutouts/casaco-borgonha-cinto.png"
+  },
+  {
+   "id": "biker",
+   "area": [
+    24.06,
+    22.25,
+    18.89,
+    24.25
+   ],
+   "img": "assets/vitrine/biker.webp"
+  },
+  {
+   "id": "fur",
+   "area": [
+    36.36,
+    22.25,
+    21.39,
+    24.25
+   ],
+   "img": "assets/vitrine/fur.webp"
+  },
+  {
+   "id": "marrom",
+   "area": [
+    50.45,
+    22.68,
+    16.93,
+    26.03
+   ],
+   "img": "assets/vitrine/marrom.webp"
+  },
+  {
+   "id": "assimetrico",
+   "area": [
+    64.88,
+    22.68,
+    13.55,
+    37.8
+   ],
+   "img": "assets/vitrine/assimetrico.webp"
+  },
+  {
+   "id": "balone",
+   "area": [
+    74.87,
+    22.68,
+    17.83,
+    25.32
+   ],
+   "img": "assets/vitrine/balone.webp"
+  }
+ ],
+ "sacola": [
+  36.99,
+  62.41,
+  24.96,
+  17.83
+ ]
+};

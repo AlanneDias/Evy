@@ -65,90 +65,43 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .menu-celular{position:fixed;z-index:49;top:var(--topo);left:0;right:0;display:grid;padding:8px var(--margem) 22px;background:var(--verde);box-shadow:0 18px 30px #3f4d2c22}
 .menu-celular a{padding:15px 0;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid #0000001a}
 
-/* ---------- Vitrine: cenário de boutique ---------- */
-.vitrine{position:relative}
-.palco{
-  --chao:76%;            /* linha entre parede e piso */
-  --salvia:#C9D5A6;
-  --salvia-clara:#D8E2BA;
-  --metal:#17181A;
-  position:relative;height:clamp(560px,calc(100svh - var(--topo)),880px);overflow:hidden;
-  --sacola-x:40%;
-  container-type:size;isolation:isolate;user-select:none;-webkit-user-select:none;background:var(--salvia);
-}
-.cena{position:absolute;inset:0;z-index:0;pointer-events:none}
-.parede{position:absolute;inset:0;background:#CFE6A9 url("../assets/vitrine/ambiente.jpg") center bottom/cover no-repeat}
-
-/* Barra ondulada presa à parede (desenhada pelo script conforme a largura) */
-.arara-rolagem{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;z-index:2}
-.arara-rolagem::-webkit-scrollbar{display:none}
-.arara{position:relative;height:100%;min-width:100%;width:max-content;padding:0 22cqh 0 26cqh;display:flex;justify-content:center}
-.arara-curva{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
-.arara-curva .sombra{fill:none;stroke:#59613f;stroke-opacity:.22;stroke-linecap:round;filter:blur(6px)}
-.arara-curva .madeira{fill:none;stroke-linecap:round}
-.arara-pecas{position:relative;z-index:2;list-style:none;margin:calc(27cqh - 1.1cqh) 0 0;padding:0;display:flex;align-items:flex-start;gap:.4cqh;height:fit-content}
-.arara-pecas>li{transform:translateY(var(--dy,0px))}
-.arara-pecas>li{position:relative}
-
-.peca{
-  --len:1;--balanco:0deg;
-  position:relative;display:block;padding:0;border:0;background:transparent;cursor:grab;
-  touch-action:pan-x;-webkit-tap-highlight-color:transparent;
-}
-.peca:active{cursor:grabbing}
-.peca.sem-cabide .peca-foto{margin-top:-.4cqh}
-.peca-corpo{display:flex;flex-direction:column;align-items:center;transform-origin:50% 1.4cqh;transform:rotate(var(--balanco));will-change:transform}
-.cabide{width:15cqh;height:8.4cqh;flex:none;overflow:visible;position:relative;z-index:1}
-.cabide .gancho{fill:none;stroke:#7A5B34;stroke-width:3.4;stroke-linecap:round}
-.cabide .ombro{fill:#E8C9AE;stroke:#D9B394;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.cabide .brilho{fill:none;stroke:#F6E3D2;stroke-width:1.4;stroke-linecap:round;opacity:.9}
-.peca-foto{position:relative;z-index:2;height:calc(var(--len) * var(--tam,39cqh));width:auto;max-width:none;margin-top:-4.6cqh;pointer-events:none;
-  filter:drop-shadow(1.6cqh 2.6cqh 1.6cqh #3d452a42);transition:filter .3s}
-@media (hover:hover) and (pointer:fine){
-  .peca:hover .peca-foto{filter:drop-shadow(2cqh 3.2cqh 2cqh #3d452a55)}
-}
-.peca.na-sacola .peca-foto,.peca.arrastando .peca-foto{visibility:hidden}
-.peca.na-sacola{cursor:default}
-.peca:focus-visible{outline:none}
-.peca:focus-visible .peca-foto{outline:2px solid var(--preto);outline-offset:6px;border-radius:8px}
-.peca-nome{position:absolute;left:50%;top:calc(var(--len) * var(--tam,39cqh) + 6cqh);transform:translate(-50%,6px);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:4}
-@media (hover:hover) and (pointer:fine){
-  .peca:not(.na-sacola):hover .peca-nome{opacity:1;transform:translate(-50%,0)}
-}
-.peca:focus-visible .peca-nome{opacity:1;transform:translate(-50%,0)}
-.peca.arrastando .peca-nome,.peca.na-sacola .peca-nome{opacity:0!important}
-
-/* Peça em movimento: clone que segue o ponteiro com balanço de pêndulo. */
+/* ---------- Vitrine: foto da boutique com áreas interativas ---------- */
+.vitrine{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:clamp(28px,5vw,80px);padding:0 var(--margem) 0 0;min-height:calc(100svh - var(--topo))}
+.vitrine-foto{position:relative;height:min(calc(100svh - var(--topo)),1000px);aspect-ratio:1122/1402;max-width:58vw;user-select:none;-webkit-user-select:none;isolation:isolate;overflow:hidden}
+.vitrine-foto picture,.vitrine-img{display:block;width:100%;height:100%}
+.vitrine-img{object-fit:cover;-webkit-user-drag:none}
+.vitrine-pontos{position:absolute;inset:0;z-index:2}
+.ponto{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);padding:0;border:0;background:transparent;cursor:grab;touch-action:none;-webkit-tap-highlight-color:transparent;border-radius:14px;transition:background-color .25s}
+.ponto:active{cursor:grabbing}
+@media (hover:hover) and (pointer:fine){.ponto:hover{background:radial-gradient(ellipse at 50% 45%,#ffffff26,transparent 70%)}}
+.ponto:focus-visible{outline:2px solid var(--branco);outline-offset:2px}
+.ponto-nome{position:absolute;left:50%;bottom:-12px;transform:translate(-50%,8px);white-space:nowrap;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--preto);color:var(--branco);padding:6px 12px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:3}
+@media (hover:hover) and (pointer:fine){.ponto:hover .ponto-nome{opacity:1;transform:translate(-50%,100%)}}
+.ponto:focus-visible .ponto-nome{opacity:1;transform:translate(-50%,100%)}
+.ponto-selo{position:absolute;left:50%;top:10%;transform:translateX(-50%);display:none;white-space:nowrap;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--rosa);color:var(--preto);padding:5px 10px;border-radius:999px;box-shadow:0 4px 10px #0003}
+.ponto.na-sacola .ponto-selo{display:block}
+.ponto.na-sacola{cursor:pointer}
+/* Peça arrastada: recorte que segue o ponteiro com balanço de pêndulo */
 .peca-voando{position:absolute;left:0;top:0;z-index:20;pointer-events:none;transform-origin:50% 0;will-change:transform}
-.peca-voando img{display:block;width:100%;height:100%;filter:drop-shadow(2cqh 4cqh 2.6cqh #1d22143d)}
+.peca-voando img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(10px 24px 18px #1d22144d)}
 .peca-voando.caindo{z-index:5}
-
-.sacola{position:absolute;z-index:10;left:var(--sacola-x,50%);bottom:calc(4% + 9.4cqh);width:25cqh;aspect-ratio:300/360;transform:translateX(-50%);padding:0;border:0;background:transparent;-webkit-tap-highlight-color:transparent}
-.sacola::after{content:"";position:absolute;left:8%;right:4%;bottom:-1cqh;height:2.4cqh;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,#00000040,transparent 70%);z-index:-1}
-/* Puff redondo de bouclê onde a sacola fica apoiada */
-.puff-sacola{position:absolute;z-index:9;filter:drop-shadow(0 2.4cqh 2cqh #2f3a2638);left:var(--sacola-x,50%);bottom:4%;width:36cqh;height:13cqh;transform:translateX(-50%);pointer-events:none;
-  border-radius:50% 50% 46% 46%/38% 38% 62% 62%;
-  background:radial-gradient(ellipse 70% 45% at 50% 20%,#F7F1E8 0%,#ECE4D7 70%,transparent 72%),linear-gradient(180deg,#EDE5D8 0%,#E1D6C6 55%,#CBBDA9 100%);
-  box-shadow:inset -1.6cqh -1.4cqh 2.4cqh #00000014,0 1.6cqh 2.4cqh #3a2f1f2e}
-.puff-sacola::before{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(#7a6a540c 1px,transparent 1.5px) 0 0/4px 4px}
-.puff-sacola::after{content:"";position:absolute;left:4%;right:4%;top:24%;height:1px;background:#bfb19c66;border-radius:50%}
-.sacola img{width:100%;height:100%;object-fit:contain;transition:transform .25s cubic-bezier(.3,.7,.3,1.3),filter .25s;transform-origin:50% 100%}
-.sacola.alvo img{transform:scale(1.08) translateY(-1cqh);filter:brightness(1.1)}
-.sacola.recebeu img{animation:receber .7s cubic-bezier(.3,.7,.3,1)}
-@keyframes receber{0%{transform:scale(1)}20%{transform:scale(1.12,.86)}45%{transform:scale(.94,1.08) rotate(-3deg)}70%{transform:scale(1.03,.97) rotate(2deg)}100%{transform:scale(1)}}
-.sacola::before{content:"Solte aqui";position:absolute;left:50%;top:-5cqh;transform:translate(-50%,8px);background:var(--rosa);color:var(--preto);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 13px;border-radius:999px;white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
-.sacola.alvo::before{opacity:1;transform:translate(-50%,0)}
-.sacola-num{position:absolute;right:4%;top:20%;min-width:3.6cqh;height:3.6cqh;padding:0 1cqh;border-radius:999px;background:var(--rosa);color:var(--preto);font-size:max(11px,1.7cqh);font-weight:700;line-height:3.6cqh;text-align:center}
-
-.vitrine-dica{position:absolute;z-index:13;right:var(--margem);bottom:4%;margin:0;max-width:26ch;text-align:right;background:#F4F8ECd9;padding:8px 12px;border-radius:12px;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5A5040}
-.vitrine-dica b{color:var(--rosa);font-weight:700}
+.sacola-ponto{position:absolute;z-index:6;padding:0;border:0;background:transparent;border-radius:16px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:box-shadow .25s,transform .25s}
+.sacola-ponto.alvo{box-shadow:0 0 0 3px var(--rosa),0 0 40px 10px #EF356755;transform:scale(1.03)}
+.sacola-ponto.recebeu{animation:receber .7s cubic-bezier(.3,.7,.3,1)}
+@keyframes receber{0%{transform:scale(1)}20%{transform:scale(1.08,.92)}45%{transform:scale(.97,1.05) rotate(-2deg)}70%{transform:scale(1.02,.98) rotate(1deg)}100%{transform:scale(1)}}
+.sacola-ponto::before{content:"Solte aqui";position:absolute;left:50%;top:-34px;transform:translate(-50%,8px);background:var(--rosa);color:var(--preto);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:7px 13px;border-radius:999px;white-space:nowrap;opacity:0;transition:opacity .2s,transform .2s;pointer-events:none}
+.sacola-ponto.alvo::before{opacity:1;transform:translate(-50%,0)}
+.sacola-num{position:absolute;right:-6px;top:-6px;min-width:26px;height:26px;padding:0 8px;border-radius:999px;background:var(--rosa);color:var(--preto);font-size:12px;font-weight:700;line-height:26px;text-align:center;box-shadow:0 4px 10px #0003}
+.vitrine-texto{padding:40px 0;max-width:520px}
+.vitrine-texto h1{font-size:clamp(38px,4.6vw,72px);font-weight:300;letter-spacing:-.01em;line-height:1.02;margin-bottom:22px}
+.vitrine-texto>p{margin:0 0 18px;font-size:16px;line-height:1.75;max-width:44ch}
+.vitrine-texto .sobretitulo{font-size:11px;margin-bottom:16px}
+.vitrine-dica{font-size:12px!important;font-weight:600;letter-spacing:.04em;color:var(--texto-suave);padding-left:14px;border-left:3px solid var(--rosa)}
 .dica-celular{display:none}
+.vitrine-texto .botoes{margin-top:26px}
 
-/* ---------- Abertura ---------- */
-.abertura{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,5vw,80px);align-items:end;padding:clamp(56px,8vw,110px) var(--margem) clamp(48px,6vw,80px)}
+/* ---------- Títulos ---------- */
 .sobretitulo{margin:0 0 16px;font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--texto-suave)}
-.abertura h1{font-size:clamp(40px,6.4vw,92px);font-weight:300;letter-spacing:-.01em;line-height:1}
-.abertura-texto p{margin:0 0 26px;max-width:44ch;font-size:16px;line-height:1.75}
 
 /* ---------- Seções ---------- */
 .secao{padding:clamp(64px,8vw,110px) var(--margem)}
@@ -270,23 +223,19 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   .rodape-grade{grid-template-columns:1fr 1fr}
 }
 @media (max-width:860px){
+  .vitrine{grid-template-columns:1fr;padding:0;gap:0;min-height:0}
+  .vitrine-foto{height:auto;width:100%;max-width:none}
+  .vitrine-texto{padding:36px var(--margem) 8px;max-width:none}
+  .dica-grande{display:none}
+  .dica-celular{display:inline}
   .topo-nav{display:none}
   .topo-acoes{margin-left:auto}
   .icone-menu{display:grid}
-  .abertura{grid-template-columns:1fr;align-items:start}
 }
 @media (max-width:640px){
   :root{--topo:62px}
   body{font-size:14px}
   .topo-logo img{width:78px}
-  .palco{height:clamp(520px,calc(100svh - var(--topo) - 30px),700px);--tam:45cqh}
-  .parede{background-image:url("../assets/vitrine/ambiente-celular.jpg")}
-  .sacola{width:21cqh}
-  .palco{--sacola-x:50%}
-  .puff-sacola{width:31cqh}
-  .dica-grande{display:none}
-  .dica-celular{display:inline}
-  .vitrine-dica{left:0;right:0;bottom:1.6%;max-width:none;text-align:center;font-size:10px}
     .grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .cartao-foto img{padding:8px}
   .cartao-info{padding:12px 12px 14px}
@@ -297,11 +246,6 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   .rodape-grade{grid-template-columns:1fr 1fr;gap:28px 18px;padding:48px var(--margem) 32px}
   .rodape-marca,.rodape-grade>div:last-child{grid-column:1/-1}
   .painel{width:100%}
-}
-/* Celular deitado ou telas baixas: a vitrine cabe inteira na tela. */
-@media (max-height:520px) and (orientation:landscape){
-  .palco{height:calc(100svh - var(--topo));min-height:300px}
-  .vitrine-dica{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}

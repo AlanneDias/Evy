@@ -178,77 +178,31 @@ $('abrirMenu').onclick=()=>{const abre=$('menuCelular').hidden;$('menuCelular').
 $('menuCelular').addEventListener('click',e=>{if(e.target.closest('a'))fecharMenu()});
 
 /* ================= VITRINE ================= */
-const palco=$('palco'),rolagem=$('araraRolagem'),sacolaCena=$('sacolaCena');
-const cabideSVG='<svg class="cabide" viewBox="0 0 160 90" aria-hidden="true"><path class="gancho" d="M80 36V22c0-11 12-15 17-7 4 6-1 13-8 12"/><path class="ombro" d="M80 36 14 75q-8 5 2 5h128q10 0 2-5Z"/><path class="brilho" d="M77 40 24 72"/></svg>';
+/* Foto da boutique com áreas sobre cada peça. Clique abre a peça; arrastar leva um
+   recorte da peça, com balanço de pêndulo, até a sacola da foto. */
+const palco=$('palco'),sacolaCena=$('sacolaCena');
 let pecaPendente=null;
-
-VITRINE.forEach(v=>{
-  const p=PORID[v.id];if(!p)return;
-  const li=document.createElement('li');
-  li.innerHTML='<button class="peca'+(v.semCabide?' sem-cabide':'')+'" type="button" data-id="'+esc(p.id)+'" style="--len:'+v.length+'" aria-label="'+esc(p.name)+': toque para ver detalhes ou arraste até a sacola">'+
-    '<span class="peca-corpo">'+(v.semCabide?'':cabideSVG)+'<img class="peca-foto" src="'+esc(v.img)+'" alt="" draggable="false" decoding="async"></span>'+
-    '<span class="peca-nome" aria-hidden="true">'+esc(p.name)+'</span></button>';
-  $('araraPecas').append(li);
-});
-
-/* Barra ondulada: a curva acompanha a largura da arara e cada peça pende na altura da barra. */
-const arara=$('arara'),curva=$('araraCurva');
-const BARRA=.27; // altura da barra em relação à vitrine
-function alturaBarra(x,W,H){return H*BARRA}
-/* Arara dourada de parede: sobe do piso à esquerda, curva, segue reta e termina subindo na ponta. */
-function desenharArara(){
-  const W=arara.offsetWidth,H=arara.offsetHeight;if(!W||!H)return;
-  const visivel=rolagem.clientWidth,cabe=W<=visivel+1;
-  // Na tela larga a haste nasce na parede verde (depois da janela); no celular, no começo da arara.
-  const e=H*.009,barra=H*BARRA,chao=H*.835,r=H*.16,xL=cabe?Math.max(H*.07,W*.2):H*.07,xR=W-H*.14;
-  const pecas=$('araraPecas'),inicio=xL+r*.9;
-  if(cabe){const livre=xR-inicio,larg=pecas.offsetWidth;pecas.style.marginLeft=Math.max(0,inicio-(W-larg)/2+Math.max(0,(livre-larg)/2))+'px'}else pecas.style.marginLeft='';
-  const d='M'+xL+','+chao+' L'+xL+','+(barra+r*1.6)+' Q'+xL+','+barra+' '+(xL+r)+','+barra+
-    ' L'+xR+','+barra+' Q'+(xR+r*.55)+','+barra+' '+(xR+r*.8)+','+(barra-r*.55);
-  curva.setAttribute('viewBox','0 0 '+W+' '+H);
-  curva.innerHTML='<defs><linearGradient id="evyOuro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E6B0"/><stop offset=".45" stop-color="#D2A954"/><stop offset="1" stop-color="#8E6A2A"/></linearGradient></defs>'+
-    '<path class="sombra" d="'+d+'" transform="translate('+(e*1.6)+','+(e*3)+')" stroke-width="'+e+'"/>'+
-    '<path class="madeira" d="'+d+'" stroke-width="'+e+'" stroke="url(#evyOuro)"/>'+
-    '<ellipse cx="'+xL+'" cy="'+chao+'" rx="'+(e*2.6)+'" ry="'+(e*.8)+'" fill="#B48A3C"/>';
-  const ar=arara.getBoundingClientRect();
-  document.querySelectorAll('#araraPecas>li').forEach(li=>li.style.setProperty('--dy','0px'));
-}
-new ResizeObserver(desenharArara).observe(arara);
-document.querySelectorAll('.peca-foto').forEach(img=>{if(!img.complete)img.addEventListener('load',desenharArara,{once:true})});
-desenharArara();
-
-/* Pêndulo amortecido: cada peça balança a partir do gancho. */
-const pendulos=new Map();let loopPendulo=0,ultimoPendulo=0;
-function balancar(btn,impulso){
-  if(movimentoReduzido())return;
-  const s=pendulos.get(btn)||{a:0,v:0};s.v+=impulso;pendulos.set(btn,s);
-  if(!loopPendulo){ultimoPendulo=performance.now();loopPendulo=requestAnimationFrame(passoPendulo)}
-}
-function passoPendulo(t){
-  const dt=Math.min(.033,(t-ultimoPendulo)/1000);ultimoPendulo=t;
-  pendulos.forEach((s,btn)=>{
-    s.v+=(-34*s.a-2.4*s.v)*dt;s.a+=s.v*dt;s.a=Math.max(-28,Math.min(28,s.a));
-    btn.style.setProperty('--balanco',s.a.toFixed(2)+'deg');
-    if(Math.abs(s.a)<.03&&Math.abs(s.v)<.05){pendulos.delete(btn);btn.style.setProperty('--balanco','0deg')}
+(function montarVitrine(){
+  const [x,y,w,h]=VITRINE.sacola||[0,0,0,0];
+  Object.assign(sacolaCena.style,{left:x+'%',top:y+'%',width:w+'%',height:h+'%'});
+  (VITRINE.pecas||[]).forEach(v=>{
+    const p=PORID[v.id];if(!p)return;
+    const b=document.createElement('button');
+    b.type='button';b.className='ponto peca';b.dataset.id=p.id;b.dataset.img=v.img;
+    b.style.cssText='--x:'+v.area[0]+'%;--y:'+v.area[1]+'%;--w:'+v.area[2]+'%;--h:'+v.area[3]+'%';
+    b.setAttribute('aria-label',p.name+': toque para ver detalhes ou arraste até a sacola');
+    b.innerHTML='<span class="ponto-nome" aria-hidden="true">'+esc(p.name)+'</span><span class="ponto-selo" aria-hidden="true">Na sacola</span>';
+    $('vitrinePontos').append(b);
   });
-  loopPendulo=pendulos.size?requestAnimationFrame(passoPendulo):0;
-}
-/* Entrada: as peças balançam levemente, uma após a outra. */
-document.querySelectorAll('.peca').forEach((b,i)=>setTimeout(()=>balancar(b,(i%2?-1:1)*22),250+i*110));
-/* Passar o mouse empurra a peça na direção do movimento. */
-document.querySelectorAll('.peca').forEach(b=>b.addEventListener('pointermove',e=>{
-  if(e.pointerType!=='mouse'||arraste)return;
-  const s=pendulos.get(b);if(s&&Math.abs(s.v)>25)return;
-  balancar(b,Math.max(-30,Math.min(30,e.movementX*2.2)));
-}));
+})();
+function balancar(){} // compatibilidade com atualizarContadores
 
-/* Arraste com física: a peça segue o ponteiro e balança conforme a aceleração. */
 let arraste=null,ignorarClique=false;
-function retanguloSacola(){const r=sacolaCena.getBoundingClientRect(),m=Math.max(24,r.width*.18);return{l:r.left-m,r:r.right+m,t:r.top-m*1.6,b:r.bottom+m*.4}}
+function retanguloSacola(){const r=sacolaCena.getBoundingClientRect(),m=Math.max(24,r.width*.2);return{l:r.left-m,r:r.right+m,t:r.top-m*1.4,b:r.bottom+m*.4}}
 function sobreSacola(x,y){const r=retanguloSacola();return x>=r.l&&x<=r.r&&y>=r.t&&y<=r.b}
 
 palco.addEventListener('pointerdown',e=>{
-  const btn=e.target.closest('.peca');
+  const btn=e.target.closest('.ponto');
   if(!btn||btn.classList.contains('na-sacola')||arraste||(e.pointerType==='mouse'&&e.button!==0))return;
   arraste={btn,id:e.pointerId,x0:e.clientX,y0:e.clientY,x:e.clientX,y:e.clientY,tipo:e.pointerType,ativo:false};
 });
@@ -258,7 +212,6 @@ window.addEventListener('pointermove',e=>{
   if(!g.ativo){
     const dx=g.x-g.x0,dy=g.y-g.y0;
     if(Math.hypot(dx,dy)<8)return;
-    if(g.tipo==='touch'&&Math.abs(dx)>Math.abs(dy)){arraste=null;return} // deslizar a arara
     iniciarArraste(g);
   }
   if(e.cancelable)e.preventDefault();
@@ -267,31 +220,28 @@ window.addEventListener('pointerup',e=>{
   const g=arraste;if(!g||e.pointerId!==g.id)return;
   arraste=null;if(!g.ativo)return;
   ignorarClique=true;setTimeout(()=>ignorarClique=false,60);
-  g.ativo=false;cancelAnimationFrame(g.raf);
-  sacolaCena.classList.remove('alvo');
+  g.ativo=false;cancelAnimationFrame(g.raf);sacolaCena.classList.remove('alvo');
   if(sobreSacola(g.x,g.y))soltarNaSacola(g);else devolver(g);
 });
 window.addEventListener('pointercancel',e=>{
   const g=arraste;if(!g||e.pointerId!==g.id)return;
   arraste=null;if(g.ativo){g.ativo=false;cancelAnimationFrame(g.raf);sacolaCena.classList.remove('alvo');devolver(g)}
 });
-/* Impede a rolagem da página enquanto a peça é arrastada no celular. */
 palco.addEventListener('touchmove',e=>{if(arraste&&arraste.ativo&&e.cancelable)e.preventDefault()},{passive:false});
 
 function iniciarArraste(g){
   g.ativo=true;
   try{g.btn.setPointerCapture(g.id)}catch(_){}
-  const foto=g.btn.querySelector('.peca-foto'),fr=foto.getBoundingClientRect(),pr=palco.getBoundingClientRect();
-  g.w=fr.width;g.h=fr.height;
-  g.pivo={x:fr.left+fr.width/2-pr.left,y:fr.top-pr.top};   // topo da peça, onde o cabide segura
+  const br=g.btn.getBoundingClientRect(),pr=palco.getBoundingClientRect();
+  g.w=br.width;g.h=br.height;
+  g.pivo={x:br.left+br.width/2-pr.left,y:br.top-pr.top};
   g.casa={...g.pivo};
   g.off={x:g.pivo.x-(g.x0-pr.left),y:g.pivo.y-(g.y0-pr.top)};
-  g.vel={x:0,y:0};g.ang=0;g.angV=0;g.escala=1;
+  g.vel={x:0,y:0};g.ang=0;g.angV=0;g.escala=.9;
   const voando=document.createElement('div');voando.className='peca-voando';
   voando.style.width=g.w+'px';voando.style.height=g.h+'px';
-  voando.innerHTML='<img src="'+foto.getAttribute('src')+'" alt="" draggable="false">';
+  voando.innerHTML='<img src="'+esc(g.btn.dataset.img)+'" alt="" draggable="false">';
   palco.append(voando);g.no=voando;
-  g.btn.classList.add('arrastando');balancar(g.btn,(Math.random()>.5?1:-1)*70);
   desenhar(g);
   g.t=performance.now();g.raf=requestAnimationFrame(t=>passoArraste(g,t));
 }
@@ -307,40 +257,40 @@ function passoArraste(g,t){
   g.vel={x:vx,y:(ny-g.pivo.y)/dt};g.pivo={x:nx,y:ny};
   // Pêndulo: o tecido "fica para trás" quando a mão acelera.
   g.angV+=(-38*g.ang-5.5*g.angV-ax*.011)*dt;g.ang+=g.angV*dt;g.ang=Math.max(-38,Math.min(38,g.ang));
-  g.escala+=(1.06-g.escala)*k;
+  g.escala+=(1.04-g.escala)*k;
   desenhar(g);
   sacolaCena.classList.toggle('alvo',sobreSacola(g.x,g.y));
   g.raf=requestAnimationFrame(tt=>passoArraste(g,tt));
 }
 function devolver(g){
-  const de=g.no.style.transform;
-  const para='translate('+(g.casa.x-g.w/2)+'px,'+g.casa.y+'px) rotate(0deg) scale(1)';
-  const fim=()=>{g.no.remove();g.btn.classList.remove('arrastando');balancar(g.btn,-g.ang*4)};
+  const de=g.no.style.transform,para='translate('+(g.casa.x-g.w/2)+'px,'+g.casa.y+'px) rotate(0deg) scale(.9)';
+  const fim=()=>g.no.remove();
   if(movimentoReduzido()||!g.no.animate){fim();return}
-  g.no.animate([{transform:de},{transform:para}],{duration:420,easing:'cubic-bezier(.2,.8,.25,1)'}).onfinish=fim;
+  const an=g.no.animate([{transform:de,opacity:1},{transform:para,opacity:0}],{duration:380,easing:'cubic-bezier(.2,.8,.25,1)',fill:'forwards'});an.onfinish=fim;
 }
 function soltarNaSacola(g){
-  const id=g.btn.dataset.id,p=PORID[id];
+  const p=PORID[g.btn.dataset.id];
   const pr=palco.getBoundingClientRect(),sr=sacolaCena.getBoundingClientRect();
-  const bocaX=sr.left+sr.width/2-pr.left,bocaY=sr.top+sr.height*.22-pr.top;
+  const bocaX=sr.left+sr.width/2-pr.left,bocaY=sr.top+sr.height*.12-pr.top;
   const de=g.no.style.transform;
-  const meio='translate('+(bocaX-g.w/2)+'px,'+(bocaY-g.h*.42)+'px) rotate('+(g.ang*.3)+'deg) scale(.42)';
-  const fim='translate('+(bocaX-g.w/2)+'px,'+(bocaY+sr.height*.18-g.h*.3)+'px) rotate(0deg) scale(.3)';
-  pecaPendente=id;g.btn.classList.remove('arrastando');atualizarContadores();
+  const meio='translate('+(bocaX-g.w/2)+'px,'+(bocaY-g.h*.5)+'px) rotate('+(g.ang*.3)+'deg) scale(.45)';
+  const fim='translate('+(bocaX-g.w/2)+'px,'+(bocaY+sr.height*.2-g.h*.35)+'px) rotate(0deg) scale(.3)';
+  pecaPendente=p.id;atualizarContadores();
   const concluir=()=>{
     g.no.remove();
     sacolaCena.classList.remove('recebeu');void sacolaCena.offsetWidth;sacolaCena.classList.add('recebeu');
-    setTimeout(()=>abrirPeca(p,{fechou:()=>{pecaPendente=null;atualizarContadores()}}),movimentoReduzido()?0:380);
+    setTimeout(()=>abrirPeca(p,{fechou:()=>{pecaPendente=null;atualizarContadores()}}),movimentoReduzido()?0:360);
   };
   if(movimentoReduzido()||!g.no.animate){concluir();return}
   const a1=g.no.animate([{transform:de},{transform:meio}],{duration:260,easing:'cubic-bezier(.3,.6,.4,1)',fill:'forwards'});
-  a1.onfinish=()=>{g.no.classList.add('caindo');g.no.animate([{transform:meio,opacity:1},{transform:fim,opacity:.9}],{duration:240,easing:'cubic-bezier(.5,0,.8,.6)',fill:'forwards'}).onfinish=concluir};
+  a1.onfinish=()=>{g.no.classList.add('caindo');g.no.animate([{transform:meio,opacity:1},{transform:fim,opacity:0}],{duration:260,easing:'cubic-bezier(.5,0,.8,.6)',fill:'forwards'}).onfinish=concluir};
 }
-/* Toque/clique sem arrastar: abre os detalhes da peça. */
+/* Toque/clique sem arrastar: abre os detalhes da peça (ou a sacola, se já estiver nela). */
 palco.addEventListener('click',e=>{
-  const btn=e.target.closest('.peca');
-  if(!btn||ignorarClique||btn.classList.contains('na-sacola'))return;
-  balancar(btn,40);abrirPeca(PORID[btn.dataset.id]);
+  const btn=e.target.closest('.ponto');
+  if(!btn||ignorarClique)return;
+  if(btn.classList.contains('na-sacola')){abrirSacola();return}
+  abrirPeca(PORID[btn.dataset.id]);
 });
 sacolaCena.addEventListener('click',()=>{if(!ignorarClique)abrirSacola()});
 
