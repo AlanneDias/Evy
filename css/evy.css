@@ -76,13 +76,13 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   container-type:size;isolation:isolate;user-select:none;-webkit-user-select:none;background:var(--salvia);
 }
 .cena{position:absolute;inset:0;z-index:0;pointer-events:none}
-.parede{position:absolute;inset:0;background:#C3D2B4 url("../assets/vitrine/parede.jpg") center 40%/cover no-repeat}
+.parede{position:absolute;inset:0;background:#CFE6A9 url("../assets/vitrine/parede.jpg") center 40%/cover no-repeat}
 /* Luz suave do alto e base levemente mais escura, como chão de estúdio */
 .parede::after{content:"";position:absolute;inset:0;background:
   radial-gradient(ellipse 55% 45% at 50% 8%,#ffffff33,transparent 70%),
-  linear-gradient(180deg,transparent 74%,#EEF0E2aa 86%,#E9EBDCdd 100%)}
+  linear-gradient(180deg,transparent 74%,#E3F0CCaa 86%,#DDEBC4dd 100%)}
 /* Piso claro de estúdio: transição suave da parede para o chão */
-.parede::before{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:1;background:linear-gradient(180deg,transparent,#e4e7d6 55%,#dde0cd);opacity:.85}
+.parede::before{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:1;background:linear-gradient(180deg,transparent,#DCEBC2 55%,#D3E4B6);opacity:.85}
 
 /* Barra ondulada presa à parede (desenhada pelo script conforme a largura) */
 .arara-rolagem{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;z-index:2}
@@ -145,7 +145,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .sacola.alvo::before{opacity:1;transform:translate(-50%,0)}
 .sacola-num{position:absolute;right:4%;top:20%;min-width:3.6cqh;height:3.6cqh;padding:0 1cqh;border-radius:999px;background:var(--rosa);color:var(--preto);font-size:max(11px,1.7cqh);font-weight:700;line-height:3.6cqh;text-align:center}
 
-.vitrine-dica{position:absolute;z-index:13;right:var(--margem);bottom:4%;margin:0;max-width:26ch;text-align:right;text-shadow:0 0 8px #F2F4E8,0 0 2px #F2F4E8;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5A5040}
+.vitrine-dica{position:absolute;z-index:13;right:var(--margem);bottom:4%;margin:0;max-width:26ch;text-align:right;text-shadow:0 0 8px #E8F5D4,0 0 2px #E8F5D4;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5A5040}
 .vitrine-dica b{color:var(--rosa);font-weight:700}
 .dica-celular{display:none}
 
