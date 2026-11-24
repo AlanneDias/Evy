@@ -76,38 +76,13 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   container-type:size;isolation:isolate;user-select:none;-webkit-user-select:none;background:var(--salvia);
 }
 .cena{position:absolute;inset:0;z-index:0;pointer-events:none}
-.parede{position:absolute;inset:0 0 calc(100% - var(--chao));background:
-  radial-gradient(ellipse 45% 55% at 50% 22%,#E4EBCB 0%,transparent 75%),
-  radial-gradient(ellipse 30% 60% at 92% 40%,#F3E5C255 0%,transparent 70%),
-  linear-gradient(180deg,#D3DDB3 0%,var(--salvia) 55%,#BFCB9B 100%)}
-.parede::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 85% 95% at 50% 40%,transparent 60%,#7d875f33 100%)}
-.rodape-parede{position:absolute;left:0;right:0;top:calc(var(--chao) - 1.6cqh);height:1.6cqh;background:linear-gradient(180deg,#D6DEBC,#C3CDA0);box-shadow:0 .3cqh .4cqh #6b6a4b33}
-.piso{position:absolute;left:0;right:0;bottom:0;top:var(--chao);background:
-  radial-gradient(ellipse 60% 40% at 50% 0%,#ECE3D766 0%,transparent 70%),
-  linear-gradient(180deg,#DCD0C2 0%,#D2C4B4 45%,#C7B8A7 100%)}
-.piso::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 24cqh,#b3a39012 24cqh calc(24cqh + 2px))}
-.tapete{position:absolute;left:-6%;width:52%;bottom:-11%;height:17%;border-radius:50%;background:radial-gradient(ellipse at 50% 40%,#E6DCCE 0%,#DCD0C0 70%,#D2C4B2 100%);box-shadow:inset 0 .4cqh .8cqh #ffffff70}
-.tapete::after{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(#00000010 1px,transparent 1.4px) 0 0/5px 5px}
-/* Espelho em arco com moldura iluminada */
-.espelho{position:absolute;left:-4cqh;top:3%;bottom:calc(100% - var(--chao) + 1.6cqh);width:19cqh;border-radius:999px 999px 0 0;border:.7cqh solid #D8B36C;
-  box-shadow:0 0 2.2cqh #FFE7AE,inset 0 0 1.6cqh #FFE7AE99;overflow:hidden;
-  background:linear-gradient(180deg,#E8D8BC 0%,#D9C3A0 40%,#BFA47F 75%,#9F8463 100%)}
-.espelho-luz{position:absolute;inset:0;background:
-  linear-gradient(100deg,transparent 30%,#ffffff40 45%,transparent 60%)}
-/* Planta em vaso de pedra */
-.vaso-planta{position:absolute;left:1cqh;bottom:calc(100% - var(--chao) - 6cqh);width:22cqh;height:58cqh;display:flex;flex-direction:column;align-items:center}
-.vaso-planta img{width:100%;height:auto;flex:1;object-fit:contain;object-position:bottom;margin-bottom:-2cqh;filter:drop-shadow(1cqh 1.5cqh 1.2cqh #3c432a33)}
-.vaso-planta i{display:block;width:14cqh;height:19cqh;border-radius:1.4cqh 1.4cqh 3cqh 3cqh;background:linear-gradient(90deg,#C9C0B2,#E2DACD 40%,#D3CABC 70%,#B9AF9F);box-shadow:1cqh 1.4cqh 1.6cqh #0000002a}
-/* Prateleiras iluminadas à direita */
-.prateleiras{position:absolute;right:0;top:10%;width:16cqh;height:52%}
-.prat{position:absolute;right:0;width:100%;height:.8cqh;background:linear-gradient(180deg,#F7F1E4,#D9D0BF);box-shadow:0 0 1.6cqh #FFE9B5,0 .6cqh 1.4cqh #FFE2A2aa}
-.prat.p1{top:12%}.prat.p2{top:48%}.prat.p3{top:84%}
-.caixa{position:absolute;right:2cqh;width:6cqh;height:3cqh;background:linear-gradient(180deg,#E9DFCF,#D4C7B3);box-shadow:.4cqh .4cqh .8cqh #0002}
-.caixa.c1{top:calc(84% - 3cqh)}
-.caixa.c2{top:calc(84% - 5.4cqh);right:3cqh;width:4.6cqh;height:2.4cqh;background:linear-gradient(180deg,#D7C8B0,#C6B59A)}
-.vaso-flores{position:absolute;right:4cqh;top:calc(48% - 8cqh);width:3cqh;height:5cqh;border-radius:.6cqh .6cqh 1cqh 1cqh;background:linear-gradient(90deg,#ffffff55,#ffffffaa,#ffffff55);box-shadow:inset 0 -1.5cqh 0 #c9d7b066}
-.vaso-flores b{position:absolute;width:2.8cqh;height:2.8cqh;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,#F1EEE6 60%,#DCD6C8);box-shadow:0 .2cqh .4cqh #0002}
-.vaso-flores b:nth-child(1){left:-1.6cqh;top:-3.4cqh}.vaso-flores b:nth-child(2){left:.4cqh;top:-4.6cqh}.vaso-flores b:nth-child(3){left:2.2cqh;top:-3.2cqh}.vaso-flores b:nth-child(4){left:-.6cqh;top:-1.8cqh}.vaso-flores b:nth-child(5){left:1.4cqh;top:-1.6cqh}
+.parede{position:absolute;inset:0;background:#C3D2B4 url("../assets/vitrine/parede.jpg") center 40%/cover no-repeat}
+/* Luz suave do alto e base levemente mais escura, como chão de estúdio */
+.parede::after{content:"";position:absolute;inset:0;background:
+  radial-gradient(ellipse 55% 45% at 50% 8%,#ffffff33,transparent 70%),
+  linear-gradient(180deg,transparent 74%,#EEF0E2aa 86%,#E9EBDCdd 100%)}
+/* Piso claro de estúdio: transição suave da parede para o chão */
+.parede::before{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;z-index:1;background:linear-gradient(180deg,transparent,#e4e7d6 55%,#dde0cd);opacity:.85}
 
 /* Barra ondulada presa à parede (desenhada pelo script conforme a largura) */
 .arara-rolagem{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;overscroll-behavior-x:contain;z-index:2}
@@ -156,7 +131,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .sacola{position:absolute;z-index:10;left:50%;bottom:calc(4% + 9.4cqh);width:25cqh;aspect-ratio:300/360;transform:translateX(-50%);padding:0;border:0;background:transparent;-webkit-tap-highlight-color:transparent}
 .sacola::after{content:"";position:absolute;left:8%;right:4%;bottom:-1cqh;height:2.4cqh;border-radius:50%;background:radial-gradient(ellipse at 50% 50%,#00000040,transparent 70%);z-index:-1}
 /* Puff redondo de bouclê onde a sacola fica apoiada */
-.puff-sacola{position:absolute;z-index:9;left:50%;bottom:4%;width:36cqh;height:13cqh;transform:translateX(-50%);pointer-events:none;
+.puff-sacola{position:absolute;z-index:9;filter:drop-shadow(0 2.4cqh 2cqh #2f3a2638);left:50%;bottom:4%;width:36cqh;height:13cqh;transform:translateX(-50%);pointer-events:none;
   border-radius:50% 50% 46% 46%/38% 38% 62% 62%;
   background:radial-gradient(ellipse 70% 45% at 50% 20%,#F7F1E8 0%,#ECE4D7 70%,transparent 72%),linear-gradient(180deg,#EDE5D8 0%,#E1D6C6 55%,#CBBDA9 100%);
   box-shadow:inset -1.6cqh -1.4cqh 2.4cqh #00000014,0 1.6cqh 2.4cqh #3a2f1f2e}
@@ -170,7 +145,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .sacola.alvo::before{opacity:1;transform:translate(-50%,0)}
 .sacola-num{position:absolute;right:4%;top:20%;min-width:3.6cqh;height:3.6cqh;padding:0 1cqh;border-radius:999px;background:var(--rosa);color:var(--preto);font-size:max(11px,1.7cqh);font-weight:700;line-height:3.6cqh;text-align:center}
 
-.vitrine-dica{position:absolute;z-index:13;right:var(--margem);bottom:4%;margin:0;max-width:24ch;text-align:right;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5A5040}
+.vitrine-dica{position:absolute;z-index:13;right:var(--margem);bottom:4%;margin:0;max-width:26ch;text-align:right;text-shadow:0 0 8px #F2F4E8,0 0 2px #F2F4E8;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5A5040}
 .vitrine-dica b{color:var(--rosa);font-weight:700}
 .dica-celular{display:none}
 
@@ -310,8 +285,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   body{font-size:14px}
   .topo-logo img{width:78px}
   .palco{height:clamp(520px,calc(100svh - var(--topo) - 30px),700px);--tam:45cqh}
-  .espelho,.prateleiras{display:none}
-  .vaso-planta{left:-6cqh;opacity:.95}
+  .parede{background-image:url("../assets/vitrine/parede-celular.jpg")}
   .sacola{width:21cqh}
   .puff-sacola{width:31cqh}
   .dica-grande{display:none}
