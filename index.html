@@ -1040,7 +1040,9 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 .evy-scene-preview.evy-pc-ghost{background:transparent!important;box-shadow:none!important;border-radius:0!important;object-fit:contain!important;filter:drop-shadow(0 12px 14px rgba(0,0,0,.30))!important}
 @media(hover:none){.evy-hint-mouse{display:none}}
 @media(max-width:750px){
- #vitrine .evy-store-scene{width:190vw;margin-left:-45vw}
+ #vitrine .evy-store{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain}
+ #vitrine .evy-store::-webkit-scrollbar{display:none}
+ #vitrine .evy-store-scene{width:820px;min-width:820px;margin:0}
  #vitrine .evy-pc{touch-action:none}
 }
 @media(prefers-reduced-motion:reduce){#vitrine .evy-pc img,#vitrine .evy-store #sceneBag .evy-bag-scene-image{transition:none!important;animation:none!important}}
@@ -1702,6 +1704,12 @@ function basketSway(){
   host.append(button);
  });
 })();
+/* Celular: a loja mantém largura fixa e desliza para os lados; começa mostrando a arara e a sacola. */
+(function evyStoreFixedWidth(){
+ const s=document.querySelector('#vitrine .evy-store');if(!s)return;
+ const start=()=>{if(s.scrollWidth>s.clientWidth+4)s.scrollLeft=Math.max(0,Math.min(170,s.scrollWidth-s.clientWidth))};
+ start();addEventListener('load',start);
+})();
 /* Bolsas nas prateleiras da loja: clicáveis e arrastáveis até a sacola, como as roupas. */
 (function evyMountStoreBags(){
  const SW=1671,SH=941,bags=[{"id": "b-madreperola", "label": "Bolsa madrepérola com alça de madeira", "src": "assets/bolsas/b-madreperola.webp", "l": 220.5, "t": 168, "w": 125.0, "h": 119}, {"id": "b-santalolla", "label": "Bolsa Santa Lolla rosa", "src": "assets/bolsas/b-santalolla.webp", "l": 238.2, "t": 319, "w": 89.7, "h": 105}, {"id": "b-schutz", "label": "Bolsa Schutz preta com corrente", "src": "assets/bolsas/b-schutz.webp", "l": 230.1, "t": 449, "w": 105.8, "h": 115}, {"id": "b-concha", "label": "Bolsa concha pérola com corrente", "src": "assets/bolsas/b-concha.webp", "l": 1340.9, "t": 324, "w": 94.2, "h": 100}, {"id": "b-lodi", "label": "Mini bolsa Lodi off-white", "src": "assets/bolsas/b-lodi.webp", "l": 1352.0, "t": 500, "w": 72.1, "h": 64}],prods=[{"id": "b-madreperola", "name": "Bolsa madrepérola com alça de madeira", "kind": "Bolsas", "color": "Madrepérola", "image": "assets/bolsas/b-madreperola.webp"}, {"id": "b-santalolla", "name": "Bolsa Santa Lolla rosa", "kind": "Bolsas", "color": "Rosa", "image": "assets/bolsas/b-santalolla.webp"}, {"id": "b-schutz", "name": "Bolsa Schutz preta com corrente", "kind": "Bolsas", "color": "Preto", "image": "assets/bolsas/b-schutz.webp"}, {"id": "b-concha", "name": "Bolsa concha pérola com corrente", "kind": "Bolsas", "color": "Pérola", "image": "assets/bolsas/b-concha.webp"}, {"id": "b-lodi", "name": "Mini bolsa Lodi off-white", "kind": "Bolsas", "color": "Off-white", "image": "assets/bolsas/b-lodi.webp"}];
@@ -1739,8 +1747,10 @@ $$('[data-scene]').forEach(button=>{
   img.className='evy-scene-preview evy-pc-ghost';img.alt='';img.setAttribute('aria-hidden','true');img.draggable=false;
   img.src=src?(src.currentSrc||src.src):'';
   const ratio=(src&&src.naturalWidth&&src.naturalHeight)?src.naturalWidth/src.naturalHeight:.62;
-  const h=Math.min(innerHeight*.42,Math.max(190,button.getBoundingClientRect().height*.95));
+  const rh=button.getBoundingClientRect().height,isBag=button.classList.contains('evy-pc-bag');
+  const h=isBag?Math.min(innerHeight*.4,Math.max(170,rh*2.6)):Math.min(innerHeight*.5,Math.max(230,rh*1.5));
   img.style.setProperty('height',h+'px','important');img.style.setProperty('width',(h*ratio)+'px','important');
+  if(canMotion()&&img.animate)requestAnimationFrame(()=>img.animate([{scale:.55},{scale:1.06,offset:.7},{scale:1}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)'}));
   return img;
  };
  const clear=(q)=>{
