@@ -976,10 +976,12 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-rack-stage{aspect-ratio:auto!important;height:clamp(520px,calc(100svh - 113px),860px)!important}
 #vitrine #sceneBag .evy-bag-scene-image{object-fit:contain!important;object-position:center bottom!important}
 #vitrine .evy-rack-piece .evy-rack-garment{transform:perspective(900px) rotateY(var(--evy-tilt)) scale(1)!important;transform-origin:center 6%!important}
-#vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{transform:scale(1)!important;clip-path:none!important}
+#vitrine .evy-rack-piece.evy-new-look .evy-rack-garment{transform:perspective(900px) rotateY(var(--evy-tilt)) scale(1)!important;transform-origin:center 4%!important;clip-path:none!important}
+/* Cabides das peças antigas giram junto, no mesmo sentido das roupas. */
+#vitrine .evy-rack-hanger{transform:translateX(-50%) perspective(600px) rotateY(58deg)!important}
 @media(hover:hover) and (pointer:fine){
  #vitrine .evy-rack-piece:hover>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important;filter:drop-shadow(0 8px 10px rgba(0,0,0,.16))!important}
- #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{transform:scale(1.1)!important}
+ #vitrine .evy-rack-piece.evy-new-look:hover>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important}
 }
 #vitrine .evy-rack-piece:focus-visible>.evy-rack-garment{transform:perspective(900px) rotateY(0deg) scale(1.1)!important}
 #vitrine .evy-rack-piece:hover,#vitrine .evy-rack-piece:focus-visible{z-index:40!important}
@@ -1672,7 +1674,7 @@ function basketSway(){
   button.setAttribute('aria-label',product.name+': toque para ver ou arraste para a sacola');
   const photo=document.createElement('img');
   photo.className='evy-rack-garment';
-  photo.src=base+'-tres-quartos.png';
+  photo.src=product.image;
   photo.dataset.front=product.image;
   photo.dataset.threequarters=photo.src;
   photo.dataset.side=base+'-lateral.png';
@@ -1681,12 +1683,6 @@ function basketSway(){
   photo.draggable=false;
   button.append(photo);
   stage.append(button);
-  button.addEventListener('mouseenter',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('mouseleave',()=>{photo.src=photo.dataset.threequarters});
-  button.addEventListener('focus',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('blur',()=>{photo.src=photo.dataset.threequarters});
-  button.addEventListener('pointerdown',()=>{photo.src=photo.dataset.front});
-  button.addEventListener('pointerup',()=>{if(!button.matches(':hover'))photo.src=photo.dataset.threequarters});
  });
  const all=[...existing,...news.map(p=>p.id)];
  // Mesma distância entre os 15 ganchos, todos presos à mesma barra e dentro das hastes.
@@ -1706,7 +1702,8 @@ function basketSway(){
   piece.style.setProperty('--garment-top','0%');
   piece.style.setProperty('--garment-width',isNew?'100%':'170%');
   piece.style.setProperty('--garment-height','100%');
-  piece.style.setProperty('--evy-tilt',isNew?'0deg':(i%2===0?'55deg':'-55deg'));
+  // Todas as peças viradas para o mesmo lado, como numa arara de loja.
+  piece.style.setProperty('--evy-tilt','58deg');
   const hanger=stage.querySelector('.evy-rack-hanger[data-scene="'+id+'"]');
   if(hanger){
    hanger.style.setProperty('--hanger-x',center+'%');
