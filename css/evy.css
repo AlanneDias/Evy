@@ -81,9 +81,6 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   radial-gradient(ellipse 30% 60% at 92% 40%,#F3E5C255 0%,transparent 70%),
   linear-gradient(180deg,#D3DDB3 0%,var(--salvia) 55%,#BFCB9B 100%)}
 .parede::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 85% 95% at 50% 40%,transparent 60%,#7d875f33 100%)}
-.marca-parede{position:absolute;left:50%;top:3%;transform:translateX(-50%);display:grid;justify-items:center;gap:1.6cqh}
-.marca-parede img{width:15cqh;height:auto;opacity:.92}
-.marca-parede span{font-size:1.5cqh;font-weight:500;letter-spacing:1.1cqh;margin-right:-1.1cqh;color:#2b2d24}
 .rodape-parede{position:absolute;left:0;right:0;top:calc(var(--chao) - 1.6cqh);height:1.6cqh;background:linear-gradient(180deg,#D6DEBC,#C3CDA0);box-shadow:0 .3cqh .4cqh #6b6a4b33}
 .piso{position:absolute;left:0;right:0;bottom:0;top:var(--chao);background:
   radial-gradient(ellipse 60% 40% at 50% 0%,#ECE3D766 0%,transparent 70%),
@@ -321,8 +318,7 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
   .dica-grande{display:none}
   .dica-celular{display:inline}
   .vitrine-dica{left:0;right:0;bottom:1.6%;max-width:none;text-align:center;font-size:10px}
-  .marca-parede{top:4%}
-  .grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .cartao-foto img{padding:8px}
   .cartao-info{padding:12px 12px 14px}
   .cartao-info strong{font-size:13px}
