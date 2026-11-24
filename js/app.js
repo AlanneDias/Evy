@@ -193,24 +193,25 @@ VITRINE.forEach(v=>{
 
 /* Barra ondulada: a curva acompanha a largura da arara e cada peça pende na altura da barra. */
 const arara=$('arara'),curva=$('araraCurva');
-function alturaBarra(x,W,H){
-  const t=x/W,base=H*.21,amp=H*.032;
-  return base+amp*Math.sin(2*Math.PI*1.15*t+.5)+(t>.96?Math.pow((t-.96)/.06,2)*H*.05:0);
-}
+const BARRA=.27; // altura da barra em relação à vitrine
+function alturaBarra(x,W,H){return H*BARRA}
+/* Arara dourada de parede: sobe do piso à esquerda, curva, segue reta e termina subindo na ponta. */
 function desenharArara(){
   const W=arara.offsetWidth,H=arara.offsetHeight;if(!W||!H)return;
-  const espessura=H*.013,pts=[];
-  for(let i=0;i<=80;i++){const x=-W*.02+(W*1.04)*i/80;pts.push(x.toFixed(1)+','+alturaBarra(x,W,H).toFixed(1))}
-  const d='M'+pts.join(' L');
+  const visivel=rolagem.clientWidth,cabe=W<=visivel+1;
+  // Na tela larga a haste nasce na parede verde (depois da janela); no celular, no começo da arara.
+  const e=H*.009,barra=H*BARRA,chao=H*.835,r=H*.16,xL=cabe?Math.max(H*.07,W*.2):H*.07,xR=W-H*.14;
+  const pecas=$('araraPecas'),inicio=xL+r*.9;
+  if(cabe){const livre=xR-inicio,larg=pecas.offsetWidth;pecas.style.marginLeft=Math.max(0,inicio-(W-larg)/2+Math.max(0,(livre-larg)/2))+'px'}else pecas.style.marginLeft='';
+  const d='M'+xL+','+chao+' L'+xL+','+(barra+r*1.6)+' Q'+xL+','+barra+' '+(xL+r)+','+barra+
+    ' L'+xR+','+barra+' Q'+(xR+r*.55)+','+barra+' '+(xR+r*.8)+','+(barra-r*.55);
   curva.setAttribute('viewBox','0 0 '+W+' '+H);
-  curva.innerHTML='<defs><linearGradient id="evyMadeira" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58560"/><stop offset=".45" stop-color="#76583A"/><stop offset="1" stop-color="#4C3824"/></linearGradient></defs>'+
-    '<path class="sombra" d="'+d+'" transform="translate('+(espessura*1.2)+','+(espessura*2.4)+')" stroke-width="'+espessura+'"/>'+
-    '<path class="madeira" d="'+d+'" stroke-width="'+espessura+'"/>';
-  const ar=arara.getBoundingClientRect(),base=H*.21;
-  document.querySelectorAll('#araraPecas>li').forEach(li=>{
-    const r=li.getBoundingClientRect(),cx=r.left+r.width/2-ar.left;
-    li.style.setProperty('--dy',(alturaBarra(cx,W,H)-base).toFixed(1)+'px');
-  });
+  curva.innerHTML='<defs><linearGradient id="evyOuro" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F7E6B0"/><stop offset=".45" stop-color="#D2A954"/><stop offset="1" stop-color="#8E6A2A"/></linearGradient></defs>'+
+    '<path class="sombra" d="'+d+'" transform="translate('+(e*1.6)+','+(e*3)+')" stroke-width="'+e+'"/>'+
+    '<path class="madeira" d="'+d+'" stroke-width="'+e+'" stroke="url(#evyOuro)"/>'+
+    '<ellipse cx="'+xL+'" cy="'+chao+'" rx="'+(e*2.6)+'" ry="'+(e*.8)+'" fill="#B48A3C"/>';
+  const ar=arara.getBoundingClientRect();
+  document.querySelectorAll('#araraPecas>li').forEach(li=>li.style.setProperty('--dy','0px'));
 }
 new ResizeObserver(desenharArara).observe(arara);
 document.querySelectorAll('.peca-foto').forEach(img=>{if(!img.complete)img.addEventListener('load',desenharArara,{once:true})});
