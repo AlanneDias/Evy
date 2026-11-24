@@ -116,7 +116,6 @@ h1,h2,h3{margin:0;font-weight:500;line-height:1.1}
 .arara-curva{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
 .arara-curva .sombra{fill:none;stroke:#59613f;stroke-opacity:.22;stroke-linecap:round;filter:blur(6px)}
 .arara-curva .madeira{fill:none;stroke:url(#evyMadeira);stroke-linecap:round}
-.arara-curva .suporte{fill:#5b4630}
 .arara-pecas{position:relative;z-index:2;list-style:none;margin:calc(21cqh - 1.1cqh) 0 0;padding:0;display:flex;align-items:flex-start;gap:.4cqh;height:fit-content}
 .arara-pecas>li{transform:translateY(var(--dy,0px))}
 .arara-pecas>li{position:relative}

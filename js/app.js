@@ -202,11 +202,10 @@ function desenharArara(){
   const espessura=H*.013,pts=[];
   for(let i=0;i<=80;i++){const x=-W*.02+(W*1.04)*i/80;pts.push(x.toFixed(1)+','+alturaBarra(x,W,H).toFixed(1))}
   const d='M'+pts.join(' L');
-  const suportes=[.3,.7].map(t=>{const x=W*t;return '<circle class="suporte" cx="'+x.toFixed(1)+'" cy="'+(alturaBarra(x,W,H)-espessura*.2).toFixed(1)+'" r="'+(espessura*1.15).toFixed(1)+'"/>'}).join('');
   curva.setAttribute('viewBox','0 0 '+W+' '+H);
   curva.innerHTML='<defs><linearGradient id="evyMadeira" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A58560"/><stop offset=".45" stop-color="#76583A"/><stop offset="1" stop-color="#4C3824"/></linearGradient></defs>'+
     '<path class="sombra" d="'+d+'" transform="translate('+(espessura*1.2)+','+(espessura*2.4)+')" stroke-width="'+espessura+'"/>'+
-    '<path class="madeira" d="'+d+'" stroke-width="'+espessura+'"/>'+suportes;
+    '<path class="madeira" d="'+d+'" stroke-width="'+espessura+'"/>';
   const ar=arara.getBoundingClientRect(),base=H*.21;
   document.querySelectorAll('#araraPecas>li').forEach(li=>{
     const r=li.getBoundingClientRect(),cx=r.left+r.width/2-ar.left;
