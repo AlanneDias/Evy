@@ -1051,6 +1051,12 @@ main,.section,.intro,.showroom,.drawer,.drawerbody,.card,.cards,.evy-guidelines,
 #vitrine .evy-pc-bag .evy-pc-bagimg{left:0;top:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(2px 4px 3px rgba(45,36,12,.35));transition:transform .2s ease}
 @media(hover:hover) and (pointer:fine){#vitrine .evy-pc-bag:hover .evy-pc-bagimg{transform:translateY(-4px) scale(1.06)}}
 #vitrine .evy-pc-bag:focus-visible .evy-pc-bagimg{transform:translateY(-4px) scale(1.06)}
+
+.evy-rented-badge{position:absolute;left:10px;bottom:10px;z-index:2;background:#1b1b1b;color:#fff;padding:6px 10px;border-radius:99px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+.evy-rented-note{margin:0 0 14px;padding:10px 12px;border-radius:10px;background:#1b1b1b;color:#fff;font-size:12px;letter-spacing:.04em}
+#vitrine .evy-store-scene{container-type:inline-size}
+#vitrine .evy-pc-rented .evy-pc-side,#vitrine .evy-pc-rented .evy-pc-front{filter:drop-shadow(4px 7px 5px rgba(45,36,12,.30)) saturate(.7) brightness(.92)}
+#vitrine .evy-rent-badge{position:absolute;left:50%;top:34%;transform:translateX(-50%);z-index:3;white-space:nowrap;background:#1b1b1b;color:#fff;padding:.35em .8em;border-radius:99px;font-size:max(8px,.78cqw);font-weight:600;letter-spacing:.06em;text-transform:uppercase;pointer-events:none;box-shadow:0 2px 6px rgba(0,0,0,.3)}
 </style><script type="application/ld+json">{"@context":"https://schema.org","@type":"ClothingStore","@id":"https://alannedias.github.io/Evy/#empresa","name":"EVY Aluga","alternateName":"EVY","url":"https://alannedias.github.io/Evy/","description":"Acervo de roupas e acessórios femininos para locação, com atendimento online e provas agendadas em showroom privativo em Campina Grande, Paraíba.","telephone":"+55 83 99100-0141","image":"https://alannedias.github.io/Evy/assets/evy-logo.svg","logo":"https://alannedias.github.io/Evy/assets/evy-logo.svg","sameAs":["https://www.instagram.com/evyaluga/"],"areaServed":{"@type":"City","name":"Campina Grande","containedInPlace":{"@type":"State","name":"Paraíba"}},"address":{"@type":"PostalAddress","addressLocality":"Campina Grande","addressRegion":"PB","addressCountry":"BR"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Acervo EVY para locação","itemListElement":[{"@type":"OfferCatalog","name":"Roupas femininas"},{"@type":"OfferCatalog","name":"Acessórios femininos"}]}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Como alugar uma peça na EVY?","acceptedAnswer":{"@type":"Answer","text":"Escolha uma peça no catálogo, informe as datas e consulte a disponibilidade pelo WhatsApp ou Direct. A reserva é confirmada somente após o pagamento."}},{"@type":"Question","name":"Quanto tempo dura a locação?","acceptedAnswer":{"@type":"Answer","text":"A locação padrão dura 24 horas. A peça é retirada ou recebida na data combinada e devolvida no dia seguinte. Para diárias adicionais é necessário consultar previamente os valores e a disponibilidade."}},{"@type":"Question","name":"Posso provar as peças antes de alugar?","acceptedAnswer":{"@type":"Answer","text":"As provas são realizadas presencialmente no showroom privativo da EVY em Campina Grande, mediante agendamento prévio e disponibilidade de horário. Não são enviadas peças para prova."}},{"@type":"Question","name":"Preciso lavar a peça antes de devolver?","acceptedAnswer":{"@type":"Answer","text":"Não. A lavagem e a higienização das peças são realizadas pela EVY."}}]}</script></head><body>
 <header class="sitebar"><a class="evy-header-logo" href="#vitrine" aria-label="EVY — voltar ao início"><img src="assets/evy-logo.svg" alt="EVY"></a><div class="iconbar"><button class="iconbtn" id="favBtn" aria-label="Ver favoritos"><svg class="header-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.9a5.5 5.5 0 0 0-7.8 0L12 6l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.3a5.5 5.5 0 0 0 0-7.8Z"/></svg></button><button class="iconbtn" id="headerBag" aria-label="Abrir sacola de aluguel"><svg viewBox="0 0 24 24"><path d="M5 8h14l1 13H4L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3"/></svg><span class="bagcount" id="bagCount">0</span></button><button class="iconbtn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">☰</button></div></header>
@@ -1538,11 +1544,11 @@ function render(){
  el('catalog').innerHTML=list.map(p=>{
  const i=P.findIndex(x=>x.id===p.id);
  return '<article class="card" id="peca-'+p.id+'" data-item-code="EVY-'+String(i+1).padStart(3,'0')+'">'+
- '<div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+
+ '<div class="cardart" role="button" tabindex="0" data-detail="'+i+'" aria-label="Ver '+p.name+'">'+(RENTALS[p.id]?'<span class="evy-rented-badge">'+rentalText(p.id)+'</span>':'')+
  (p.image?'<img class="evy-product-photo '+(p.fit==='cover'?'is-cover':'is-contain')+'" src="'+cutoutSrc(p.image)+'" data-original-photo="'+p.image+'" alt="'+p.name+'" loading="lazy">':'<div class="evy-photo-pending" role="img" aria-label="Foto original pendente de '+p.name+'"><span>EVY</span><small>FOTOGRAFIA EM ATUALIZAÇÃO</small></div>')+'</div>'+
  '<button type="button" class="product-favorite" data-favorite="'+p.id+'" aria-pressed="false" aria-label="Adicionar aos favoritos: '+p.name+'">'+favoriteHeart+'</button>'+
  '<h3>'+p.name+'</h3><p>'+p.color+' · '+p.size.join(' / ')+(p.price!==null?' · R$ '+p.price+',00':' · consulte valor')+'</p>'+
- '<button type="button" data-detail="'+i+'">CONSULTAR LOCAÇÃO</button></article>'
+ '<button type="button" data-detail="'+i+'">'+(RENTALS[p.id]?'VER OUTRAS DATAS':'CONSULTAR LOCAÇÃO')+'</button></article>'
  }).join('');
  el('resultsCount').textContent=list.length+' '+(list.length===1?'peça encontrada':'peças encontradas');
  syncFavorites()
@@ -1564,7 +1570,7 @@ function detail(p,fromScene=false){
  el('drawer').classList.toggle('evy-scene-detail',fromScene);
  openDrawer('SOLICITAR LOCAÇÃO',
  (p.image?'<div class="evy-selected-photo"><img src="'+cutoutSrc(p.image)+'" data-original-photo="'+p.image+'" alt="Foto da peça selecionada: '+p.name+'"></div>':'<div class="evy-selected-photo evy-selected-photo-pending"><strong>EVY</strong><span>Fotografia original em atualização</span></div>')+
- '<h2>'+p.name+'</h2><p class="note">Código '+code+' · '+p.kind+(p.price!==null?' · R$ '+p.price+',00':' · valor sob consulta')+'</p>'+
+ '<h2>'+p.name+'</h2>'+(RENTALS[p.id]?'<p class="evy-rented-note">'+rentalText(p.id)+'. Escolha outra data para consultar.</p>':'')+'<p class="note">Código '+code+' · '+p.kind+(p.price!==null?' · R$ '+p.price+',00':' · valor sob consulta')+'</p>'+
  '<label>TAMANHO<select id="rSize">'+p.size.map(sz=>'<option>'+sz+'</option>').join('')+'</select></label>'+
  proofFields+
  '<div class="evy-form-step"><strong class="evy-form-step-title">'+(isClothing?'2. Período da locação':'1. Período da locação')+'</strong>'+
@@ -1577,6 +1583,7 @@ function detail(p,fromScene=false){
  el('confirmRental').addEventListener('click',()=>{
   const date=el('rDate').value;
   if(!date){toast('Informe a data de locação');return}
+  const rt=RENTALS[p.id];if(rt&&date<=rt.to&&(el('returnDate').value||date)>=rt.from){toast(rentalText(p.id)+'. Escolha outra data.');return}
   const proofDate=isClothing?el('tryOnDate').value:null;
   const proofPeriod=isClothing?el('tryOnPeriod').value:null;
   if(isClothing&&(!proofDate||!proofPeriod)){toast('Informe a data e o período da prova');return}
@@ -1677,6 +1684,10 @@ function basketSway(){
  setTimeout(()=>sceneBag.classList.remove('evy-basket-receive'),500);
 }
 
+/* Peças já alugadas: bloqueiam o período na vitrine, no catálogo e no formulário de aluguel. */
+const RENTALS={branco:{from:'2026-11-25',to:'2026-11-28'}};
+const fmtBR=s=>s.slice(8,10)+'/'+s.slice(5,7);
+const rentalText=id=>{const r=RENTALS[id];return r?'Alugado de '+fmtBR(r.from)+' a '+fmtBR(r.to):''};
 /* EVY: vitrine com a foto da loja. Cinco peças, de lado na arara e de frente ao passar o mouse.
    As imagens já trazem gancho dourado e cabide; cada gancho é alinhado à barra da arara. */
 (function evyMountStorePieces(){
@@ -1716,6 +1727,17 @@ function basketSway(){
   b.style.cssText='left:'+pct(c.l,SW)+';top:'+pct(c.t,SH)+';width:'+pct(c.w,SW)+';height:'+pct(c.h,SH);
   const img=document.createElement('img');img.className='evy-pc-bagimg';img.src=c.src;img.alt='';img.draggable=false;
   b.append(img);host.append(b);
+ });
+})();
+
+/* Selo "Alugado" nas peças da vitrine que já têm período reservado. */
+(function evyMarkRented(){
+ Object.keys(RENTALS).forEach(id=>{
+  const b=document.querySelector('.evy-pc[data-scene="'+id+'"]');if(!b)return;
+  b.classList.add('evy-pc-rented');
+  const s=document.createElement('span');s.className='evy-rent-badge';s.textContent=rentalText(id);
+  b.append(s);
+  b.setAttribute('aria-label',b.getAttribute('aria-label')+' ('+rentalText(id)+')');
  });
 })();
 
@@ -1775,6 +1797,7 @@ $$('[data-scene]').forEach(button=>{
   a.oncancel=()=>clear(q);
  };
  const receive=(q)=>{
+  if(RENTALS[product.id]){toast(rentalText(product.id)+'. Veja outras datas no catálogo.');if(q.ghost)goHome(q);else clear(q);return}
   if(!q.ghost){clear(q);detail(product,true);return}
   pendingRackScene=product.id;button.classList.add('evy-piece-pending');syncRackPieces();
   const r=sceneBag.getBoundingClientRect();
