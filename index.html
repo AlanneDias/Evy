@@ -67,15 +67,18 @@
 <main>
   <!-- Vitrine: foto da boutique EVY com áreas interativas sobre as peças e a sacola. -->
   <section class="vitrine" id="vitrine" aria-labelledby="vitrine-titulo">
-    <div class="vitrine-foto" id="palco">
-      <picture>
-        <source media="(max-width:640px)" srcset="assets/vitrine/boutique-fundo-800.webp">
-        <img class="vitrine-img" src="assets/vitrine/boutique-fundo.webp" width="1122" height="1402" alt="Boutique EVY com arara preta, espelho em arco, oliveira, prateleiras iluminadas e sacola EVY no chão" draggable="false" fetchpriority="high">
-      </picture>
-      <div class="vitrine-pontos" id="vitrinePontos"></div>
-      <button class="sacola-ponto" id="sacolaCena" type="button" aria-label="Sacola EVY: solte uma peça aqui ou toque para abrir a sacola">
-        <span class="sacola-num" id="sacolaCenaNum" hidden>0</span>
-      </button>
+    <!-- O ambiente ocupa a largura toda; a arara mantém o tamanho (depende só da altura). -->
+    <div class="vitrine-foto">
+      <div class="vitrine-quadro" id="palco">
+        <picture>
+          <source media="(max-width:640px)" srcset="assets/vitrine/boutique-fundo-800.webp">
+          <img class="vitrine-img" src="assets/vitrine/boutique-fundo.webp" width="3000" height="1402" alt="Boutique EVY com arara preta, espelho em arco, oliveira, prateleiras iluminadas e sacola EVY no chão" draggable="false" fetchpriority="high">
+        </picture>
+        <div class="vitrine-pontos" id="vitrinePontos"></div>
+        <button class="sacola-ponto" id="sacolaCena" type="button" aria-label="Sacola EVY: solte uma peça aqui ou toque para abrir a sacola">
+          <span class="sacola-num" id="sacolaCenaNum" hidden>0</span>
+        </button>
+      </div>
     </div>
     <div class="vitrine-texto">
       <p class="sobretitulo">EVY Aluga · Campina Grande–PB</p>

@@ -96,34 +96,20 @@ window.EVY_ACERVO=[
 /* Vitrine: foto da boutique EVY separada em camadas.
    fundo = foto sem as roupas e sem as sombras; cada peça é uma camada com o recorte em alta
    resolução da roupa e o cabide/gancho recortados da foto que balança presa ao gancho.
-   area = [esquerda, topo, largura, altura] em % da foto; pivo = ponto do gancho em % da camada. */
+   A foto foi ampliada para os lados (3000 px) para ocupar a largura toda da tela.
+   area = [esquerda, topo, largura, altura] em % da foto ampliada; pivo = ponto do gancho em % da camada. */
 window.EVY_VITRINE={
  "fundo": "assets/vitrine/boutique-fundo.webp",
  "fundoCelular": "assets/vitrine/boutique-fundo-800.webp",
- "largura": 1122,
+ "largura": 3000,
  "altura": 1402,
  "pecas": [
   {
-   "id": "borgonha",
-   "area": [
-    8.645,
-    16.833,
-    20.321,
-    28.959
-   ],
-   "pivo": [
-    44.8,
-    3.2
-   ],
-   "img": "assets/vitrine/camadas/borgonha.webp",
-   "z": 1
-  },
-  {
    "id": "biker",
    "area": [
-    23.886,
+    37.333,
     16.833,
-    19.073,
+    7.133,
     24.75
    ],
    "pivo": [
@@ -136,9 +122,9 @@ window.EVY_VITRINE={
   {
    "id": "fur",
    "area": [
-    36.096,
+    41.9,
     16.833,
-    21.836,
+    8.167,
     27.96
    ],
    "pivo": [
@@ -151,9 +137,9 @@ window.EVY_VITRINE={
   {
    "id": "marrom",
    "area": [
-    50.178,
+    47.167,
     16.833,
-    17.291,
+    6.467,
     26.034
    ],
    "pivo": [
@@ -166,9 +152,9 @@ window.EVY_VITRINE={
   {
    "id": "assimetrico",
    "area": [
-    64.795,
+    52.633,
     16.833,
-    14.082,
+    5.267,
     38.445
    ],
    "pivo": [
@@ -181,9 +167,9 @@ window.EVY_VITRINE={
   {
    "id": "balone",
    "area": [
-    74.51,
+    56.267,
     16.833,
-    18.36,
+    6.867,
     28.959
    ],
    "pivo": [
@@ -195,9 +181,9 @@ window.EVY_VITRINE={
   }
  ],
  "sacola": [
-  36.99,
+  45.134,
   62.41,
-  24.96,
+  9.335,
   17.83
  ]
 };
